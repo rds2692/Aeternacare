@@ -1,0 +1,88 @@
+---
+import { site, navPrincipal, navLegal, whatsappLink, telLink, correoLink } from '../data/site';
+import Pending from './Pending.astro';
+import Icon from './Icon.astro';
+
+const anio = new Date().getFullYear();
+const redes = Object.entries(site.redes).filter(([, url]) => url);
+---
+
+<footer class="footer">
+  <div class="contenedor">
+    <div class="footer__grid">
+      <div class="footer__marca">
+        <span class="logo__texto">
+          <span class="logo__nombre">Aeterna Care</span>
+          <span class="logo__bajada">Cuidado en casa</span>
+        </span>
+        <p>
+          Cuidado profesional y humano en el hogar. Acompañamiento para adultos mayores en
+          Santiago, con atención cercana y adaptada a cada familia.
+        </p>
+        <p>
+          <a href={telLink} data-analitica="telefono-footer">{site.telefonoVisible}</a>
+          {!correoLink && <Pending campo="correo de contacto" />}
+        </p>
+      </div>
+
+      <div>
+        <h2 class="footer__titulo">Navegación</h2>
+        <ul class="footer__lista">
+          {navPrincipal.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+          <li>
+            <a href={whatsappLink()} target="_blank" rel="noopener" data-analitica="whatsapp-footer">
+              WhatsApp
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="footer__titulo">Datos legales</h2>
+        <ul class="footer__lista">
+          <li>
+            {site.nombreLegal || <Pending campo="razón social" />}
+          </li>
+          <li>
+            {site.rut || <Pending campo="RUT" />}
+          </li>
+          <li>
+            {site.direccion || <Pending campo="dirección" />}
+          </li>
+          <li>
+            {site.horario || <Pending campo="horario de atención" />}
+          </li>
+          {navLegal.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__legal">
+      <p>
+        {site.nombre} · {site.comuna}, {site.region}, Chile. Sitio informativo; no constituye
+        asesoría médica ni reemplaza la indicación de un profesional de la salud.
+      </p>
+      <p>
+        © {anio} {site.nombre}. Todos los derechos reservados.
+        {redes.length > 0 && (
+          <>
+            {' '}
+            {redes.map(([nombre, url]) => (
+              <a href={url} target="_blank" rel="noopener">
+                {nombre}
+              </a>
+            ))}
+          </>
+        )}
+      </p>
+      {redes.length === 0 && (
+        <p>
+          <Pending campo="redes sociales" />{' '}
+          <a href="/contacto/" style="text-decoration:underline">
+            <Icon name="documento" size={14} /> Ver contacto
+          </a>
+        </p>
+      )}
+    </div>
+  </div>
+</footer>

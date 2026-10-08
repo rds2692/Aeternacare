@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import { whatsappLink, site } from '../data/site';
+---
+
+<Layout
+  title="Gracias por escribirnos | Aeterna Care"
+  description="Recibimos tu mensaje. Te contactaremos para orientarte sobre el cuidado que necesita tu familiar."
+  canonical="/gracias/"
+  noindex
+>
+  <section class="seccion seccion--menta">
+    <div class="contenedor">
+      <div class="cierre" style="max-width: 46rem; margin-inline: auto;">
+        <span class="tarjeta__icono" aria-hidden="true"><Icon name="checkCirculo" size={26} /></span>
+        <h1>Gracias por escribirnos</h1>
+        <p>
+          Recibimos tus datos. Nuestro equipo revisará lo que nos contaste y te contactará para
+          orientarte sobre la alternativa de cuidado más adecuada.
+        </p>
+        <p>
+          Si necesitas una respuesta más rápida, escríbenos directamente por WhatsApp
+          <strong>{site.telefonoVisible}</strong>.
+        </p>
+        <div class="grupo-botones">
+          <a class="btn btn--whatsapp btn--grande" href={whatsappLink()} target="_blank" rel="noopener">
+            <Icon name="whatsapp" size={18} />
+            Hablar por WhatsApp
+          </a>
+          <a class="btn btn--fantasma btn--grande" href="/">Volver al inicio</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

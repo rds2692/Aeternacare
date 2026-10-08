@@ -1,0 +1,89 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { site } from '../../data/site';
+
+const entradas = (await getCollection('blog')).sort(
+  (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf(),
+);
+
+const titulo = 'Blog | Orientación para el cuidado de adultos mayores';
+const descripcion =
+  'Guías prácticas sobre cuidado domiciliario de adultos mayores en Chile: cómo elegir, qué preguntar y cómo preparar el hogar.';
+
+const formatoFecha = new Intl.DateTimeFormat('es-CL', { dateStyle: 'long' });
+
+const migas = [
+  { href: '/', label: 'Inicio' },
+  { href: '/blog/', label: 'Blog' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Blog',
+  name: 'Blog de Aeterna Care',
+  url: `${site.dominio}/blog/`,
+  blogPost: entradas.map((entrada) => ({
+    '@type': 'BlogPosting',
+    headline: entrada.data.title,
+    datePublished: entrada.data.fecha.toISOString().slice(0, 10),
+    url: `${site.dominio}/blog/${entrada.id}/`,
+  })),
+};
+---
+
+<Layout title={titulo} description={descripcion} canonical="/blog/" jsonLd={jsonLd}>
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación">
+        <ol class="migas">
+          {migas.map((miga) => <li><a href={miga.href}>{miga.label}</a></li>)}
+          <li aria-current="page">Blog</li>
+        </ol>
+      </nav>
+      <div class="cabecera-pagina__inner">
+        <span class="eyebrow">Blog</span>
+        <h1>Guías para cuidar mejor</h1>
+        <p>
+          Información práctica para familias que están decidiendo cómo acompañar a un adulto mayor
+          en casa. Sin alarmismo y sin promesas exageradas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca">
+    <div class="contenedor">
+      <ul class="entrada-lista" role="list">
+        {
+          entradas.map((entrada, indice) => (
+            <li class="entrada" data-reveal style={`--retardo: ${indice * 80}ms`}>
+              <p class="entrada__meta">
+                <time datetime={entrada.data.fecha.toISOString()}>
+                  {formatoFecha.format(entrada.data.fecha)}
+                </time>
+                <span>{entrada.data.lectura} de lectura</span>
+              </p>
+              <h2>
+                <a href={`/blog/${entrada.id}/`}>{entrada.data.title}</a>
+              </h2>
+              <p>{entrada.data.description}</p>
+              <p>
+                <a class="btn btn--fantasma" href={`/blog/${entrada.id}/`}>
+                  Leer la guía
+                  <Icon name="flecha" size={18} />
+                </a>
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { iniciarReveals } from '../../scripts/reveal';
+  iniciarReveals();
+</script>

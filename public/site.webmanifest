@@ -1,0 +1,16 @@
+{
+  "name": "Aeterna Care",
+  "short_name": "Aeterna",
+  "description": "Cuidado y acompañamiento profesional para adultos mayores a domicilio en Santiago.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EAF6F1",
+  "theme_color": "#EAF6F1",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}

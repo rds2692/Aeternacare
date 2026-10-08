@@ -1,0 +1,30 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+---
+
+<Layout
+  title="Página no encontrada | Aeterna Care"
+  description="La página que buscas no existe. Vuelve al inicio o escríbenos directamente."
+  noindex
+>
+  <section class="seccion seccion--menta">
+    <div class="contenedor">
+      <div class="cierre" style="max-width: 42rem; margin-inline: auto;">
+        <span class="eyebrow">Error 404</span>
+        <h1>No encontramos esta página</h1>
+        <p>
+          Puede que el enlace haya cambiado. Te invitamos a volver al inicio o a contactarnos
+          directamente: respondemos con gusto.
+        </p>
+        <div class="grupo-botones">
+          <a class="btn btn--primario btn--grande" href="/">
+            Volver al inicio
+            <Icon name="flecha" size={18} />
+          </a>
+          <a class="btn btn--secundario btn--grande" href="/contacto/">Ir a contacto</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>

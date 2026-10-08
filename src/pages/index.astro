@@ -1,0 +1,43 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Hero from '../components/Hero.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Philosophy from '../components/Philosophy.astro';
+import Services from '../components/Services.astro';
+import Trust from '../components/Trust.astro';
+import Process from '../components/Process.astro';
+import Testimonials from '../components/Testimonials.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+
+const titulo = 'Aeterna Care | Cuidado de adultos mayores a domicilio en Santiago';
+const descripcion =
+  'Cuidados profesionales para adultos mayores a domicilio en Santiago. Atención cercana, personalizada y humana para tu familiar y tranquilidad para toda la familia.';
+
+const servicioJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Cuidado y acompañamiento de adultos mayores a domicilio',
+  serviceType: 'Cuidado domiciliario de adultos mayores',
+  areaServed: { '@type': 'City', name: 'Santiago' },
+  provider: { '@id': 'https://www.aeternacare.cl/#organizacion' },
+  description:
+    'Acompañamiento, apoyo en actividades diarias y supervisión del bienestar en el hogar, con personal TENS y enfermería según el caso.',
+};
+---
+
+<Layout title={titulo} description={descripcion} canonical="/" jsonLd={servicioJsonLd}>
+  <Hero />
+  <ContactSection />
+  <Philosophy />
+  <Services />
+  <Trust />
+  <Process />
+  <Testimonials />
+  <FinalCTA />
+</Layout>
+
+<script>
+  import { iniciarReveals } from '../scripts/reveal';
+
+  iniciarReveals();
+</script>

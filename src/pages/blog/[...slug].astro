@@ -1,0 +1,101 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import { site } from '../../data/site';
+
+export async function getStaticPaths() {
+  const entradas = await getCollection('blog');
+  return entradas.map((entrada) => ({
+    params: { slug: entrada.id },
+    props: { entrada },
+  }));
+}
+
+const { entrada } = Astro.props;
+const { Content } = await render(entrada);
+
+const formatoFecha = new Intl.DateTimeFormat('es-CL', { dateStyle: 'long' });
+const url = `${site.dominio}/blog/${entrada.id}/`;
+
+const migas = [
+  { href: '/', label: 'Inicio' },
+  { href: '/blog/', label: 'Blog' },
+  { href: `/blog/${entrada.id}/`, label: entrada.data.title },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: entrada.data.title,
+    description: entrada.data.description,
+    datePublished: entrada.data.fecha.toISOString().slice(0, 10),
+    dateModified: entrada.data.fecha.toISOString().slice(0, 10),
+    author: { '@type': 'Organization', name: entrada.data.autor },
+    publisher: { '@id': `${site.dominio}/#organizacion` },
+    mainEntityOfPage: url,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: migas.map((miga, indice) => ({
+      '@type': 'ListItem',
+      position: indice + 1,
+      name: miga.label,
+      item: miga.href.startsWith('http') ? miga.href : `${site.dominio}${miga.href}`,
+    })),
+  },
+];
+---
+
+<Layout
+  title={`${entrada.data.title} | Aeterna Care`}
+  description={entrada.data.description}
+  canonical={`/blog/${entrada.id}/`}
+  ogType="article"
+  jsonLd={jsonLd}
+>
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación">
+        <ol class="migas">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/blog/">Blog</a></li>
+          <li aria-current="page">{entrada.data.title}</li>
+        </ol>
+      </nav>
+      <div class="cabecera-pagina__inner">
+        <h1>{entrada.data.title}</h1>
+        <p class="entrada__meta">
+          <time datetime={entrada.data.fecha.toISOString()}>
+            {formatoFecha.format(entrada.data.fecha)}
+          </time>
+          <span>{entrada.data.lectura} de lectura</span>
+          <span>{entrada.data.autor}</span>
+        </p>
+        <p>{entrada.data.description}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca">
+    <div class="contenedor">
+      <article class="prosa">
+        <Content />
+      </article>
+
+      <div class="cierre" style="margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);">
+        <h2 style="font-size: var(--h3)">¿Necesitas orientación para tu caso?</h2>
+        <p>
+          Cuéntanos la situación de tu familiar y te ayudamos a definir qué tipo de apoyo
+          corresponde.
+        </p>
+        <a class="btn btn--primario btn--grande" href="/contacto/">
+          Solicitar orientación
+          <Icon name="flecha" size={18} />
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

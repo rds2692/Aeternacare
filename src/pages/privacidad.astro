@@ -1,0 +1,160 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pending from '../components/Pending.astro';
+import { site } from '../data/site';
+
+const titulo = 'Aviso de privacidad | Aeterna Care';
+const descripcion =
+  'Cómo tratamos los datos personales que nos entregas a través de este sitio: finalidad, base de licitud, conservación y derechos.';
+
+const migas = [
+  { href: '/', label: 'Inicio' },
+  { href: '/privacidad/', label: 'Aviso de privacidad' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: migas.map((miga, indice) => ({
+    '@type': 'ListItem',
+    position: indice + 1,
+    name: miga.label,
+    item: `${site.dominio}${miga.href}`,
+  })),
+};
+---
+
+<Layout
+  title={titulo}
+  description={descripcion}
+  canonical="/privacidad/"
+  jsonLd={jsonLd}
+>
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación">
+        <ol class="migas">
+          {migas.map((miga) => <li><a href={miga.href}>{miga.label}</a></li>)}
+          <li aria-current="page">Aviso de privacidad</li>
+        </ol>
+      </nav>
+      <div class="cabecera-pagina__inner">
+        <h1>Aviso de privacidad</h1>
+        <p>
+          Este documento explica qué datos personales tratamos cuando nos contactas a través de
+          este sitio, para qué los usamos y cómo puedes ejercer tus derechos.
+        </p>
+        <p class="aviso-config">
+          <span>
+            <strong>Borrador pendiente de revisión legal.</strong> Este texto debe ser revisado por
+            un abogado antes de publicar el sitio y ajustado a la normativa chilena vigente sobre
+            protección de datos personales.
+          </span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca">
+    <div class="contenedor">
+      <article class="prosa">
+        <h2>1. Quién es el responsable del tratamiento</h2>
+        <p>
+          El responsable del tratamiento de tus datos es {site.nombre}, <Pending
+            campo="razón social"
+          />, RUT <Pending campo="RUT" />, con domicilio en <Pending campo="dirección" />, Santiago,
+          Chile.
+        </p>
+        <p>
+          Para cualquier consulta sobre privacidad puedes escribirnos a
+          <Pending campo="correo de privacidad" />.
+        </p>
+
+        <h2>2. Qué datos tratamos</h2>
+        <p>
+          A través del formulario de contacto y del canal de WhatsApp podemos tratar los siguientes
+          datos:
+        </p>
+        <ul>
+          <li>Datos de identificación y contacto: nombre, teléfono, correo electrónico.</li>
+          <li>
+            Datos que decidas entregarnos en el campo de mensaje, relacionados con la situación de
+            la persona que necesita cuidado (por ejemplo, rutina diaria, nivel de autonomía o
+            horarios requeridos).
+          </li>
+          <li>Datos técnicos de navegación, solo si aceptas la medición del sitio.</li>
+        </ul>
+        <p>
+          <strong>Recomendación importante:</strong> no es necesario que escribas diagnósticos,
+          exámenes ni datos clínicos detallados en el formulario. Esa información la conversamos de
+          forma reservada y, cuando corresponde, directamente con el profesional de salud tratante.
+        </p>
+
+        <h2>3. Para qué usamos los datos</h2>
+        <ul>
+          <li>Responder tu solicitud y orientarte sobre los servicios de cuidado.</li>
+          <li>Coordinar una evaluación o una propuesta de servicio, si decides avanzar.</li>
+          <li>Mantener un registro del contacto para hacer seguimiento de tu solicitud.</li>
+          <li>Medir el uso del sitio, únicamente si aceptas las cookies de medición.</li>
+        </ul>
+        <p>
+          No usamos tus datos para finalidades distintas a las indicadas, y no los vendemos ni
+          cedemos a terceros con fines publicitarios.
+        </p>
+
+        <h2>4. Base de licitud</h2>
+        <p>
+          Tratamos tus datos sobre la base de tu consentimiento, que otorgas al enviar el
+          formulario o al escribirnos por WhatsApp, y en lo necesario para ejecutar una eventual
+          relación contractual de servicios.
+        </p>
+
+        <h2>5. Conservación</h2>
+        <p>
+          Conservamos los datos de contacto mientras exista interés en el servicio y por el plazo
+          necesario para responder consultas y cumplir obligaciones legales. Luego se eliminan o
+          anonimizan. Plazo definido: <Pending campo="plazo de conservación" />.
+        </p>
+
+        <h2>6. Encargados y proveedores</h2>
+        <p>
+          Para operar el sitio podemos apoyarnos en terceros que tratan datos por nuestra cuenta:
+          hosting <Pending campo="proveedor de hosting" />, servicio de envío de formularios
+          <Pending campo="proveedor de formularios" /> y mensajería por WhatsApp.
+        </p>
+
+        <h2>7. Seguridad</h2>
+        <p>
+          Aplicamos medidas razonables para proteger la información: conexiones cifradas, acceso
+          restringido y uso de credenciales individuales. Ningún sistema es absolutamente
+          infalible, por lo que trabajamos para reducir riesgos y revisar nuestros procedimientos.
+        </p>
+
+        <h2>8. Tus derechos</h2>
+        <p>
+          Puedes solicitar el acceso, la rectificación, la eliminación o la oposición al
+          tratamiento de tus datos escribiendo a <Pending campo="correo de privacidad" />. Te
+          responderemos dentro de un plazo razonable y, cuando corresponda, eliminaremos los datos
+          que ya no sean necesarios.
+        </p>
+
+        <h2>9. Cookies y medición</h2>
+        <p>
+          Este sitio solo carga herramientas de medición (por ejemplo, Google Analytics) si existen
+          identificadores configurados y si aceptas las cookies. Si rechazas la medición, el sitio
+          funciona igual y no se carga ningún script de terceros.
+        </p>
+
+        <h2>10. Cambios a este aviso</h2>
+        <p>
+          Podemos actualizar este aviso para reflejar cambios en nuestras prácticas o en la
+          normativa. La versión vigente será siempre la publicada en esta página, con su fecha de
+          actualización.
+        </p>
+        <p>
+          Última actualización: <Pending campo="fecha de última actualización" />.
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>

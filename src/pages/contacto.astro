@@ -1,0 +1,119 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ContactSection from '../components/ContactSection.astro';
+import Icon from '../components/Icon.astro';
+import Pending from '../components/Pending.astro';
+import { site, whatsappLink, telLink } from '../data/site';
+
+const titulo = 'Contacto | Aeterna Care';
+const descripcion =
+  'Escríbenos por WhatsApp o completa el formulario y te orientamos sobre el cuidado que necesita tu familiar en Santiago.';
+
+const migas = [
+  { href: '/', label: 'Inicio' },
+  { href: '/contacto/', label: 'Contacto' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    name: titulo,
+    url: `${site.dominio}/contacto/`,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: migas.map((miga, indice) => ({
+      '@type': 'ListItem',
+      position: indice + 1,
+      name: miga.label,
+      item: `${site.dominio}${miga.href}`,
+    })),
+  },
+];
+---
+
+<Layout title={titulo} description={descripcion} canonical="/contacto/" jsonLd={jsonLd}>
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación">
+        <ol class="migas">
+          {migas.map((miga) => <li><a href={miga.href}>{miga.label}</a></li>)}
+          <li aria-current="page">Contacto</li>
+        </ol>
+      </nav>
+      <div class="cabecera-pagina__inner">
+        <h1>Hablemos sobre las necesidades de tu familiar</h1>
+        <p>
+          Cuéntanos brevemente la situación y te orientamos sobre la alternativa de cuidado más
+          adecuada. Sin compromiso y sin tecnicismos innecesarios.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <ContactSection compacto />
+
+  <section class="seccion seccion--menta">
+    <div class="contenedor">
+      <div class="encabezado" data-reveal>
+        <span class="eyebrow">Datos de contacto</span>
+        <h2>Otros canales</h2>
+      </div>
+
+      <ul class="rejilla-tarjetas rejilla-tarjetas--tres" role="list">
+        <li class="tarjeta" data-reveal>
+          <span class="tarjeta__icono" aria-hidden="true"><Icon name="telefono" size={22} /></span>
+          <h3>Teléfono</h3>
+          <p class="tarjeta__texto">
+            <a href={telLink} data-analitica="telefono-contacto">{site.telefonoVisible}</a>
+          </p>
+        </li>
+        <li class="tarjeta" data-reveal style="--retardo: 90ms">
+          <span class="tarjeta__icono" aria-hidden="true"><Icon name="whatsapp" size={22} /></span>
+          <h3>WhatsApp</h3>
+          <p class="tarjeta__texto">
+            <a href={whatsappLink()} target="_blank" rel="noopener">Escribir por WhatsApp</a>
+          </p>
+        </li>
+        <li class="tarjeta" data-reveal style="--retardo: 180ms">
+          <span class="tarjeta__icono" aria-hidden="true"><Icon name="correo" size={22} /></span>
+          <h3>Correo</h3>
+          <p class="tarjeta__texto">
+            {site.correo ? <a href={`mailto:${site.correo}`}>{site.correo}</a> : <Pending campo="correo corporativo" />}
+          </p>
+        </li>
+        <li class="tarjeta" data-reveal>
+          <span class="tarjeta__icono" aria-hidden="true"><Icon name="reloj" size={22} /></span>
+          <h3>Horario de atención</h3>
+          <p class="tarjeta__texto">
+            {site.horario || <Pending campo="horario de atención" />}
+          </p>
+        </li>
+        <li class="tarjeta" data-reveal style="--retardo: 90ms">
+          <span class="tarjeta__icono" aria-hidden="true"><Icon name="ubicacion" size={22} /></span>
+          <h3>Cobertura</h3>
+          <p class="tarjeta__texto">
+            {site.direccion || <Pending campo="dirección" />}
+            <br />
+            {site.areaServida.slice(0, 4).join(' · ')} y otras comunas de Santiago.
+          </p>
+        </li>
+        <li class="tarjeta" data-reveal style="--retardo: 180ms">
+          <span class="tarjeta__icono" aria-hidden="true"><Icon name="escudo" size={22} /></span>
+          <h3>Urgencias</h3>
+          <p class="tarjeta__texto">
+            Ante una urgencia médica llama al 131. Este sitio no reemplaza la atención de
+            emergencia.
+          </p>
+        </li>
+      </ul>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { iniciarReveals } from '../scripts/reveal';
+  iniciarReveals();
+</script>

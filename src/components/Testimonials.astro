@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+---
+
+{/*
+  Sección preparada para testimonios reales.
+  Regla: no se publican citas, nombres ni fotografías sin autorización escrita
+  de la familia. Mientras no existan, se muestra un bloque de confianza.
+*/}
+<section class="seccion seccion--blanca" aria-labelledby="testimonios-titulo">
+  <div class="contenedor">
+    <div class="encabezado encabezado--centrado" data-reveal>
+      <span class="eyebrow">Familias</span>
+      <h2 id="testimonios-titulo">Lo que dicen las familias que confían en nosotros</h2>
+      <p>
+        Publicaremos aquí los testimonios reales de las familias que lo autoricen por escrito.
+        Preferimos un espacio vacío antes que una cita inventada.
+      </p>
+    </div>
+
+    <div class="testimonios__nota" data-reveal style="--retardo: 120ms">
+      <span class="tarjeta__icono" aria-hidden="true">
+        <Icon name="escudo" size={22} />
+      </span>
+      <h3>Cuidado humano, atención personalizada, en la comodidad del hogar</h3>
+      <p>
+        Estamos reuniendo las historias reales de las familias que hoy reciben nuestro servicio.
+        Cada testimonio se publicará con su autorización firmada, sin nombres que no queramos
+        exponer y sin datos clínicos.
+      </p>
+      <a class="btn btn--fantasma" href="/contacto/">
+        Conversar con el equipo
+        <Icon name="flecha" size={18} />
+      </a>
+    </div>
+  </div>
+</section>

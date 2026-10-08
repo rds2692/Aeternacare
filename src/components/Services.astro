@@ -1,0 +1,37 @@
+---
+import Icon from './Icon.astro';
+import { servicios } from '../data/contenido';
+---
+
+<section class="seccion seccion--blanca" id="servicios" aria-labelledby="servicios-titulo">
+  <div class="contenedor">
+    <div class="encabezado" data-reveal>
+      <span class="eyebrow">Servicios</span>
+      <h2 id="servicios-titulo">{servicios.titulo}</h2>
+      <p>{servicios.bajada}</p>
+    </div>
+
+    <ul class="rejilla-tarjetas rejilla-tarjetas--cuatro" role="list">
+      {
+        servicios.tarjetas.map((tarjeta, indice) => (
+          <li class="tarjeta" data-reveal style={`--retardo: ${indice * 80}ms`}>
+            <span class="tarjeta__icono" aria-hidden="true">
+              <Icon name={tarjeta.icono as any} size={22} />
+            </span>
+            <h3>{tarjeta.titulo}</h3>
+            <p class="tarjeta__texto">{tarjeta.texto}</p>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div
+      class="tarjeta"
+      data-reveal
+      style="margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem); background: var(--mint-soft); border-style: dashed;"
+    >
+      <h3>{servicios.alcance.titulo}</h3>
+      <p class="tarjeta__texto">{servicios.alcance.texto}</p>
+    </div>
+  </div>
+</section>

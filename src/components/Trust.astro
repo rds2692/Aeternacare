@@ -1,0 +1,39 @@
+---
+import { confianza } from '../data/contenido';
+---
+
+<section class="seccion seccion--suave" aria-labelledby="confianza-titulo">
+  <div class="contenedor">
+    <div class="confianza__grid">
+      <figure class="confianza__figura" data-reveal>
+        <img
+          src="/img/confianza-familia.jpg"
+          width="1500"
+          height="1000"
+          alt="Una hija adulta conversando con su madre mayor en el living de una casa, con luz natural."
+          loading="lazy"
+          decoding="async"
+        />
+      </figure>
+
+      <div class="confianza__contenido">
+        <div class="encabezado" data-reveal style="--retardo: 80ms">
+          <span class="eyebrow">Confianza</span>
+          <h2 id="confianza-titulo">{confianza.titulo}</h2>
+          <p>{confianza.texto}</p>
+        </div>
+
+        <ul class="pilares" role="list" data-reveal style="--retardo: 160ms">
+          {
+            confianza.pilares.map((pilar) => (
+              <li>
+                <h3>{pilar.titulo}</h3>
+                <p>{pilar.texto}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,21 @@
+---
+import { AVISO_PENDIENTES } from '../data/site';
+
+/**
+ * Marca de dato faltante. Visible solo mientras AVISO_PENDIENTES sea true,
+ * para que sea imposible publicar el sitio con información sin completar.
+ */
+interface Props {
+  campo: string;
+  /** Texto alternativo mientras el dato no existe. */
+  texto?: string;
+}
+
+const { campo, texto } = Astro.props;
+---
+
+{AVISO_PENDIENTES && (
+  <span class="pendiente" title={`Dato pendiente: ${campo}`}>
+    {texto ?? `[COMPLETAR: ${campo}]`}
+  </span>
+)}

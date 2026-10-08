@@ -1,0 +1,24 @@
+---
+import { proceso } from '../data/contenido';
+---
+
+<section class="seccion seccion--menta" id="como-funciona" aria-labelledby="proceso-titulo">
+  <div class="contenedor">
+    <div class="encabezado" data-reveal>
+      <span class="eyebrow">Cómo funciona</span>
+      <h2 id="proceso-titulo">{proceso.titulo}</h2>
+      <p>{proceso.bajada}</p>
+    </div>
+
+    <ol class="proceso">
+      {
+        proceso.pasos.map((paso, indice) => (
+          <li class="paso" data-reveal style={`--retardo: ${indice * 90}ms`}>
+            <h3>{paso.titulo}</h3>
+            <p>{paso.texto}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

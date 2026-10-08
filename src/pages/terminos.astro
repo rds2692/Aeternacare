@@ -1,0 +1,145 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Pending from '../components/Pending.astro';
+import { site } from '../data/site';
+
+const titulo = 'Términos y condiciones | Aeterna Care';
+const descripcion =
+  'Condiciones de uso de este sitio web y marco general de los servicios de cuidado domiciliario ofrecidos por Aeterna Care.';
+
+const migas = [
+  { href: '/', label: 'Inicio' },
+  { href: '/terminos/', label: 'Términos y condiciones' },
+];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: migas.map((miga, indice) => ({
+    '@type': 'ListItem',
+    position: indice + 1,
+    name: miga.label,
+    item: `${site.dominio}${miga.href}`,
+  })),
+};
+---
+
+<Layout title={titulo} description={descripcion} canonical="/terminos/" jsonLd={jsonLd}>
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación">
+        <ol class="migas">
+          {migas.map((miga) => <li><a href={miga.href}>{miga.label}</a></li>)}
+          <li aria-current="page">Términos y condiciones</li>
+        </ol>
+      </nav>
+      <div class="cabecera-pagina__inner">
+        <h1>Términos y condiciones</h1>
+        <p>
+          Estas condiciones regulan el uso de este sitio web y entregan el marco general de
+          nuestros servicios. No reemplazan el contrato de prestación de servicios que se firma con
+          cada familia.
+        </p>
+        <p class="aviso-config">
+          <span>
+            <strong>Borrador pendiente de revisión legal.</strong> Este texto debe ser revisado por
+            un abogado antes de publicar el sitio.
+          </span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca">
+    <div class="contenedor">
+      <article class="prosa">
+        <h2>1. Identificación del prestador</h2>
+        <p>
+          {site.nombre}, <Pending campo="razón social" />, RUT <Pending campo="RUT" />, domicilio en
+          <Pending campo="dirección" />, Santiago, Chile. Contacto:
+          {site.telefonoVisible}.
+        </p>
+
+        <h2>2. Uso del sitio</h2>
+        <p>
+          Este sitio tiene carácter informativo. Su objetivo es que puedas conocer nuestros
+          servicios y contactarnos. La información publicada no constituye asesoría médica ni
+          reemplaza la evaluación de un profesional de la salud.
+        </p>
+        <p>
+          Te pedimos usar los formularios y canales de contacto de buena fe, entregando información
+          veraz y evitando un uso que pueda afectar a terceros o al funcionamiento del sitio.
+        </p>
+
+        <h2>3. Naturaleza de los servicios</h2>
+        <p>
+          Los servicios consisten en cuidado y acompañamiento domiciliario para adultos mayores.
+          Cada caso se evalúa antes de proponer una modalidad de atención, y las tareas incluidas se
+          detallan por escrito.
+        </p>
+        <p>
+          Los procedimientos clínicos, la administración de medicamentos y los cuidados que
+          requieren indicación médica se realizan únicamente por el personal habilitado para ello,
+          según la prescripción del profesional tratante.
+        </p>
+
+        <h2>4. Cotizaciones, precios y pago</h2>
+        <p>
+          Los valores se informan de forma personalizada después de conocer las necesidades de cada
+          familia, porque dependen del tipo de apoyo, la cantidad de horas y el perfil profesional
+          requerido. Los precios publicados o informados tienen la vigencia que se indique en cada
+          propuesta.
+        </p>
+        <p>
+          Modalidades de pago y facturación: <Pending campo="condiciones comerciales" />.
+        </p>
+
+        <h2>5. Agendamiento, cambios y anulaciones</h2>
+        <p>
+          Los horarios se coordinan al inicio del servicio. Los cambios y anulaciones se solicitan
+          con el aviso previo que se informa en cada propuesta. Condiciones específicas:
+          <Pending campo="plazos de aviso" />.
+        </p>
+
+        <h2>6. Garantía de reemplazo</h2>
+        <p>
+          Si la persona asignada no puede asistir, coordinamos un reemplazo en el plazo que se
+          comprometa por escrito: <Pending campo="garantía de reemplazo" />.
+        </p>
+
+        <h2>7. Responsabilidad</h2>
+        <p>
+          Nos hacemos responsables del servicio que prestamos dentro del alcance acordado por
+          escrito. No somos responsables de la evolución de condiciones de salud diagnosticadas por
+          terceros, ni de indicaciones médicas que no nos sean informadas oportunamente.
+        </p>
+        <p>
+          En caso de una urgencia médica, la familia o quien esté presente debe contactar a los
+          servicios de emergencia (131).
+        </p>
+
+        <h2>8. Propiedad intelectual</h2>
+        <p>
+          Los textos, imágenes, marcas y elementos gráficos de este sitio pertenecen a
+          {site.nombre} o se utilizan con autorización. No pueden reproducirse sin permiso previo.
+        </p>
+
+        <h2>9. Modificaciones</h2>
+        <p>
+          Podemos actualizar estos términos para reflejar cambios en nuestros servicios o en la
+          normativa aplicable. La versión vigente es la publicada en esta página.
+        </p>
+
+        <h2>10. Legislación aplicable</h2>
+        <p>
+          Estos términos se rigen por la legislación chilena. Cualquier controversia se someterá a
+          los tribunales competentes de Santiago, sin perjuicio de los derechos que la ley reconoce
+          a los consumidores.
+        </p>
+        <p>
+          Última actualización: <Pending campo="fecha de última actualización" />.
+        </p>
+      </article>
+    </div>
+  </section>
+</Layout>

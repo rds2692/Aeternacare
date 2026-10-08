@@ -1,0 +1,51 @@
+---
+import Icon from './Icon.astro';
+import { cierre, ctaFinal } from '../data/contenido';
+import { whatsappLink } from '../data/site';
+---
+
+{/* Cierre de conversión: resuelve el «no mostramos precios» con orientación. */}
+<section class="seccion seccion--suave" aria-labelledby="cierre-titulo">
+  <div class="contenedor">
+    <div class="cierre">
+      <span class="eyebrow" data-reveal>Cuidado a medida</span>
+      <h2 id="cierre-titulo" data-reveal style="--retardo: 60ms">{cierre.titulo}</h2>
+      <p data-reveal style="--retardo: 120ms">{cierre.texto}</p>
+      <div class="grupo-botones" data-reveal style="--retardo: 180ms">
+        <a class="btn btn--primario btn--grande" href="/contacto/" data-analitica="cta-cierre">
+          {cierre.cta}
+          <Icon name="flecha" size={18} />
+        </a>
+        <a
+          class="btn btn--secundario btn--grande"
+          href={whatsappLink()}
+          target="_blank"
+          rel="noopener"
+          data-analitica="whatsapp-cierre"
+        >
+          <Icon name="whatsapp" size={18} />
+          Hablar por WhatsApp
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion seccion--profunda cta-final" aria-labelledby="cta-final-titulo">
+  <div class="cta-final__fondo" aria-hidden="true"></div>
+  <div class="contenedor">
+    <div class="cta-final__inner">
+      <span class="eyebrow" data-reveal>Estamos aquí</span>
+      <h2 id="cta-final-titulo" data-reveal style="--retardo: 60ms">
+        ¿Necesitas apoyo para cuidar a <span class="serif">alguien que quieres</span>?
+      </h2>
+      <p data-reveal style="--retardo: 120ms">{ctaFinal.texto}</p>
+      <div class="grupo-botones" data-reveal style="--retardo: 180ms">
+        <a class="btn btn--primario btn--grande" href="/contacto/" data-analitica="cta-final">
+          {ctaFinal.cta}
+          <Icon name="flecha" size={18} />
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

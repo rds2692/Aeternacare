@@ -1,0 +1,18 @@
+---
+import Icon from './Icon.astro';
+import { whatsappLink } from '../data/site';
+---
+
+<a
+  class="wa-flotante"
+  href={whatsappLink()}
+  target="_blank"
+  rel="noopener"
+  aria-label="¿Necesitas orientación? Hablemos por WhatsApp"
+  data-analitica="whatsapp-flotante"
+>
+  <span class="wa-flotante__texto">¿Necesitas orientación?<br />Hablemos por WhatsApp</span>
+  <span class="wa-flotante__boton">
+    <Icon name="whatsapp" size={26} strokeWidth={1.6} />
+  </span>
+</a>

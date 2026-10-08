@@ -1,0 +1,70 @@
+---
+import Icon from './Icon.astro';
+import { hero } from '../data/contenido';
+import { whatsappLink } from '../data/site';
+---
+
+<section class="hero" id="inicio" aria-labelledby="hero-titulo">
+  <div class="hero__fondo" aria-hidden="true"></div>
+
+  <div class="contenedor">
+    <div class="hero__grid">
+      <div class="hero__contenido">
+        <span class="eyebrow" data-reveal>Cuidado de adultos mayores en Santiago</span>
+
+        <h1 class="hero__h1" id="hero-titulo" data-reveal style="--retardo: 80ms">
+          Cuidado profesional para <span class="serif">quienes más quieres</span>.
+        </h1>
+
+        <p class="hero__bajada" data-reveal style="--retardo: 160ms">{hero.bajada}</p>
+
+        <div class="grupo-botones" data-reveal style="--retardo: 240ms">
+          <a class="btn btn--primario btn--grande" href="/contacto/" data-analitica="cta-hero">
+            {hero.cta}
+            <Icon name="flecha" size={18} />
+          </a>
+          <a
+            class="btn btn--secundario btn--grande"
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener"
+            data-analitica="whatsapp-hero"
+          >
+            <Icon name="whatsapp" size={18} />
+            {hero.ctaSecundario}
+          </a>
+        </div>
+
+        <p class="hero__nota" data-reveal style="--retardo: 320ms">{hero.nota}</p>
+
+        <ul class="hero__indicadores" data-reveal style="--retardo: 400ms">
+          {
+            hero.indicadores.map((indicador) => (
+              <li>
+                <Icon name="checkCirculo" size={18} />
+                {indicador}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="hero__media">
+        <figure class="hero__figura" data-reveal style="--retardo: 120ms">
+          <img
+            src="/img/hero-cuidado.jpg"
+            width="1200"
+            height="1500"
+            alt="Cuidadora profesional acompañando a una mujer mayor en su casa, sentadas conversando junto a una ventana con luz natural."
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
+        <span class="hero__tarjeta" data-reveal style="--retardo: 700ms">
+          <Icon name="checkCirculo" size={20} />
+          {hero.tarjetaFlotante}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,330 @@
+---
+import Icon from './Icon.astro';
+import Pending from './Pending.astro';
+import { site, whatsappLink, AVISO_PENDIENTES } from '../data/site';
+
+interface Props {
+  /** En páginas internas el bloque se comporta como formulario de contacto directo. */
+  compacto?: boolean;
+}
+
+const { compacto = false } = Astro.props;
+---
+
+<section class="seccion seccion--blanca" id="contacto" aria-labelledby="contacto-titulo">
+  <div class="contenedor">
+    <div class="contacto__grid">
+      <div class="contacto__intro">
+        <span class="eyebrow" data-reveal>Contacto</span>
+        <h2 id="contacto-titulo" data-reveal style="--retardo: 60ms">Cuéntanos qué necesitas</h2>
+        <p class="texto-plano" data-reveal style="--retardo: 120ms">
+          Cada persona y cada familia tienen necesidades diferentes. Cuéntanos brevemente la
+          situación de tu familiar y nuestro equipo te orientará sobre la alternativa de cuidado
+          más adecuada.
+        </p>
+
+        <ul class="contacto__ventajas" data-reveal style="--retardo: 180ms">
+          <li>
+            <Icon name="escudo" size={18} />
+            <span>Conversamos contigo antes de proponer cualquier servicio.</span>
+          </li>
+          <li>
+            <Icon name="reloj" size={18} />
+            <span>Respondemos en horario hábil, de lunes a viernes.</span>
+          </li>
+          <li>
+            <Icon name="documento" size={18} />
+            <span>Te explicamos por escrito qué incluye el cuidado y qué no.</span>
+          </li>
+        </ul>
+
+        <div class="contacto__directo">
+          <div>
+            <p style="font-size: var(--texto-sm); color: var(--ink-muted)">
+              También puedes escribirnos directamente por WhatsApp.
+            </p>
+          </div>
+          <div class="grupo-botones">
+            <a
+              class="btn btn--whatsapp"
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener"
+              data-analitica={'whatsapp-' + (compacto ? 'pagina' : 'seccion-contacto')}
+            >
+              <Icon name="whatsapp" size={18} />
+              Hablar por WhatsApp
+            </a>
+            <a class="btn btn--fantasma" href={`tel:${site.telefonoE164}`} data-analitica="telefono">
+              <Icon name="telefono" size={18} />
+              {site.telefonoVisible}
+            </a>
+          </div>
+          {!site.correo && (
+            <p>
+              <Pending campo="correo de contacto" />
+            </p>
+          )}
+        </div>
+      </div>
+
+      <form class="formulario" id="formulario-contacto" novalidate data-endpoint={site.formularioEndpoint}>
+        {AVISO_PENDIENTES && !site.formularioEndpoint && (
+          <p class="aviso-config">
+            <Icon name="documento" size={16} />
+            <span>
+              Formulario en modo demostración: todavía no hay un destino configurado. Al enviarlo se
+              abrirá WhatsApp con los datos escritos, para no perder el contacto. Configurar el
+              endpoint en <code>src/data/site.ts</code>.
+            </span>
+          </p>
+        )}
+
+        <div class="campo">
+          <label for="nombre">Nombre completo <span class="obligatorio">*</span></label>
+          <input
+            id="nombre"
+            name="nombre"
+            type="text"
+            autocomplete="name"
+            required
+            aria-describedby="error-nombre"
+          />
+          <span class="campo__error" id="error-nombre" data-error></span>
+        </div>
+
+        <div class="campo--doble">
+          <div class="campo">
+            <label for="telefono">Teléfono / WhatsApp <span class="obligatorio">*</span></label>
+            <input
+              id="telefono"
+              name="telefono"
+              type="tel"
+              inputmode="tel"
+              autocomplete="tel"
+              placeholder="+56 9 1234 5678"
+              required
+              aria-describedby="error-telefono"
+            />
+            <span class="campo__error" id="error-telefono" data-error></span>
+          </div>
+
+          <div class="campo">
+            <label for="correo">Correo electrónico</label>
+            <input
+              id="correo"
+              name="correo"
+              type="email"
+              autocomplete="email"
+              placeholder="nombre@correo.cl"
+              aria-describedby="error-correo"
+            />
+            <span class="campo__error" id="error-correo" data-error></span>
+          </div>
+        </div>
+
+        <div class="campo">
+          <label for="ayuda">¿Qué tipo de ayuda necesitas?</label>
+          <select id="ayuda" name="ayuda">
+            <option value="">Selecciona una opción</option>
+            <option>Acompañamiento y compañía</option>
+            <option>Apoyo en actividades diarias</option>
+            <option>Supervisión y bienestar</option>
+            <option>Turnos nocturnos o 24 horas</option>
+            <option>Aún no lo sé, necesito orientación</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="paraquien">¿Para quién es el servicio?</label>
+          <select id="paraquien" name="paraquien">
+            <option value="">Selecciona una opción</option>
+            <option>Para mi madre</option>
+            <option>Para mi padre</option>
+            <option>Para otro familiar</option>
+            <option>Para otra persona</option>
+          </select>
+        </div>
+
+        <div class="campo">
+          <label for="mensaje">Cuéntanos brevemente</label>
+          <textarea
+            id="mensaje"
+            name="mensaje"
+            rows={4}
+            placeholder="Rutina, nivel de autonomía, horarios que necesitas y cualquier detalle que nos ayude a orientarte."
+          ></textarea>
+          <span class="ayuda"
+            >Evita escribir diagnósticos o datos médicos detallados; eso lo conversamos de forma
+            reservada.</span
+          >
+        </div>
+
+        <label class="consentimiento" for="consentimiento-datos">
+          <input id="consentimiento-datos" name="consentimiento" type="checkbox" required />
+          <span>
+            Acepto que Aeterna Care use estos datos para contactarme y orientarme sobre sus
+            servicios, según el <a href="/privacidad/">aviso de privacidad</a>.
+            <span class="obligatorio">*</span>
+          </span>
+        </label>
+        <span class="campo__error" id="error-consentimiento" data-error></span>
+
+        {/* Campo trampa para bots: invisible y sin foco. */}
+        <div class="sr-only" aria-hidden="true">
+          <label for="empresa">No completar</label>
+          <input id="empresa" name="empresa" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div class="formulario__pie">
+          <button class="btn btn--primario btn--grande btn--bloque" type="submit">
+            Solicitar orientación
+            <Icon name="flecha" size={18} />
+          </button>
+          <p class="formulario__estado" id="formulario-estado" role="status" aria-live="polite"></p>
+          <p class="ayuda">
+            Al enviar este formulario no se realiza ningún cobro ni se activa un servicio.
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { registrarConversion } from '../scripts/medicion';
+  import { site } from '../data/site';
+
+  const formulario = document.getElementById('formulario-contacto') as HTMLFormElement | null;
+
+  if (formulario) {
+    const estado = document.getElementById('formulario-estado');
+
+    const marcarError = (campo: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement, mensaje: string) => {
+      campo.setAttribute('aria-invalid', 'true');
+      const salida = document.querySelector(`#error-${campo.id}`);
+      if (salida) salida.textContent = mensaje;
+    };
+
+    const limpiarError = (campo: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement) => {
+      campo.removeAttribute('aria-invalid');
+      const salida = document.querySelector(`#error-${campo.id}`);
+      if (salida) salida.textContent = '';
+    };
+
+    const validar = (): boolean => {
+      let ok = true;
+      const obligatorios = formulario.querySelectorAll<HTMLInputElement>('[required]');
+
+      obligatorios.forEach((campo) => {
+        limpiarError(campo);
+        if (campo.type === 'checkbox' && !campo.checked) {
+          marcarError(campo, 'Necesitamos tu autorización para contactarte.');
+          ok = false;
+        } else if (campo.type !== 'checkbox' && !campo.value.trim()) {
+          marcarError(campo, 'Este campo es obligatorio.');
+          ok = false;
+        }
+      });
+
+      const telefono = formulario.querySelector<HTMLInputElement>('#telefono');
+      if (telefono && telefono.value.trim() && telefono.value.replace(/\D/g, '').length < 8) {
+        marcarError(telefono, 'Revisa el número: parece incompleto.');
+        ok = false;
+      }
+
+      const correo = formulario.querySelector<HTMLInputElement>('#correo');
+      if (correo && correo.value.trim() && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(correo.value)) {
+        marcarError(correo, 'Revisa el correo electrónico.');
+        ok = false;
+      }
+
+      return ok;
+    };
+
+    const resumenTexto = (datos: FormData): string => {
+      const lineas = [
+        'Hola, quisiera recibir orientación sobre los servicios de cuidado.',
+        '',
+        `Nombre: ${datos.get('nombre')}`,
+        `Teléfono: ${datos.get('telefono')}`,
+      ];
+      const correo = String(datos.get('correo') ?? '').trim();
+      const ayuda = String(datos.get('ayuda') ?? '').trim();
+      const paraQuien = String(datos.get('paraquien') ?? '').trim();
+      const mensaje = String(datos.get('mensaje') ?? '').trim();
+
+      if (correo) lineas.push(`Correo: ${correo}`);
+      if (ayuda) lineas.push(`Tipo de ayuda: ${ayuda}`);
+      if (paraQuien) lineas.push(`Para quién: ${paraQuien}`);
+      if (mensaje) lineas.push('', mensaje);
+
+      return lineas.join('\n');
+    };
+
+    formulario.addEventListener('submit', async (evento) => {
+      evento.preventDefault();
+
+      if (estado) {
+        estado.textContent = '';
+        estado.removeAttribute('data-tipo');
+      }
+
+      if (!validar()) {
+        const primero = formulario.querySelector('[aria-invalid="true"]');
+        (primero as HTMLElement | null)?.focus();
+        if (estado) {
+          estado.textContent = 'Revisa los campos marcados para poder continuar.';
+          estado.dataset.tipo = 'error';
+        }
+        return;
+      }
+
+      const datos = new FormData(formulario);
+      const endpoint = formulario.dataset.endpoint?.trim();
+
+      if (endpoint) {
+        const boton = formulario.querySelector('button[type="submit"]');
+        boton?.setAttribute('disabled', 'true');
+        if (estado) estado.textContent = 'Enviando…';
+
+        try {
+          const respuesta = await fetch(endpoint, {
+            method: 'POST',
+            body: datos,
+            headers: { Accept: 'application/json' },
+          });
+
+          if (!respuesta.ok) throw new Error('respuesta no válida');
+
+          registrarConversion('formulario');
+          window.location.href = '/gracias/';
+        } catch {
+          boton?.removeAttribute('disabled');
+          if (estado) {
+            estado.textContent =
+              'No pudimos enviar el formulario. Escríbenos por WhatsApp y te respondemos igual.';
+            estado.dataset.tipo = 'error';
+          }
+        }
+        return;
+      }
+
+      // Sin endpoint configurado: se conserva el contacto por WhatsApp.
+      registrarConversion('formulario-whatsapp');
+      const url = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(resumenTexto(datos))}`;
+      window.open(url, '_blank', 'noopener');
+
+      if (estado) {
+        estado.textContent =
+          'Abrimos WhatsApp con tus datos. Si no se abrió, revisa el bloqueo de ventanas emergentes.';
+        estado.dataset.tipo = 'ok';
+      }
+    });
+
+    formulario.addEventListener('input', (evento) => {
+      const objetivo = evento.target as HTMLInputElement;
+      if (objetivo.matches('input, textarea, select')) limpiarError(objetivo);
+    });
+  }
+</script>
