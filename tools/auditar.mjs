@@ -212,8 +212,20 @@ const auditar = () => {
 
   // --- Imágenes ------------------------------------------------------------
   for (const img of document.querySelectorAll('img')) {
-    if (!img.hasAttribute('alt')) agregar('img', `imagen sin atributo alt: ${img.getAttribute('src')}`);
-    else if (!img.getAttribute('alt').trim()) agregar('img', `alt vacío: ${img.getAttribute('src')}`);
+    const src = img.getAttribute('src');
+    if (!img.hasAttribute('alt')) {
+      agregar('img', `imagen sin atributo alt: ${src}`);
+      continue;
+    }
+    if (!img.getAttribute('alt').trim()) {
+      // `alt=""` es correcto en imágenes decorativas: el nombre accesible lo
+      // aporta el texto o el aria-label del enlace/botón que las contiene.
+      const contenedor = img.closest('a, button');
+      const nombreAccesible =
+        contenedor?.getAttribute('aria-label')?.trim() ||
+        contenedor?.textContent?.replace(/\s+/g, ' ').trim();
+      if (!nombreAccesible) agregar('img', `alt vacío sin nombre accesible: ${src}`);
+    }
   }
 
   // --- Formularios ---------------------------------------------------------

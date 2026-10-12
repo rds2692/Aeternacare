@@ -1,7 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import ContactSection from '../components/ContactSection.astro';
-import Icon from '../components/Icon.astro';
 import Pending from '../components/Pending.astro';
 import { site, whatsappLink, telLink } from '../data/site';
 
@@ -58,57 +57,53 @@ const jsonLd = [
   <section class="seccion seccion--menta">
     <div class="contenedor">
       <div class="encabezado" data-reveal>
-        <span class="eyebrow">Datos de contacto</span>
         <h2>Otros canales</h2>
       </div>
 
-      <ul class="rejilla-tarjetas rejilla-tarjetas--tres" role="list">
-        <li class="tarjeta" data-reveal>
-          <span class="tarjeta__icono" aria-hidden="true"><Icon name="telefono" size={22} /></span>
-          <h3>Teléfono</h3>
-          <p class="tarjeta__texto">
+      <dl class="datos-contacto" data-reveal style="--retardo: 80ms">
+        <div>
+          <dt>Teléfono</dt>
+          <dd>
             <a href={telLink} data-analitica="telefono-contacto">{site.telefonoVisible}</a>
-          </p>
-        </li>
-        <li class="tarjeta" data-reveal style="--retardo: 90ms">
-          <span class="tarjeta__icono" aria-hidden="true"><Icon name="whatsapp" size={22} /></span>
-          <h3>WhatsApp</h3>
-          <p class="tarjeta__texto">
-            <a href={whatsappLink()} target="_blank" rel="noopener">Escribir por WhatsApp</a>
-          </p>
-        </li>
-        <li class="tarjeta" data-reveal style="--retardo: 180ms">
-          <span class="tarjeta__icono" aria-hidden="true"><Icon name="correo" size={22} /></span>
-          <h3>Correo</h3>
-          <p class="tarjeta__texto">
-            {site.correo ? <a href={`mailto:${site.correo}`}>{site.correo}</a> : <Pending campo="correo corporativo" />}
-          </p>
-        </li>
-        <li class="tarjeta" data-reveal>
-          <span class="tarjeta__icono" aria-hidden="true"><Icon name="reloj" size={22} /></span>
-          <h3>Horario de atención</h3>
-          <p class="tarjeta__texto">
-            {site.horario || <Pending campo="horario de atención" />}
-          </p>
-        </li>
-        <li class="tarjeta" data-reveal style="--retardo: 90ms">
-          <span class="tarjeta__icono" aria-hidden="true"><Icon name="ubicacion" size={22} /></span>
-          <h3>Cobertura</h3>
-          <p class="tarjeta__texto">
+          </dd>
+        </div>
+        <div>
+          <dt>WhatsApp</dt>
+          <dd>
+            <a href={whatsappLink()} target="_blank" rel="noopener" data-analitica="whatsapp-contacto">
+              Escribir por WhatsApp
+            </a>
+          </dd>
+        </div>
+        <div>
+          <dt>Correo</dt>
+          <dd>
+            {
+              site.correo ? (
+                <a href={`mailto:${site.correo}`}>{site.correo}</a>
+              ) : (
+                <Pending campo="correo corporativo" />
+              )
+            }
+          </dd>
+        </div>
+        <div>
+          <dt>Horario de atención</dt>
+          <dd>{site.horario || <Pending campo="horario de atención" />}</dd>
+        </div>
+        <div>
+          <dt>Cobertura</dt>
+          <dd>
             {site.direccion || <Pending campo="dirección" />}
             <br />
             {site.areaServida.slice(0, 4).join(' · ')} y otras comunas de Santiago.
-          </p>
-        </li>
-        <li class="tarjeta" data-reveal style="--retardo: 180ms">
-          <span class="tarjeta__icono" aria-hidden="true"><Icon name="escudo" size={22} /></span>
-          <h3>Urgencias</h3>
-          <p class="tarjeta__texto">
-            Ante una urgencia médica llama al 131. Este sitio no reemplaza la atención de
-            emergencia.
-          </p>
-        </li>
-      </ul>
+          </dd>
+        </div>
+      </dl>
+
+      <p class="nota-urgencia">
+        Ante una urgencia médica llama al 131. Este sitio no reemplaza la atención de emergencia.
+      </p>
     </div>
   </section>
 </Layout>

@@ -25,7 +25,8 @@ Comandos de verificación del proyecto:
 node tools/servir.mjs             # vista previa sin dependencias (http://localhost:4321)
 node tools/auditar.mjs            # auditoría técnica en Chrome headless
 node tools/capturar.mjs           # capturas en desktop, tablet y móvil (/capturas)
-node tools/generar-imagenes.mjs   # regenera OG, ícono y respaldos de foto
+node tools/generar-marca.mjs      # deriva el logo y los favicons desde marca/
+node tools/generar-imagenes.mjs   # regenera OG y respaldos de foto (requiere el paso anterior)
 node tools/descargar-fuentes.mjs  # vuelve a bajar las fuentes autoalojadas
 ```
 
@@ -49,8 +50,9 @@ src/
 └─ styles/         fonts.css (fuentes locales) y global.css (sistema de diseño)
 public/
 ├─ fonts/          Manrope e Instrument Serif autoalojadas (woff2)
-├─ img/            fotografías y Open Graph
-└─ favicon.svg · robots.txt · site.webmanifest
+├─ img/            fotografías, logo y Open Graph
+└─ favicon-*.png · apple-touch-icon.png · robots.txt · site.webmanifest
+marca/             logo original del cliente (no se publica)
 tools/             verificaciones y generación de recursos (no se publica)
 docs/              documentación de entrega
 ```
@@ -66,6 +68,7 @@ docs/              documentación de entrega
 | Endpoint del formulario y IDs de medición | `src/data/site.ts` |
 | Colores, tipografía, espaciados | `src/styles/global.css` |
 | Fotografías | `public/img/` (mismos nombres y proporciones) |
+| Logo | `marca/Logo_Aeterna.png` y luego `node tools/generar-marca.mjs` |
 | Artículos del blog | `src/content/blog/*.md` |
 
 ---

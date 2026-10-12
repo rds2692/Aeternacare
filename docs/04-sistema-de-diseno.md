@@ -62,13 +62,32 @@ Escala fluida con `clamp()`: H1 entre 34 y 62px, H2 entre 28 y 44px, cuerpo
 ## 5. Animación
 
 - Apariciones: opacidad más `translateY(28px)`, 720ms, con retardo escalonado por
-  tarjeta mediante la variable `--retardo`.
+  tarjeta mediante la variable `--retardo`. Los títulos de sección se funden en
+  su lugar, sin desplazamiento, para que no todo se mueva con el mismo gesto.
 - Imagen del hero: revelado con `clip-path` en 1,1s.
 - Todo se desactiva por completo con `prefers-reduced-motion: reduce`.
 - Sin JavaScript, todo el contenido queda visible: las animaciones dependen de
   la clase `.js` que se agrega al `<html>`.
 
-## 6. Accesibilidad verificada
+## 6. Qué se evitó a propósito
+
+El sitio se revisó para sacar los recursos que hacen que una página parezca una
+plantilla generada automáticamente:
+
+- Sin etiquetas pequeñas en mayúsculas con una línea al lado, arriba de cada
+  título de sección.
+- Sin numeración decorativa con ceros a la izquierda en las tarjetas. El proceso
+  conserva el número porque es una secuencia real, pero sin ceros y con una
+  regla fina.
+- Sin iconos dentro de cuadrados de color: los iconos son trazo simple, sin
+  contenedor.
+- Sin recuadros de borde punteado.
+- Sin rejillas de seis tarjetas idénticas: los datos de contacto son una lista
+  tipo ficha.
+- Sin el mismo gesto de entrada repetido en todo: los títulos se funden en su
+  lugar y solo las tarjetas y fotografías suben.
+
+## 7. Accesibilidad verificada
 
 La auditoría automática comprueba, en cada página y en cada ancho:
 
@@ -80,3 +99,21 @@ La auditoría automática comprueba, en cada página y en cada ancho:
 - Foco visible en todos los elementos interactivos.
 - El sitio indica llamar al 131 ante una urgencia y aclara que no reemplaza la
   atención de emergencia.
+
+## 8. Uso del logo
+
+El archivo original del cliente es un lockup: emblema arriba y, abajo, el nombre
+con una bajada. Medido, el nombre ocupa solo el 12% de la altura del lockup, así
+que a tamaño de header quedaría ilegible (7px). Por eso se usa así:
+
+| Contexto | Versión | Motivo |
+|---|---|---|
+| Header | Emblema de 46px + nombre en Manrope | El nombre del lockup sería ilegible a esa altura |
+| Pie | Lockup completo sobre un plato claro | Sus tonos oscuros no contrastan con el fondo verde carbón |
+| Favicon e ícono de app | Emblema centrado sobre menta | Se lee bien a 32px |
+| Imagen de Open Graph | Lockup a 150px de alto | Es el lugar donde el lockup completo se lee bien |
+
+El recorte del emblema es determinista: `tools/generar-marca.mjs` mide la caja
+real del contenido con el canal alfa y borra la franja del nombre antes de
+recortar. No hay retoque manual, así que el script se puede volver a ejecutar
+cuando el cliente entregue una versión nueva.

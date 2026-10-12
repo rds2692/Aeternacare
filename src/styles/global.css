@@ -187,25 +187,6 @@ p {
   line-height: 1.08;
 }
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: var(--texto-xs);
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--green-deep);
-}
-
-.eyebrow::before {
-  content: '';
-  width: 26px;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.6;
-}
-
 /* --------------------------------------------------------- 4. Utilidades */
 .contenedor {
   width: 100%;
@@ -450,6 +431,12 @@ p {
 
 .logo:hover {
   color: var(--ink);
+}
+
+.logo__marca {
+  width: 46px;
+  height: 46px;
+  flex: none;
 }
 
 .logo__texto {
@@ -885,25 +872,12 @@ p {
 
 .tarjeta__icono {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 3rem;
-  height: 3rem;
-  border-radius: 14px;
-  background: linear-gradient(140deg, rgba(154, 139, 212, 0.16), rgba(121, 191, 175, 0.2));
-  color: var(--lilac-ink);
+  color: var(--green-deep);
 }
 
 .tarjeta__texto {
   color: var(--ink-muted);
   font-size: var(--texto-sm);
-}
-
-.tarjeta__numero {
-  font-family: var(--fuente-serif);
-  font-size: 1.5rem;
-  color: var(--green-deep);
-  line-height: 1;
 }
 
 /* ------------------------------------------------------------- 12. Confianza */
@@ -971,16 +945,16 @@ p {
   position: relative;
   display: grid;
   gap: 0.5rem;
-  padding: 1.5rem 0 0;
-  border-top: 2px solid var(--border);
+  padding: 1.25rem 0 0;
+  border-top: 1px solid var(--border);
 }
 
 .paso::before {
-  content: counter(paso, decimal-leading-zero);
+  content: counter(paso);
   counter-increment: paso;
   font-family: var(--fuente-serif);
-  font-size: 1.5rem;
-  color: var(--lilac-deep);
+  font-size: 1.25rem;
+  color: var(--green-deep);
   line-height: 1;
 }
 
@@ -994,6 +968,26 @@ p {
 }
 
 /* ----------------------------------------------------------- 14. Testimonios */
+
+/* Nota de alcance: una regla lateral en vez de un recuadro punteado. */
+.nota-alcance {
+  display: grid;
+  gap: 0.6rem;
+  max-width: 52rem;
+  margin-top: clamp(2rem, 1rem + 3vw, 3.25rem);
+  padding-left: 1.35rem;
+  border-left: 2px solid var(--green);
+}
+
+.nota-alcance h3 {
+  font-size: 1.0625rem;
+}
+
+.nota-alcance p {
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+}
+
 .testimonios__nota {
   display: grid;
   gap: 1rem;
@@ -1085,9 +1079,20 @@ p {
   max-width: 26rem;
 }
 
-.footer__marca .logo__nombre,
-.footer__marca .logo__bajada {
-  color: var(--white);
+/* El logo del pie va sobre un plato claro: sus tonos son oscuros y sobre el
+   fondo verde carbón del pie no tendrían contraste suficiente. */
+.footer__logo {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.85rem 1.1rem;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.94);
+  width: fit-content;
+}
+
+.footer__logo img {
+  height: 74px;
+  width: auto;
 }
 
 .footer__marca p {
@@ -1302,11 +1307,62 @@ p {
   font-size: var(--texto-lg);
 }
 
+/* Datos directos de contacto: lista tipo ficha, sin rejilla de tarjetas. */
+.datos-contacto {
+  display: grid;
+  margin: clamp(2rem, 1rem + 3vw, 3.25rem) 0 0;
+  max-width: 46rem;
+}
+
+.datos-contacto > div {
+  display: grid;
+  gap: 0.2rem;
+  padding-block: 1.1rem;
+  border-top: 1px solid var(--border);
+}
+
+.datos-contacto dt {
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+  font-weight: 600;
+}
+
+.datos-contacto dd {
+  margin: 0;
+}
+
+.datos-contacto dd a {
+  display: inline-block;
+  padding-block: 0.25rem;
+}
+
+.nota-urgencia {
+  max-width: 46rem;
+  margin-top: 1.5rem;
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+}
+
+@media (min-width: 640px) {
+  .datos-contacto > div {
+    grid-template-columns: 13rem minmax(0, 1fr);
+    align-items: baseline;
+    gap: 1.5rem;
+  }
+}
+
 /* ------------------------------------------------------------- 19. Animación */
 .js [data-reveal] {
   opacity: 0;
   transform: translateY(28px);
   will-change: opacity, transform;
+}
+
+/* Los títulos aparecen fundidos en su lugar; las tarjetas y las fotos suben.
+   Así no todo se mueve con el mismo gesto. */
+.js .encabezado[data-reveal],
+.js .cabecera-pagina__inner[data-reveal] {
+  transform: none;
 }
 
 .js [data-reveal].es-visible {

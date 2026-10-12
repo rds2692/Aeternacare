@@ -11,9 +11,18 @@ const redes = Object.entries(site.redes).filter(([, url]) => url);
   <div class="contenedor">
     <div class="footer__grid">
       <div class="footer__marca">
-        <span class="logo__texto">
-          <span class="logo__nombre">Aeterna Care</span>
-          <span class="logo__bajada">Cuidado en casa</span>
+        <span class="footer__logo">
+          <picture>
+            <source srcset="/img/logo-aeterna-care.webp" type="image/webp" />
+            <img
+              src="/img/logo-aeterna-care.png"
+              width="286"
+              height="240"
+              alt="Aeterna Care, cuidado de adultos mayores en casa"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
         </span>
         <p>
           Cuidado profesional y humano en el hogar. Acompañamiento para adultos mayores en

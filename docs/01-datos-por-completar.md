@@ -64,10 +64,18 @@ Los prompts sugeridos están en `docs/03-prompts-imagenes.md`. Las dos
 fotografías actuales son respaldos generados por código, con la etiqueta
 «FOTO PENDIENTE» visible, para que no se publiquen por descuido.
 
-**Logo:** el cliente no tiene versión vectorial. El sitio usa un logotipo
-tipográfico provisorio (marca + nombre). Si se consigue el original, reemplazar
-en `src/components/Header.astro`, `src/components/Footer.astro` y
-`public/favicon.svg`.
+**Logo:** ya integrado con el archivo del cliente. El original está en
+`marca/Logo_Aeterna.png` (no se publica) y de ahí se derivan los recursos
+optimizados con `node tools/generar-marca.mjs`:
+
+| Archivo publicado | Uso |
+|---|---|
+| `public/img/logo-aeterna-emblema.png` / `.webp` | Emblema solo, en el header junto al nombre |
+| `public/img/logo-aeterna-care.png` / `.webp` | Lockup completo, en el pie y en la imagen de redes |
+| `public/favicon-32.png`, `favicon-192.png`, `apple-touch-icon.png` | Pestaña del navegador y móviles |
+
+Si el cliente entrega una versión vectorial (SVG) o el emblema suelto, se
+reemplazan esos archivos y se vuelve a ejecutar el script.
 
 ---
 

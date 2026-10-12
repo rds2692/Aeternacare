@@ -116,26 +116,17 @@ const tarjetaOg = (ancho, alto) => `
   <rect width="${ancho}" height="${alto}" fill="url(#og)" />
   <rect width="${ancho}" height="${alto}" fill="url(#ogl)" />
   <rect width="${ancho}" height="${alto}" fill="url(#ogv)" />
-  <text x="80" y="250" font-family="Segoe UI, Arial, sans-serif" font-size="74" font-weight="700"
-    fill="#243936">Aeterna Care</text>
-  <text x="80" y="330" font-family="Segoe UI, Arial, sans-serif" font-size="38" fill="#4C625C">
-    Cuidado de adultos mayores en casa
-  </text>
-  <text x="80" y="392" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#4C625C">
+  <text x="80" y="352" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700"
+    fill="#243936">Cuidado de adultos mayores</text>
+  <text x="80" y="416" font-family="Segoe UI, Arial, sans-serif" font-size="56" font-weight="700"
+    fill="#243936">en la comodidad de su hogar</text>
+  <text x="80" y="474" font-family="Segoe UI, Arial, sans-serif" font-size="30" fill="#4C625C">
     Atención profesional y cercana en Santiago
   </text>
-  <rect x="80" y="440" width="330" height="72" rx="16" fill="#6C5CB0" />
-  <text x="245" y="486" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="28"
+  <rect x="80" y="512" width="330" height="64" rx="14" fill="#6C5CB0" />
+  <text x="245" y="553" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="26"
     font-weight="600" fill="#FFFFFF">Solicitar orientación</text>
   <circle cx="1120" cy="150" r="130" fill="#FFFFFF" opacity="0.45" />
-</svg>`;
-
-const iconoApple = (lado) => `
-<svg xmlns="http://www.w3.org/2000/svg" width="${lado}" height="${lado}" viewBox="0 0 180 180">
-  <rect width="180" height="180" fill="#EAF6F1" />
-  <circle cx="90" cy="90" r="58" fill="none" stroke="#79BFAF" stroke-width="5" opacity="0.6" />
-  <path d="M90 132S50 108 50 82 A24 24 0 0 1 90 66 A24 24 0 0 1 130 82 C130 108 90 132 90 132Z"
-    fill="none" stroke="#7869B8" stroke-width="8" stroke-linejoin="round" />
 </svg>`;
 
 await mkdir(salida, { recursive: true });
@@ -154,16 +145,18 @@ for (const [nombre, svg, ancho] of trabajos) {
   console.log('escrito', nombre);
 }
 
+// La imagen de Open Graph incorpora el logo real del cliente.
+// Requiere haber ejecutado antes `node tools/generar-marca.mjs`.
+const logoOg = await sharp(join(salida, 'logo-aeterna-care.png'))
+  .resize({ height: 150 })
+  .png()
+  .toBuffer();
+
 await writeFile(
   join(salida, 'og-aeterna-care.jpg'),
   await sharp(Buffer.from(tarjetaOg(1200, 630)), { density: 144 })
+    .composite([{ input: logoOg, top: 84, left: 80 }])
     .jpeg({ quality: 88, mozjpeg: true })
     .toBuffer(),
 );
 console.log('escrito og-aeterna-care.jpg');
-
-await writeFile(
-  join(raiz, 'public', 'apple-touch-icon.png'),
-  await sharp(Buffer.from(iconoApple(180)), { density: 144 }).png().toBuffer(),
-);
-console.log('escrito apple-touch-icon.png');

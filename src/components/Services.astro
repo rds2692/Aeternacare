@@ -6,7 +6,6 @@ import { servicios } from '../data/contenido';
 <section class="seccion seccion--blanca" id="servicios" aria-labelledby="servicios-titulo">
   <div class="contenedor">
     <div class="encabezado" data-reveal>
-      <span class="eyebrow">Servicios</span>
       <h2 id="servicios-titulo">{servicios.titulo}</h2>
       <p>{servicios.bajada}</p>
     </div>
@@ -25,13 +24,9 @@ import { servicios } from '../data/contenido';
       }
     </ul>
 
-    <div
-      class="tarjeta"
-      data-reveal
-      style="margin-top: clamp(1.5rem, 1rem + 2vw, 2.5rem); background: var(--mint-soft); border-style: dashed;"
-    >
+    <div class="nota-alcance" data-reveal>
       <h3>{servicios.alcance.titulo}</h3>
-      <p class="tarjeta__texto">{servicios.alcance.texto}</p>
+      <p>{servicios.alcance.texto}</p>
     </div>
   </div>
 </section>
