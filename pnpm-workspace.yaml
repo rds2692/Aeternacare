@@ -1,6 +1,16 @@
+# Autoriza los scripts de compilación de las dos dependencias que los necesitan
+# (esbuild y sharp). Sin esta autorización, pnpm 11 termina la instalación con
+# error y el build falla en cualquier servidor de despliegue.
+#
+# `allowBuilds` es la clave de pnpm 11; `onlyBuiltDependencies` la de pnpm 9 y
+# 10. Se dejan ambas para que el build funcione con cualquiera de las versiones.
+#
+# Importante: no borrar `allowBuilds`. Si pnpm vuelve a escribir la plantilla
+# «set this to true or false», significa que quedó sin autorizar.
 allowBuilds:
-  esbuild: set this to true or false
-  sharp: set this to true or false
+  esbuild: true
+  sharp: true
+
 onlyBuiltDependencies:
   - esbuild
   - sharp
