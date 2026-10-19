@@ -1374,29 +1374,15 @@ p {
   transition-delay: var(--retardo, 0ms);
 }
 
-.js .hero__figura[data-reveal] {
-  opacity: 1;
-  transform: none;
-  clip-path: inset(0 0 100% 0 round var(--radio-xl));
-}
-
-.js .hero__figura[data-reveal].es-visible {
-  clip-path: inset(0 0 0 0 round var(--radio-xl));
-  transition: clip-path 1100ms cubic-bezier(0.22, 0.61, 0.36, 1);
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
   .js [data-reveal],
-  .js [data-reveal].es-visible,
-  .js .hero__figura[data-reveal],
-  .js .hero__figura[data-reveal].es-visible {
+  .js [data-reveal].es-visible {
     opacity: 1;
     transform: none;
-    clip-path: none;
     transition: none;
   }
 
