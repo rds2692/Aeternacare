@@ -21,8 +21,8 @@ export const site = {
   telefonoEsWhatsApp: true, // Confirmar que es una cuenta de WhatsApp Business
   /** Formato internacional, sin +, espacios ni guiones. */
   whatsapp: '56932061549',
-  correo: '', // PENDIENTE: correo corporativo
-  correoPrivacidad: '', // PENDIENTE
+  // El correo de contacto no se guarda aquí: vive ofuscado en src/data/correo.ts
+  // para que no aparezca en el HTML ni en el JavaScript del navegador.
 
   direccion: '', // PENDIENTE
   comuna: 'Santiago',
@@ -73,10 +73,6 @@ export function whatsappLink(mensaje: string = whatsappMensaje): string {
 
 /** Enlace tel: listo para usar en cualquier botón de llamada. */
 export const telLink = `tel:${site.telefonoE164}`;
-
-/** Correo o null si todavía no existe. */
-export const correoLink =
-  site.correo && !site.correo.includes('COMPLETAR') ? `mailto:${site.correo}` : null;
 
 export const navPrincipal = [
   { href: '/#servicios', label: 'Servicios' },

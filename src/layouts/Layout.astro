@@ -58,7 +58,7 @@ const datosBase: Record<string, unknown> = {
     addressCountry: site.pais,
     ...(site.direccion ? { streetAddress: site.direccion } : {}),
   },
-  ...(site.correo ? { email: site.correo } : {}),
+  // Sin email en JSON-LD: la dirección se mantiene ofuscada para evitar bots.
   ...(Object.values(site.redes).some(Boolean)
     ? { sameAs: Object.values(site.redes).filter(Boolean) }
     : {}),

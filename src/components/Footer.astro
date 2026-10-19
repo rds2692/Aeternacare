@@ -1,7 +1,6 @@
 ---
-import { site, navPrincipal, navLegal, whatsappLink, telLink, correoLink } from '../data/site';
-import Pending from './Pending.astro';
-import Icon from './Icon.astro';
+import { site, navPrincipal, navLegal, whatsappLink, telLink } from '../data/site';
+import CorreoProtegido from './CorreoProtegido.astro';
 
 const anio = new Date().getFullYear();
 const redes = Object.entries(site.redes).filter(([, url]) => url);
@@ -30,8 +29,8 @@ const redes = Object.entries(site.redes).filter(([, url]) => url);
         </p>
         <p>
           <a href={telLink} data-analitica="telefono-footer">{site.telefonoVisible}</a>
-          {!correoLink && <Pending campo="correo de contacto" />}
         </p>
+        <CorreoProtegido />
       </div>
 
       <div>
@@ -49,18 +48,7 @@ const redes = Object.entries(site.redes).filter(([, url]) => url);
       <div>
         <h2 class="footer__titulo">Datos legales</h2>
         <ul class="footer__lista">
-          <li>
-            {site.nombreLegal || <Pending campo="razón social" />}
-          </li>
-          <li>
-            {site.rut || <Pending campo="RUT" />}
-          </li>
-          <li>
-            {site.direccion || <Pending campo="dirección" />}
-          </li>
-          <li>
-            {site.horario || <Pending campo="horario de atención" />}
-          </li>
+          <li>{site.nombreLegal || site.nombre}</li>
           {navLegal.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
         </ul>
       </div>
@@ -68,8 +56,8 @@ const redes = Object.entries(site.redes).filter(([, url]) => url);
 
     <div class="footer__legal">
       <p>
-        {site.nombre} · {site.comuna}, {site.region}, Chile. Sitio informativo; no constituye
-        asesoría médica ni reemplaza la indicación de un profesional de la salud.
+        {site.nombre} · Sitio informativo; no constituye asesoría médica ni reemplaza la indicación
+        de un profesional de la salud.
       </p>
       <p>
         © {anio} {site.nombre}. Todos los derechos reservados.
@@ -84,14 +72,6 @@ const redes = Object.entries(site.redes).filter(([, url]) => url);
           </>
         )}
       </p>
-      {redes.length === 0 && (
-        <p>
-          <Pending campo="redes sociales" />{' '}
-          <a href="/contacto/" style="text-decoration:underline">
-            <Icon name="documento" size={14} /> Ver contacto
-          </a>
-        </p>
-      )}
     </div>
   </div>
 </footer>

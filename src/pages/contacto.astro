@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ContactSection from '../components/ContactSection.astro';
 import Pending from '../components/Pending.astro';
+import CorreoProtegido from '../components/CorreoProtegido.astro';
 import { site, whatsappLink, telLink } from '../data/site';
 
 const titulo = 'Contacto | Aeterna Care';
@@ -77,15 +78,7 @@ const jsonLd = [
         </div>
         <div>
           <dt>Correo</dt>
-          <dd>
-            {
-              site.correo ? (
-                <a href={`mailto:${site.correo}`}>{site.correo}</a>
-              ) : (
-                <Pending campo="correo corporativo" />
-              )
-            }
-          </dd>
+          <dd><CorreoProtegido etiqueta="Escribir por correo" compacto /></dd>
         </div>
         <div>
           <dt>Horario de atención</dt>

@@ -1,0 +1,80 @@
+---
+/**
+ * Correo protegido contra bots.
+ *
+ * La dirección nunca se imprime en el HTML: se envía como códigos numéricos y
+ * se reconstruye en el navegador solo cuando la persona interactúa.
+ *
+ * Acciones:
+ * - «Escribir por correo» abre la aplicación de correo con mailto.
+ * - «Copiar» deja la dirección en el portapapeles para quien la necesite.
+ */
+import Icon from './Icon.astro';
+import { CORREO_CODIGOS } from '../data/correo';
+
+interface Props {
+  etiqueta?: string;
+  compacto?: boolean;
+}
+
+const { etiqueta = 'Escribir por correo', compacto = false } = Astro.props;
+---
+
+<span
+  class:list={['correo-protegido', compacto && 'correo-protegido--compacto']}
+  data-correo-codigos={CORREO_CODIGOS.join(',')}
+>
+  <button
+    type="button"
+    class="correo-protegido__accion"
+    data-correo-accion="escribir"
+    aria-label={`${etiqueta} (abre tu aplicación de correo)`}
+  >
+    <Icon name="correo" size={18} />
+    <span>{etiqueta}</span>
+  </button>
+  <button
+    type="button"
+    class="correo-protegido__accion correo-protegido__accion--copiar"
+    data-correo-accion="copiar"
+  >
+    <Icon name="documento" size={16} />
+    <span class="sr-only">Copiar dirección de correo electrónico</span>
+    <span aria-hidden="true">Copiar</span>
+  </button>
+  <span class="correo-protegido__estado" data-correo-estado role="status" aria-live="polite"></span>
+</span>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-correo-codigos]').forEach((contenedor) => {
+    const codigos = (contenedor.dataset.correoCodigos ?? '')
+      .split(',')
+      .map((codigo) => Number(codigo))
+      .filter((codigo) => Number.isInteger(codigo) && codigo > 0 && codigo < 128);
+
+    const correo = codigos.map((codigo) => String.fromCharCode(codigo)).join('');
+    const estado = contenedor.querySelector<HTMLElement>('[data-correo-estado]');
+
+    contenedor.querySelectorAll<HTMLButtonElement>('[data-correo-accion]').forEach((boton) => {
+      boton.addEventListener('click', async () => {
+        if (!correo.includes('@')) {
+          if (estado) estado.textContent = 'No pudimos preparar el correo. Escríbenos por WhatsApp.';
+          return;
+        }
+
+        if (boton.dataset.correoAccion === 'escribir') {
+          window.location.href = `mailto:${correo}`;
+          if (estado) estado.textContent = 'Abriendo tu aplicación de correo…';
+          return;
+        }
+
+        try {
+          await navigator.clipboard.writeText(correo);
+          if (estado) estado.textContent = 'Correo copiado al portapapeles.';
+        } catch {
+          if (estado) estado.textContent = 'No se pudo copiar. Usa «Escribir por correo».';
+        }
+      });
+    });
+  });
+</script>

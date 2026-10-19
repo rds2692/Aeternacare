@@ -24,6 +24,7 @@ Comandos de verificación del proyecto:
 ```bash
 node tools/servir.mjs             # vista previa sin dependencias (http://localhost:4321)
 node tools/auditar.mjs            # auditoría técnica en Chrome headless
+node tools/verificar-correo.mjs   # comprueba que el correo no esté en claro y que se copie bien
 node tools/capturar.mjs           # capturas en desktop, tablet y móvil (/capturas)
 node tools/generar-marca.mjs      # deriva el logo y los favicons desde marca/
 node tools/optimizar-fotografias.mjs # genera JPG, WebP y AVIF responsive de las fotos
@@ -114,3 +115,6 @@ Antes de publicar:
   el resultado percibido.
 - **Medición con consentimiento.** Sin IDs configurados no se carga ningún
   script de terceros. Al configurarlos, aparece un aviso de consentimiento.
+- **Correo protegido.** La dirección no se imprime en el HTML: se guarda como
+  códigos y se reconstruye solo al pulsar «Escribir por correo» o «Copiar».
+  El footer muestra por ahora únicamente la razón social, sin placeholders.

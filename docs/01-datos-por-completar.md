@@ -13,13 +13,33 @@ etiqueta ámbar `[COMPLETAR: …]` mientras `AVISO_PENDIENTES` sea `true`
 |---|---|---|
 | Teléfono principal | `src/data/site.ts` → `telefonoVisible`, `telefonoE164` | Listo: +56 9 3206 1549 |
 | WhatsApp de contacto | `src/data/site.ts` → `whatsapp` | Mismo número. Confirmar que es WhatsApp Business |
-| Correo corporativo | `src/data/site.ts` → `correo` | Pendiente |
+| Correo de contacto | `src/data/correo.ts` (ofuscado) | Listo: `aeternacara@gmail.com`, oculto para bots |
 | Dominio definitivo | `src/data/site.ts` → `dominio` y `astro.config.mjs` → `site` | Pendiente (hoy `https://www.aeternacare.cl` como supuesto) |
 | Endpoint del formulario | `src/data/site.ts` → `formularioEndpoint` | Pendiente (hoy usa respaldo por WhatsApp) |
-| Razón social y RUT | `src/data/site.ts` → `nombreLegal`, `rut` | Pendiente, obligatorio en el pie y en el JSON-LD |
-| Dirección | `src/data/site.ts` → `direccion` | Pendiente |
-| Horario de atención | `src/data/site.ts` → `horario` | Pendiente |
+| Razón social y RUT | `src/data/site.ts` → `nombreLegal`, `rut` | Pendiente. El footer muestra solo «Aeterna Care», sin placeholders |
+| Dirección | `src/data/site.ts` → `direccion` | Pendiente (por ahora no se muestra en el footer) |
+| Horario de atención | `src/data/site.ts` → `horario` | Pendiente (por ahora no se muestra en el footer) |
 | Apagar el aviso de pendientes | `src/data/site.ts` → `AVISO_PENDIENTES = false` | Solo cuando todo lo anterior esté listo |
+
+### Correo protegido
+
+La dirección **no aparece en el HTML ni en el JavaScript publicado**. Se guarda
+como códigos numéricos en `src/data/correo.ts` y el componente
+`src/components/CorreoProtegido.astro` la reconstruye solo cuando la persona
+pulsa «Escribir por correo» o «Copiar». Tampoco se publica en el JSON-LD.
+
+Si cambias de dirección, genera los nuevos códigos con:
+
+```bash
+node -e "console.log([...'nuevo@correo.cl'].map(c => c.charCodeAt(0)).join(','))"
+```
+
+y reemplaza el arreglo de `src/data/correo.ts`. Después compila y verifica:
+
+```bash
+node node_modules/astro/astro.js build
+node tools/verificar-correo.mjs
+```
 
 ---
 

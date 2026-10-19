@@ -1,6 +1,6 @@
 ---
 import Icon from './Icon.astro';
-import Pending from './Pending.astro';
+import CorreoProtegido from './CorreoProtegido.astro';
 import { site, whatsappLink, AVISO_PENDIENTES } from '../data/site';
 
 interface Props {
@@ -59,11 +59,7 @@ const { compacto = false } = Astro.props;
               {site.telefonoVisible}
             </a>
           </div>
-          {!site.correo && (
-            <p>
-              <Pending campo="correo de contacto" />
-            </p>
-          )}
+          <CorreoProtegido etiqueta="Escribir por correo" compacto />
         </div>
       </div>
 

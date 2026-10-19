@@ -1251,6 +1251,68 @@ p {
   max-width: 60rem;
 }
 
+/* ------------------------------------------------------- 16b. Correo protegido */
+/* La dirección no está en el HTML: estos botones la reconstruyen al pulsar. */
+.correo-protegido {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.9rem;
+}
+
+.correo-protegido__accion {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  min-height: 48px;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radio-sm);
+  background: none;
+  color: var(--lilac-ink);
+  font: inherit;
+  font-size: var(--texto-sm);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.correo-protegido__accion:hover {
+  color: var(--lilac-deep);
+}
+
+.correo-protegido__accion--copiar {
+  color: var(--ink-soft);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.correo-protegido__accion--copiar:hover {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+.correo-protegido__estado {
+  flex-basis: 100%;
+  color: var(--ink-soft);
+  font-size: var(--texto-xs);
+}
+
+.correo-protegido__estado:empty {
+  display: none;
+}
+
+/* Sobre el fondo oscuro del pie los enlaces lilas no alcanzarían contraste. */
+.footer .correo-protegido__accion {
+  color: #e6f2ee;
+}
+
+.footer .correo-protegido__accion--copiar,
+.footer .correo-protegido__estado {
+  color: #b9cdc7;
+}
+
 /* ------------------------------------------------------- 17. WhatsApp flotante */
 .wa-flotante {
   position: fixed;
