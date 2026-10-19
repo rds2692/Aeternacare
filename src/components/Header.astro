@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 import { navPrincipal, whatsappLink } from '../data/site';
 
 interface Props {
@@ -85,7 +86,7 @@ const estaActivo = (href: string) =>
           target="_blank"
           rel="noopener"
         >
-          <Icon name="whatsapp" size={18} />
+          <WhatsAppIcon size={18} />
           Hablar por WhatsApp
         </a>
       </li>

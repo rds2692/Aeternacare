@@ -887,7 +887,7 @@ p {
   line-height: 1.5;
 }
 
-.aviso-whatsapp svg {
+.aviso-whatsapp .icono-wa {
   flex: none;
   margin-top: 0.18em;
   color: var(--green-deep);

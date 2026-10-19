@@ -1,6 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import CorreoProtegido from './CorreoProtegido.astro';
+import WhatsAppIcon from './WhatsAppIcon.astro';
 import { site, whatsappLink } from '../data/site';
 
 interface Props {
@@ -51,7 +52,7 @@ const { compacto = false } = Astro.props;
               rel="noopener"
               data-analitica={'whatsapp-' + (compacto ? 'pagina' : 'seccion-contacto')}
             >
-              <Icon name="whatsapp" size={18} />
+              <WhatsAppIcon size={18} />
               Hablar por WhatsApp
             </a>
             <a class="btn btn--fantasma" href={`tel:${site.telefonoE164}`} data-analitica="telefono">
@@ -65,7 +66,7 @@ const { compacto = false } = Astro.props;
 
       <form class="formulario" id="formulario-contacto" novalidate>
         <p class="aviso-whatsapp">
-          <Icon name="whatsapp" size={16} />
+          <WhatsAppIcon size={16} />
           <span>
             Al enviar, abriremos WhatsApp con tus datos ya escritos. Revisa el mensaje y pulsa
             «Enviar» para contactarnos.
@@ -170,7 +171,7 @@ const { compacto = false } = Astro.props;
 
         <div class="formulario__pie">
           <button class="btn btn--primario btn--grande btn--bloque" type="submit">
-            <Icon name="whatsapp" size={18} />
+            <WhatsAppIcon size={18} />
             Enviar por WhatsApp
           </button>
           <p class="formulario__estado" id="formulario-estado" role="status" aria-live="polite"></p>

@@ -78,6 +78,10 @@ try {
   if (mailtoEstatico > 0) errores.push(`Hay ${mailtoEstatico} enlace(s) mailto: estáticos.`);
 
   await pagina.getByRole('button', { name: /Copiar dirección de correo/i }).first().click();
+  await pagina.waitForFunction(
+    () => (document.querySelector('[data-correo-estado]')?.textContent ?? '').trim().length > 0,
+    { timeout: 5000 },
+  );
   const estado = await pagina
     .locator('[data-correo-estado]')
     .first()

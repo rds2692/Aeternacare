@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
 import { whatsappLink, site } from '../data/site';
 ---
 
@@ -25,7 +26,7 @@ import { whatsappLink, site } from '../data/site';
         </p>
         <div class="grupo-botones">
           <a class="btn btn--whatsapp btn--grande" href={whatsappLink()} target="_blank" rel="noopener">
-            <Icon name="whatsapp" size={18} />
+            <WhatsAppIcon size={18} />
             Hablar por WhatsApp
           </a>
           <a class="btn btn--fantasma btn--grande" href="/">Volver al inicio</a>
