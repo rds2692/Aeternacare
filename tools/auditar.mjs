@@ -212,6 +212,8 @@ const auditar = () => {
 
   // --- Imágenes ------------------------------------------------------------
   for (const img of document.querySelectorAll('img')) {
+    // Los íconos decorativos dentro de aria-hidden no necesitan nombre accesible.
+    if (img.closest('[aria-hidden="true"]')) continue;
     const src = img.getAttribute('src');
     if (!img.hasAttribute('alt')) {
       agregar('img', `imagen sin atributo alt: ${src}`);

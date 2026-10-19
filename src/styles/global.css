@@ -349,6 +349,12 @@ p {
   transform: translateY(-2px);
 }
 
+/* La imagen de WhatsApp es oscura: en botones oscuros se invierte a blanco. */
+.btn--primario .icono-wa img,
+.wa-flotante__boton .icono-wa img {
+  filter: brightness(0) invert(1);
+}
+
 .btn--fantasma {
   background: transparent;
   color: var(--ink);
@@ -890,7 +896,6 @@ p {
 .aviso-whatsapp .icono-wa {
   flex: none;
   margin-top: 0.18em;
-  color: var(--green-deep);
 }
 
 /* --------------------------------------------------------------- 11. Tarjetas */
