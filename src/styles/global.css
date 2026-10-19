@@ -872,6 +872,27 @@ p {
   line-height: 1.5;
 }
 
+/* El formulario no guarda datos en un servidor: abre WhatsApp con el mensaje
+   ya redactado para que la persona lo revise y lo envíe. */
+.aviso-whatsapp {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  padding: 0.85rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radio-sm);
+  background: var(--mint-soft);
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+  line-height: 1.5;
+}
+
+.aviso-whatsapp svg {
+  flex: none;
+  margin-top: 0.18em;
+  color: var(--green-deep);
+}
+
 /* --------------------------------------------------------------- 11. Tarjetas */
 .rejilla-tarjetas {
   display: grid;

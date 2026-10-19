@@ -25,6 +25,7 @@ Comandos de verificación del proyecto:
 node tools/servir.mjs             # vista previa sin dependencias (http://localhost:4321)
 node tools/auditar.mjs            # auditoría técnica en Chrome headless
 node tools/verificar-correo.mjs   # comprueba que el correo no esté en claro y que se copie bien
+node tools/verificar-formulario.mjs # comprueba el envío directo a WhatsApp y su mensaje
 node tools/capturar.mjs           # capturas en desktop, tablet y móvil (/capturas)
 node tools/generar-marca.mjs      # deriva el logo y los favicons desde marca/
 node tools/optimizar-fotografias.mjs # genera JPG, WebP y AVIF responsive de las fotos
@@ -94,7 +95,8 @@ Antes de publicar:
 3. Si cambias una foto, conserva el nombre base en
    `marca/fotografias-originales/`, ejecuta `node tools/optimizar-fotografias.mjs`
    y actualiza el `alt` si la escena cambia.
-4. Configurar el endpoint del formulario.
+4. Verificar que el número de WhatsApp del formulario sea el correcto: el envío
+   abre WhatsApp con los datos escritos, sin backend ni endpoint.
 5. Revisar el aviso de privacidad y los términos con un abogado.
 6. Ejecutar `npm run build` y `node tools/auditar.mjs`.
 

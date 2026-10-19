@@ -15,7 +15,7 @@ etiqueta ámbar `[COMPLETAR: …]` mientras `AVISO_PENDIENTES` sea `true`
 | WhatsApp de contacto | `src/data/site.ts` → `whatsapp` | Mismo número. Confirmar que es WhatsApp Business |
 | Correo de contacto | `src/data/correo.ts` (ofuscado) | Listo: `aeternacara@gmail.com`, oculto para bots |
 | Dominio definitivo | `src/data/site.ts` → `dominio` y `astro.config.mjs` → `site` | Pendiente (hoy `https://www.aeternacare.cl` como supuesto) |
-| Endpoint del formulario | `src/data/site.ts` → `formularioEndpoint` | Pendiente (hoy usa respaldo por WhatsApp) |
+| Endpoint del formulario | No aplica | El formulario envía directo a WhatsApp, sin backend |
 | Razón social y RUT | `src/data/site.ts` → `nombreLegal`, `rut` | Pendiente. El footer muestra solo «Aeterna Care», sin placeholders |
 | Dirección | `src/data/site.ts` → `direccion` | Pendiente (por ahora no se muestra en el footer) |
 | Horario de atención | `src/data/site.ts` → `horario` | Pendiente (por ahora no se muestra en el footer) |

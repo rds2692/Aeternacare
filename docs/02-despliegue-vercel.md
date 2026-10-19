@@ -57,15 +57,17 @@ al propagarse el DNS (puede tardar de minutos a algunas horas).
 
 ## 4. Correo corporativo y formulario
 
-El formulario debe llegar a un correo del cliente. Recomendaciones:
+- **Correo:** la dirección de contacto está protegida y se reconstruye solo al
+  pulsar «Escribir por correo» o «Copiar». El detalle está en
+  `src/data/correo.ts`.
+- **Formulario:** no usa backend, endpoint ni base de datos. Valida los campos en
+  el navegador y abre WhatsApp con el mensaje ya redactado; la persona revisa y
+  pulsa «Enviar» dentro de WhatsApp.
 
-- Correo corporativo: Google Workspace o Zoho Mail apuntando al dominio.
-- Envío del formulario: Formspree, Basin, Resend o un webhook a un CRM.
-  Cualquiera de ellos entrega una URL que se pega en `src/data/site.ts` →
-  `formularioEndpoint`.
-
-Sin endpoint configurado, el formulario funciona igual: al enviarlo se abre
-WhatsApp con los datos escritos, para no perder el contacto.
+Para cambiar el número receptor, edita `site.whatsapp` en `src/data/site.ts`.
+Como el envío ocurre en WhatsApp, el sitio no almacena los datos del formulario;
+si más adelante se quiere un CRM o un registro de leads, se puede agregar un
+endpoint sin cambiar los campos del formulario.
 
 ---
 

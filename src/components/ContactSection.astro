@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import CorreoProtegido from './CorreoProtegido.astro';
-import { site, whatsappLink, AVISO_PENDIENTES } from '../data/site';
+import { site, whatsappLink } from '../data/site';
 
 interface Props {
   /** En páginas internas el bloque se comporta como formulario de contacto directo. */
@@ -63,17 +63,14 @@ const { compacto = false } = Astro.props;
         </div>
       </div>
 
-      <form class="formulario" id="formulario-contacto" novalidate data-endpoint={site.formularioEndpoint}>
-        {AVISO_PENDIENTES && !site.formularioEndpoint && (
-          <p class="aviso-config">
-            <Icon name="documento" size={16} />
-            <span>
-              Formulario en modo demostración: todavía no hay un destino configurado. Al enviarlo se
-              abrirá WhatsApp con los datos escritos, para no perder el contacto. Configurar el
-              endpoint en <code>src/data/site.ts</code>.
-            </span>
-          </p>
-        )}
+      <form class="formulario" id="formulario-contacto" novalidate>
+        <p class="aviso-whatsapp">
+          <Icon name="whatsapp" size={16} />
+          <span>
+            Al enviar, abriremos WhatsApp con tus datos ya escritos. Revisa el mensaje y pulsa
+            «Enviar» para contactarnos.
+          </span>
+        </p>
 
         <div class="campo">
           <label for="nombre">Nombre completo <span class="obligatorio">*</span></label>
@@ -173,12 +170,13 @@ const { compacto = false } = Astro.props;
 
         <div class="formulario__pie">
           <button class="btn btn--primario btn--grande btn--bloque" type="submit">
-            Solicitar orientación
-            <Icon name="flecha" size={18} />
+            <Icon name="whatsapp" size={18} />
+            Enviar por WhatsApp
           </button>
           <p class="formulario__estado" id="formulario-estado" role="status" aria-live="polite"></p>
           <p class="ayuda">
-            Al enviar este formulario no se realiza ningún cobro ni se activa un servicio.
+            Se abrirá WhatsApp con el resumen de tus datos. No se envía nada hasta que confirmes el
+            mensaje, y no se realiza ningún cobro ni se activa un servicio.
           </p>
         </div>
       </form>
@@ -253,6 +251,12 @@ const { compacto = false } = Astro.props;
       if (ayuda) lineas.push(`Tipo de ayuda: ${ayuda}`);
       if (paraQuien) lineas.push(`Para quién: ${paraQuien}`);
       if (mensaje) lineas.push('', mensaje);
+      if (datos.get('consentimiento')) {
+        lineas.push(
+          '',
+          'Autorizo el contacto y el tratamiento de mis datos según el aviso de privacidad.',
+        );
+      }
 
       return lineas.join('\n');
     };
@@ -276,44 +280,31 @@ const { compacto = false } = Astro.props;
       }
 
       const datos = new FormData(formulario);
-      const endpoint = formulario.dataset.endpoint?.trim();
-
-      if (endpoint) {
-        const boton = formulario.querySelector('button[type="submit"]');
-        boton?.setAttribute('disabled', 'true');
-        if (estado) estado.textContent = 'Enviando…';
-
-        try {
-          const respuesta = await fetch(endpoint, {
-            method: 'POST',
-            body: datos,
-            headers: { Accept: 'application/json' },
-          });
-
-          if (!respuesta.ok) throw new Error('respuesta no válida');
-
-          registrarConversion('formulario');
-          window.location.href = '/gracias/';
-        } catch {
-          boton?.removeAttribute('disabled');
-          if (estado) {
-            estado.textContent =
-              'No pudimos enviar el formulario. Escríbenos por WhatsApp y te respondemos igual.';
-            estado.dataset.tipo = 'error';
-          }
-        }
-        return;
-      }
-
-      // Sin endpoint configurado: se conserva el contacto por WhatsApp.
-      registrarConversion('formulario-whatsapp');
       const url = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(resumenTexto(datos))}`;
-      window.open(url, '_blank', 'noopener');
+
+      registrarConversion('formulario-whatsapp');
+
+      const ventana = window.open(url, '_blank');
+      if (ventana) ventana.opener = null;
 
       if (estado) {
-        estado.textContent =
-          'Abrimos WhatsApp con tus datos. Si no se abrió, revisa el bloqueo de ventanas emergentes.';
-        estado.dataset.tipo = 'ok';
+        if (ventana) {
+          estado.textContent =
+            'Abrimos WhatsApp con tus datos. Revisa el mensaje y pulsa «Enviar» para completar el contacto.';
+          estado.dataset.tipo = 'ok';
+        } else {
+          const enlace = document.createElement('a');
+          enlace.href = url;
+          enlace.target = '_blank';
+          enlace.rel = 'noopener';
+          enlace.className = 'btn btn--whatsapp';
+          enlace.textContent = 'Abrir WhatsApp con mis datos';
+          estado.replaceChildren(
+            document.createTextNode('No pudimos abrir WhatsApp automáticamente. '),
+            enlace,
+          );
+          estado.dataset.tipo = 'error';
+        }
       }
     });
 

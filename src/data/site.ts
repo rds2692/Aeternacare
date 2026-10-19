@@ -54,8 +54,6 @@ export const site = {
     googleAds: '', // PENDIENTE
   },
 
-  /** Endpoint del formulario. Vacío = el formulario usa respaldo por WhatsApp. */
-  formularioEndpoint: '', // PENDIENTE: Formspree / Resend / webhook / CRM
 };
 
 export const whatsappMensaje =
