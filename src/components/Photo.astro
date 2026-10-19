@@ -1,0 +1,78 @@
+---
+/**
+ * Fotografía responsive con AVIF, WebP y JPG de respaldo.
+ *
+ * Mantiene un solo punto de verdad para:
+ * - srcset y `sizes` coherentes con el layout;
+ * - dimensiones explícitas (evita CLS);
+ * - alt descriptivo y title contextual;
+ * - carga prioritaria solo cuando corresponde (hero).
+ *
+ * Las variantes se generan con `node tools/optimizar-fotografias.mjs`.
+ */
+interface Props {
+  /** Nombre estable del archivo, sin extensión: "hero-cuidado". */
+  base: string;
+  /** Descripción literal de la escena. Obligatoria. */
+  alt: string;
+  /** Contexto breve para el tooltip. No reemplaza al alt. */
+  title?: string;
+  /** Dimensiones intrínsecas del JPG maestro. */
+  width: number;
+  height: number;
+  /** Anchos disponibles en srcset. */
+  widths: number[];
+  /** Atributo sizes: cuánto ocupa la imagen según el viewport. */
+  sizes?: string;
+  class?: string;
+  loading?: 'lazy' | 'eager';
+  fetchpriority?: 'high' | 'auto' | 'low';
+  reveal?: boolean;
+  /** Retardo de la animación de entrada, en ms. */
+  delay?: number;
+  caption?: string;
+}
+
+const {
+  base,
+  alt,
+  title,
+  width,
+  height,
+  widths,
+  sizes = '100vw',
+  class: clase,
+  loading = 'lazy',
+  fetchpriority = 'auto',
+  reveal = true,
+  delay = 0,
+  caption,
+} = Astro.props;
+
+const srcset = (extension: string) =>
+  widths.map((ancho) => `/img/${base}-${ancho}.${extension} ${ancho}w`).join(', ');
+---
+
+<figure
+  class:list={['foto', clase]}
+  data-reveal={reveal ? '' : undefined}
+  style={delay ? `--retardo: ${delay}ms` : undefined}
+>
+  <picture>
+    <source type="image/avif" srcset={srcset('avif')} sizes={sizes} />
+    <source type="image/webp" srcset={srcset('webp')} sizes={sizes} />
+    <img
+      src={`/img/${base}.jpg`}
+      srcset={srcset('jpg')}
+      sizes={sizes}
+      width={width}
+      height={height}
+      alt={alt}
+      title={title}
+      loading={loading}
+      decoding="async"
+      fetchpriority={fetchpriority}
+    />
+  </picture>
+  {caption && <figcaption>{caption}</figcaption>}
+</figure>

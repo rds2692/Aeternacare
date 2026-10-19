@@ -1,12 +1,27 @@
 ---
+import Photo from './Photo.astro';
 import { proceso } from '../data/contenido';
 ---
 
 <section class="seccion seccion--menta" id="como-funciona" aria-labelledby="proceso-titulo">
   <div class="contenedor">
-    <div class="encabezado" data-reveal>
-      <h2 id="proceso-titulo">{proceso.titulo}</h2>
-      <p>{proceso.bajada}</p>
+    <div class="proceso__intro">
+      <div class="encabezado" data-reveal>
+        <h2 id="proceso-titulo">{proceso.titulo}</h2>
+        <p>{proceso.bajada}</p>
+      </div>
+
+      <Photo
+        class="proceso__figura"
+        base="editorial-conversacion-familiar"
+        widths={[800, 1200, 1800]}
+        width={1800}
+        height={1200}
+        sizes="(max-width: 899px) 92vw, 42vw"
+        alt="Una coordinadora de cuidado conversa con una madre y su hijo en la mesa del comedor de su casa."
+        title="La primera conversación, sin prisa"
+        delay={80}
+      />
     </div>
 
     <ol class="proceso">

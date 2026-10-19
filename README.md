@@ -26,7 +26,8 @@ node tools/servir.mjs             # vista previa sin dependencias (http://localh
 node tools/auditar.mjs            # auditoría técnica en Chrome headless
 node tools/capturar.mjs           # capturas en desktop, tablet y móvil (/capturas)
 node tools/generar-marca.mjs      # deriva el logo y los favicons desde marca/
-node tools/generar-imagenes.mjs   # regenera OG y respaldos de foto (requiere el paso anterior)
+node tools/optimizar-fotografias.mjs # genera JPG, WebP y AVIF responsive de las fotos
+node tools/generar-imagenes.mjs   # regenera OG (y respaldos solo si faltan fotos)
 node tools/descargar-fuentes.mjs  # vuelve a bajar las fuentes autoalojadas
 ```
 
@@ -52,7 +53,7 @@ public/
 ├─ fonts/          Manrope e Instrument Serif autoalojadas (woff2)
 ├─ img/            fotografías, logo y Open Graph
 └─ favicon-*.png · apple-touch-icon.png · robots.txt · site.webmanifest
-marca/             logo original del cliente (no se publica)
+marca/             logo y fotografías originales del cliente (no se publican)
 tools/             verificaciones y generación de recursos (no se publica)
 docs/              documentación de entrega
 ```
@@ -75,10 +76,11 @@ docs/              documentación de entrega
 
 ## 4. Estado del contenido
 
-El sitio está terminado en diseño, estructura, código, SEO y accesibilidad. Lo
-que falta son **datos que solo puede entregar el negocio**: correo corporativo,
-dominio definitivo, razón social, RUT, dirección, horario, fotografías
-definitivas y testimonios.
+El sitio está terminado en diseño, estructura, código, SEO y accesibilidad. Las
+seis fotografías ya están integradas y optimizadas (ver
+[`docs/06-imagenes-y-seo.md`](docs/06-imagenes-y-seo.md)). Lo que falta son
+**datos que solo puede entregar el negocio**: correo corporativo, dominio
+definitivo, razón social, RUT, dirección, horario y testimonios reales.
 
 Cada dato pendiente se muestra en el sitio con una etiqueta ámbar
 `[COMPLETAR: …]`. La lista completa, con la ubicación exacta de cada uno, está
@@ -88,8 +90,9 @@ Antes de publicar:
 
 1. Completar los datos de `src/data/site.ts`.
 2. Cambiar `AVISO_PENDIENTES` a `false` en `src/data/site.ts`.
-3. Reemplazar las fotografías de `public/img/` y actualizar los textos `alt` si
-   la escena cambia.
+3. Si cambias una foto, conserva el nombre base en
+   `marca/fotografias-originales/`, ejecuta `node tools/optimizar-fotografias.mjs`
+   y actualiza el `alt` si la escena cambia.
 4. Configurar el endpoint del formulario.
 5. Revisar el aviso de privacidad y los términos con un abogado.
 6. Ejecutar `npm run build` y `node tools/auditar.mjs`.

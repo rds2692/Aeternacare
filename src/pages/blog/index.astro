@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/Icon.astro';
+import Photo from '../../components/Photo.astro';
 import { site } from '../../data/site';
 
 const entradas = (await getCollection('blog')).sort(
@@ -42,12 +43,27 @@ const jsonLd = {
           <li aria-current="page">Blog</li>
         </ol>
       </nav>
-      <div class="cabecera-pagina__inner">
-        <h1>Guías para cuidar mejor</h1>
-        <p>
-          Información práctica para familias que están decidiendo cómo acompañar a un adulto mayor
-          en casa. Sin alarmismo y sin promesas exageradas.
-        </p>
+      <div class="cabecera-pagina__inner cabecera-pagina__inner--editorial">
+        <div class="cabecera-pagina__texto">
+          <h1>Guías para cuidar mejor</h1>
+          <p>
+            Información práctica para familias que están decidiendo cómo acompañar a un adulto mayor
+            en casa. Sin alarmismo y sin promesas exageradas.
+          </p>
+        </div>
+
+        <Photo
+          class="cabecera-pagina__figura"
+          base="editorial-paseo-barrio"
+          widths={[800, 1200, 1600]}
+          width={1600}
+          height={1200}
+          sizes="(max-width: 899px) 92vw, 40vw"
+          alt="Una cuidadora camina junto a una mujer mayor con bastón por un barrio residencial de Santiago."
+          title="Acompañamiento y vida cotidiana"
+          loading="eager"
+          delay={80}
+        />
       </div>
     </div>
   </section>

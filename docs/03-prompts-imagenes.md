@@ -52,9 +52,23 @@ Photorealistic editorial documentary photography for a premium home-care brand i
 | 3 | `editorial-paseo-barrio.jpg` | Futuras páginas de acompañamiento y blog | 4:3 | 1600×1200 |
 | 3 | `blog-*.jpg` | Portadas horizontales del blog | 16:9 | 1600×900 |
 
-Las dos primeras imágenes son las únicas que reemplazan archivos que ya usa el
-sitio. Las demás quedan preparadas para incorporarlas cuando exista una sección
-que realmente las necesite.
+### 2.1 Estado de entrega (octubre de 2026)
+
+| Archivo | Estado |
+|---|---|
+| `hero-cuidado.jpg` | **Integrada** en el hero, en AVIF/WebP/JPG responsive |
+| `confianza-familia.jpg` | **Integrada** en la sección de confianza |
+| `editorial-cuidado-cotidiano.jpg` | Pendiente (opcional) para una futura sección |
+| `editorial-compania-lectura.jpg` | **Integrada** en «Nosotros» |
+| `editorial-detalle-hogar.jpg` | **Integrada** junto al bloque de testimonios |
+| `editorial-conversacion-familiar.jpg` | **Integrada** en «Cómo funciona» |
+| `editorial-paseo-barrio.jpg` | **Integrada** en la cabecera del blog |
+| `blog-*.jpg` | Pendiente (opcional): portadas específicas por artículo |
+
+Los originales están en `marca/fotografias-originales/` y las variantes
+publicadas se regeneran con `node tools/optimizar-fotografias.mjs`. El detalle
+de textos `alt`, `title` y pesos está en
+[`06-imagenes-y-seo.md`](06-imagenes-y-seo.md).
 
 ## 3. Imágenes principales
 

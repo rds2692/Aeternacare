@@ -1,6 +1,7 @@
 /**
  * Genera los recursos gráficos base del sitio:
- *  - Sustituciones temporal de las fotografías (marcadas como pendientes).
+ *  - Sustituciones temporales de las fotografías SOLO si todavía no existen.
+ *    Nunca sobrescribe una foto real (usar --forzar para regenerar el respaldo).
  *  - Imagen Open Graph 1200x630.
  *  - apple-touch-icon 180x180.
  *
@@ -8,6 +9,7 @@
  * Ejecutar: node tools/generar-imagenes.mjs
  */
 import { createRequire } from 'node:module';
+import { existsSync } from 'node:fs';
 import { mkdir, writeFile } from 'node:fs/promises';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -136,12 +138,19 @@ const trabajos = [
   ['confianza-familia.jpg', escenaConfianza(1500, 1000), 1500],
 ];
 
+const forzar = process.argv.includes('--forzar');
+
 for (const [nombre, svg, ancho] of trabajos) {
+  const destino = join(salida, nombre);
+  if (!forzar && existsSync(destino)) {
+    console.log('se conserva la foto actual:', nombre, '(usa --forzar para regenerar el respaldo)');
+    continue;
+  }
   const buffer = await sharp(Buffer.from(svg), { density: 144 })
     .resize({ width: ancho })
     .jpeg({ quality: 82, mozjpeg: true })
     .toBuffer();
-  await writeFile(join(salida, nombre), buffer);
+  await writeFile(destino, buffer);
   console.log('escrito', nombre);
 }
 

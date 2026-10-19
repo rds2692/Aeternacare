@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Photo from './Photo.astro';
 import { hero } from '../data/contenido';
 import { whatsappLink } from '../data/site';
 ---
@@ -48,16 +49,19 @@ import { whatsappLink } from '../data/site';
       </div>
 
       <div class="hero__media">
-        <figure class="hero__figura" data-reveal style="--retardo: 120ms">
-          <img
-            src="/img/hero-cuidado.jpg"
-            width="1200"
-            height="1500"
-            alt="Cuidadora profesional acompañando a una mujer mayor en su casa, sentadas conversando junto a una ventana con luz natural."
-            fetchpriority="high"
-            decoding="async"
-          />
-        </figure>
+        <Photo
+          class="hero__figura"
+          base="hero-cuidado"
+          widths={[464, 696, 928]}
+          width={928}
+          height={1160}
+          sizes="(max-width: 1023px) 92vw, 44vw"
+          alt="Una cuidadora acompaña con calma a una mujer mayor en el living de su casa, sentadas junto a una ventana con luz natural."
+          title="Cuidado cercano en el hogar"
+          loading="eager"
+          fetchpriority="high"
+          delay={120}
+        />
         <span class="hero__tarjeta" data-reveal style="--retardo: 700ms">
           <Icon name="checkCirculo" size={20} />
           {hero.tarjetaFlotante}

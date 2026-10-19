@@ -53,16 +53,33 @@ inventadas. Es preferible así.
 
 ## D. Fotografías
 
-| Archivo | Escena | Proporción |
+Estado: **resuelto en octubre de 2026.** Las seis fotografías están integradas,
+optimizadas en JPG/WebP/AVIF y con textos `alt` y `title`. Los originales se
+conservan en `marca/fotografias-originales/` (no se publican). El detalle está
+en [`06-imagenes-y-seo.md`](06-imagenes-y-seo.md).
+
+| Archivo | Sección | Dimensiones publicadas |
 |---|---|---|
-| `public/img/hero-cuidado.jpg` | Cuidadora acompañando a una mujer mayor en su casa, luz natural | 4:5 (1200×1500) |
-| `public/img/confianza-familia.jpg` | Hija adulta conversando con su madre mayor | 3:2 (1500×1000) |
-| `public/img/og-aeterna-care.jpg` | Imagen para compartir en redes (Open Graph) | 1200×630 |
+| `public/img/hero-cuidado.jpg` | Hero de inicio | 928×1160 (4:5) |
+| `public/img/confianza-familia.jpg` | Bloque «Para tu familiar. Para tu tranquilidad.» | 1500×1000 (3:2) |
+| `public/img/editorial-compania-lectura.jpg` | «El cuidado comienza escuchando» (`#nosotros`) | 1800×1200 (3:2) |
+| `public/img/editorial-conversacion-familiar.jpg` | «Así comienza el cuidado» (`#como-funciona`) | 1800×1200 (3:2) |
+| `public/img/editorial-detalle-hogar.jpg` | Bloque de testimonios / confianza | 1400×1400 (1:1) |
+| `public/img/editorial-paseo-barrio.jpg` | Cabecera del blog | 1600×1200 (4:3) |
+| `public/img/og-aeterna-care.jpg` | Imagen para compartir en redes (Open Graph) | 2400×1260 |
 | `public/img/apple-touch-icon.png` | Ícono para móviles | 180×180 |
 
 Los prompts sugeridos están en `docs/03-prompts-imagenes.md`. Las dos
-fotografías actuales son respaldos generados por código, con la etiqueta
-«FOTO PENDIENTE» visible, para que no se publiquen por descuido.
+fotografías principales ya no son respaldos: se publican con los textos alt
+definitivos.
+
+Pendiente y no bloqueante:
+
+- [ ] Fotografías de familias reales para los testimonios, con autorización
+      escrita del uso de imagen. No usar fotos de stock ni generadas por IA
+      atribuyéndolas a clientes.
+- [ ] Opcional: `editorial-cuidado-cotidiano.jpg` para una futura sección de
+      servicios o proceso.
 
 **Logo:** ya integrado con el archivo del cliente. El original está en
 `marca/Logo_Aeterna.png` (no se publica) y de ahí se derivan los recursos

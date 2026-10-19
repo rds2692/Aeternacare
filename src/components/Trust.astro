@@ -1,20 +1,21 @@
 ---
+import Photo from './Photo.astro';
 import { confianza } from '../data/contenido';
 ---
 
 <section class="seccion seccion--suave" aria-labelledby="confianza-titulo">
   <div class="contenedor">
     <div class="confianza__grid">
-      <figure class="confianza__figura" data-reveal>
-        <img
-          src="/img/confianza-familia.jpg"
-          width="1500"
-          height="1000"
-          alt="Una hija adulta conversando con su madre mayor en el living de una casa, con luz natural."
-          loading="lazy"
-          decoding="async"
-        />
-      </figure>
+      <Photo
+        class="confianza__figura"
+        base="confianza-familia"
+        widths={[750, 1125, 1500]}
+        width={1500}
+        height={1000}
+        sizes="(max-width: 1023px) 92vw, 46vw"
+        alt="Una hija adulta conversa con su madre mayor en el living de una casa, con luz natural de la tarde."
+        title="Confianza y tranquilidad para la familia"
+      />
 
       <div class="confianza__contenido">
         <div class="encabezado" data-reveal style="--retardo: 80ms">

@@ -646,6 +646,36 @@ p {
   object-fit: cover;
 }
 
+/* ------------------------------------------------- 8b. Fotos responsive */
+/* Las proporciones las define cada sección; el componente Photo solo aporta
+   el picture responsive, las dimensiones intrínsecas y el pie de foto. */
+.foto {
+  margin: 0;
+}
+
+.foto picture {
+  display: block;
+  overflow: hidden;
+}
+
+.foto img {
+  width: 100%;
+}
+
+.foto figcaption {
+  max-width: 58ch;
+  margin-top: 0.85rem;
+  color: var(--ink-soft);
+  font-size: var(--texto-xs);
+  letter-spacing: 0.01em;
+  line-height: 1.55;
+}
+
+.hero__figura picture,
+.confianza__figura picture {
+  height: 100%;
+}
+
 .hero__tarjeta {
   position: absolute;
   left: clamp(-0.5rem, -1vw, 0rem);
@@ -880,6 +910,26 @@ p {
   font-size: var(--texto-sm);
 }
 
+/* ------------------------------------------------------- 11b. Filosofía */
+.filosofia__figura {
+  margin-top: clamp(2rem, 1rem + 3vw, 3rem);
+}
+
+.filosofia__figura picture {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-suave);
+}
+
+.filosofia__figura img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.filosofia__figura + .rejilla-tarjetas {
+  margin-top: clamp(1.5rem, 0.8rem + 2vw, 2.25rem);
+}
+
 /* ------------------------------------------------------------- 12. Confianza */
 .confianza__grid {
   display: grid;
@@ -932,6 +982,29 @@ p {
 }
 
 /* --------------------------------------------------------------- 13. Proceso */
+.proceso__intro {
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 3vw, 3.5rem);
+  align-items: center;
+}
+
+.proceso__figura picture {
+  aspect-ratio: 3 / 2;
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-suave);
+}
+
+.proceso__figura img {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .proceso__intro {
+    grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  }
+}
+
 .proceso {
   counter-reset: paso;
   display: grid;
@@ -1004,6 +1077,46 @@ p {
   color: var(--ink-muted);
   font-size: var(--texto-sm);
   max-width: 44rem;
+}
+
+.testimonios__bloque {
+  display: grid;
+  gap: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  margin-top: clamp(2rem, 1rem + 3vw, 3rem);
+  align-items: center;
+}
+
+.testimonios__bloque .testimonios__figura {
+  max-width: 34rem;
+}
+
+.testimonios__figura picture {
+  aspect-ratio: 1;
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-suave);
+}
+
+.testimonios__figura img {
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Con imagen al lado, la nota se lee como bloque editorial y no como aviso
+   centrado de página completa. */
+.testimonios__bloque .testimonios__nota {
+  margin-top: 0;
+  text-align: left;
+  justify-items: start;
+}
+
+@media (min-width: 900px) {
+  .testimonios__bloque {
+    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
+  }
+
+  .testimonios__bloque .testimonios__figura {
+    max-width: none;
+  }
 }
 
 /* -------------------------------------------------- 15. Cierre y CTA final */
@@ -1305,6 +1418,45 @@ p {
 .cabecera-pagina p {
   color: var(--ink-muted);
   font-size: var(--texto-lg);
+}
+
+/* Cabecera editorial del blog: texto + una escena de acompañamiento. */
+.cabecera-pagina__inner--editorial {
+  max-width: none;
+}
+
+.cabecera-pagina__texto {
+  display: grid;
+  gap: 1.1rem;
+  max-width: 46rem;
+}
+
+.cabecera-pagina__figura {
+  width: 100%;
+  max-width: 34rem;
+}
+
+.cabecera-pagina__figura picture {
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radio-xl);
+  box-shadow: var(--sombra-suave);
+}
+
+.cabecera-pagina__figura img {
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 900px) {
+  .cabecera-pagina__inner--editorial {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: center;
+    gap: clamp(2rem, 1rem + 4vw, 4rem);
+  }
+
+  .cabecera-pagina__figura {
+    max-width: none;
+  }
 }
 
 /* Datos directos de contacto: lista tipo ficha, sin rejilla de tarjetas. */

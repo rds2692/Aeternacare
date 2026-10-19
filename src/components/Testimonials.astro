@@ -1,5 +1,6 @@
 ---
 import Icon from './Icon.astro';
+import Photo from './Photo.astro';
 ---
 
 {/*
@@ -17,20 +18,34 @@ import Icon from './Icon.astro';
       </p>
     </div>
 
-    <div class="testimonios__nota" data-reveal style="--retardo: 120ms">
-      <span class="tarjeta__icono" aria-hidden="true">
-        <Icon name="escudo" size={22} />
-      </span>
-      <h3>Cuidado humano, atención personalizada, en la comodidad del hogar</h3>
-      <p>
-        Estamos reuniendo las historias reales de las familias que hoy reciben nuestro servicio.
-        Cada testimonio se publicará con su autorización firmada, sin nombres que no queramos
-        exponer y sin datos clínicos.
-      </p>
-      <a class="btn btn--fantasma" href="/contacto/">
-        Conversar con el equipo
-        <Icon name="flecha" size={18} />
-      </a>
+    <div class="testimonios__bloque">
+      <Photo
+        class="testimonios__figura"
+        base="editorial-detalle-hogar"
+        widths={[560, 840, 1400]}
+        width={1400}
+        height={1400}
+        sizes="(max-width: 899px) 92vw, 36vw"
+        alt="Manos de una hija y su madre mayor sobre un álbum familiar, junto a dos tazas de té en una mesa de madera."
+        title="Detalles que construyen confianza"
+        delay={80}
+      />
+
+      <div class="testimonios__nota" data-reveal style="--retardo: 160ms">
+        <span class="tarjeta__icono" aria-hidden="true">
+          <Icon name="escudo" size={22} />
+        </span>
+        <h3>Cuidado humano, atención personalizada, en la comodidad del hogar</h3>
+        <p>
+          Estamos reuniendo las historias reales de las familias que hoy reciben nuestro servicio.
+          Cada testimonio se publicará con su autorización firmada, sin nombres que no queramos
+          exponer y sin datos clínicos.
+        </p>
+        <a class="btn btn--fantasma" href="/contacto/">
+          Conversar con el equipo
+          <Icon name="flecha" size={18} />
+        </a>
+      </div>
     </div>
   </div>
 </section>
