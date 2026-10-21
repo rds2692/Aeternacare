@@ -82,6 +82,24 @@ export const navPrincipal = [
   { href: '/contacto/', label: 'Contacto' },
 ];
 
+export const navGrupos = [
+  {
+    label: 'Servicios',
+    items: [
+      { href: '/#servicios', label: 'Servicios de cuidado' },
+      { href: '/#valores', label: 'Valores referenciales' },
+    ],
+  },
+  {
+    label: 'Información',
+    items: [
+      { href: '/#cobertura', label: 'Cobertura y turnos' },
+      { href: '/#como-funciona', label: 'Cómo funciona' },
+      { href: '/#nosotros', label: 'Nosotros' },
+    ],
+  },
+];
+
 /** Deliberadamente fuera del menú del cliente: solo en el pie. */
 export const navLegal = [
   { href: '/privacidad/', label: 'Aviso de privacidad' },

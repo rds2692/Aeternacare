@@ -1,7 +1,7 @@
 ---
 import Icon from './Icon.astro';
 import WhatsAppIcon from './WhatsAppIcon.astro';
-import { navPrincipal, whatsappLink } from '../data/site';
+import { navPrincipal, navGrupos, whatsappLink } from '../data/site';
 
 interface Props {
   /** Ruta actual, para marcar el enlace activo. */
@@ -36,19 +36,25 @@ const estaActivo = (href: string) =>
 
     <nav class="nav" aria-label="Navegación principal">
       <ul class="nav__lista">
-        {
-          navPrincipal.map((item) => (
-            <li>
-              <a
-                class="nav__enlace"
-                href={item.href}
-                aria-current={estaActivo(item.href) ? 'page' : undefined}
-              >
-                {item.label}
-              </a>
-            </li>
-          ))
-        }
+        {navGrupos.map((grupo) => (
+          <li class="nav__grupo">
+            <details>
+              <summary class="nav__enlace">{grupo.label}<span aria-hidden="true">⌄</span></summary>
+              <ul class="nav__submenu">
+                {grupo.items.map((item) => (
+                  <li><a href={item.href} aria-current={estaActivo(item.href) ? 'page' : undefined}>{item.label}</a></li>
+                ))}
+              </ul>
+            </details>
+          </li>
+        ))}
+        {navPrincipal.filter((item) => ['Blog', 'Contacto'].includes(item.label)).map((item) => (
+          <li>
+            <a class="nav__enlace" href={item.href} aria-current={estaActivo(item.href) ? 'page' : undefined}>
+              {item.label}
+            </a>
+          </li>
+        ))}
       </ul>
     </nav>
 
@@ -69,13 +75,19 @@ const estaActivo = (href: string) =>
 
   <div class="menu-panel" id="menu-panel" data-abierto="false">
     <ul class="menu-panel__lista">
-      {
-        navPrincipal.map((item) => (
-          <li>
-            <a href={item.href}>{item.label}</a>
-          </li>
-        ))
-      }
+      {navGrupos.map((grupo) => (
+        <li>
+          <details class="menu-panel__grupo">
+            <summary>{grupo.label}</summary>
+            <ul>
+              {grupo.items.map((item) => <li><a href={item.href}>{item.label}</a></li>)}
+            </ul>
+          </details>
+        </li>
+      ))}
+      {navPrincipal.filter((item) => ['Blog', 'Contacto'].includes(item.label)).map((item) => (
+        <li><a href={item.href}>{item.label}</a></li>
+      ))}
       <li class="menu-panel__cta">
         <a class="btn btn--primario btn--bloque" href="/contacto/">Solicitar orientación</a>
       </li>

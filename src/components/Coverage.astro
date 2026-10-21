@@ -10,25 +10,34 @@ import { site } from '../data/site';
       <p>{cobertura.bajada}</p>
     </div>
 
-    <div class="rejilla-tarjetas rejilla-tarjetas--tres cobertura__grid">
-      <article class="tarjeta" data-reveal>
-        <h3>Profesionales disponibles</h3>
+    <div class="cobertura__acordeon" data-reveal>
+      <details class="catalogo-servicios__grupo">
+        <summary>
+          <span><strong>Profesionales disponibles</strong><small>Conoce quiénes pueden acompañar a tu familiar.</small></span>
+          <span class="catalogo-servicios__signo" aria-hidden="true">+</span>
+        </summary>
         <ul class="lista-simple">
           {cobertura.profesionales.map((profesional) => <li>{profesional}</li>)}
         </ul>
-      </article>
-      <article class="tarjeta" data-reveal style="--retardo: 80ms">
-        <h3>Horarios de atención</h3>
+      </details>
+      <details class="catalogo-servicios__grupo">
+        <summary>
+          <span><strong>Horarios de atención</strong><small>Elige la modalidad que mejor se adapta a tu familia.</small></span>
+          <span class="catalogo-servicios__signo" aria-hidden="true">+</span>
+        </summary>
         <ul class="lista-simple">
           {cobertura.turnos.map((turno) => <li>{turno}</li>)}
         </ul>
-      </article>
-      <article class="tarjeta" data-reveal style="--retardo: 160ms">
-        <h3>Comunas</h3>
+      </details>
+      <details class="catalogo-servicios__grupo">
+        <summary>
+          <span><strong>Comunas atendidas</strong><small>Revisa si llegamos a tu comuna.</small></span>
+          <span class="catalogo-servicios__signo" aria-hidden="true">+</span>
+        </summary>
         <ul class="lista-simple">
           {site.areaServida.map((comuna) => <li>{comuna}</li>)}
         </ul>
-      </article>
+      </details>
     </div>
   </div>
 </section>

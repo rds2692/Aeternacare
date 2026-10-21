@@ -1,17 +1,18 @@
 ---
 import WhatsAppIcon from './WhatsAppIcon.astro';
+import { urgenciaMensaje } from '../data/contenido';
 import { whatsappLink } from '../data/site';
 ---
 
 <a
   class="wa-flotante"
-  href={whatsappLink()}
+  href={whatsappLink(urgenciaMensaje)}
   target="_blank"
   rel="noopener"
-  aria-label="¿Necesitas orientación? Hablemos por WhatsApp"
+  aria-label="¿Tienes una urgencia? Escríbenos al WhatsApp"
   data-analitica="whatsapp-flotante"
 >
-  <span class="wa-flotante__texto">¿Necesitas orientación?<br />Hablemos por WhatsApp</span>
+  <span class="wa-flotante__texto">¿Tienes una urgencia?<br />Escríbenos al WhatsApp</span>
   <span class="wa-flotante__boton">
     <WhatsAppIcon size={26} />
   </span>
