@@ -1,0 +1,29 @@
+---
+import WhatsAppIcon from './WhatsAppIcon.astro';
+import { urgenciaMensaje } from '../data/contenido';
+import { whatsappLink } from '../data/site';
+---
+
+<section class="seccion seccion--menta" aria-labelledby="urgencia-titulo">
+  <div class="contenedor">
+    <div class="urgencia" data-reveal>
+      <div>
+        <p class="eyebrow">¿Necesitas atención prioritaria?</p>
+        <h2 id="urgencia-titulo">Cuéntanos si tu caso es urgente</h2>
+        <p>
+          Escríbenos por WhatsApp indicando tu comuna y te orientaremos sobre la disponibilidad.
+          Si existe una emergencia vital, llama a los servicios de emergencia correspondientes.
+        </p>
+      </div>
+      <div class="grupo-botones">
+        <a class="btn btn--primario btn--grande" href={whatsappLink(urgenciaMensaje)} target="_blank" rel="noopener">
+          <WhatsAppIcon size={18} />
+          Urgencias por WhatsApp
+        </a>
+        <a class="btn btn--secundario btn--grande" href="/contacto/#formulario-contacto">
+          Calcular cotización
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

@@ -2,8 +2,9 @@
 /**
  * Correo protegido contra bots.
  *
- * La dirección nunca se imprime en el HTML: se envía como códigos numéricos y
- * se reconstruye en el navegador solo cuando la persona interactúa.
+ * La dirección no se imprime como texto plano en el HTML: se envía como códigos
+ * numéricos y se reconstruye en el navegador cuando la persona interactúa.
+ * Esta técnica dificulta bots simples, pero no es una medida de seguridad.
  *
  * Acciones:
  * - «Escribir por correo» abre la aplicación de correo con mailto.

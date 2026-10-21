@@ -454,7 +454,7 @@ Para las dos imágenes principales:
 3. Actualizar el atributo `alt` de `Hero.astro` y `Trust.astro` si la escena
    final cambia.
 4. Revisar el recorte en 390 px, 768 px, 1024 px y 1440 px.
-5. Ejecutar `npm run build` y `node tools/auditar.mjs`.
+5. Ejecutar `pnpm build` y `node tools/auditar.mjs`.
 
 La imagen Open Graph no debería resolverse con texto generado por IA. Conviene
 componerla con una fotografía aprobada y añadir la tipografía real del sitio

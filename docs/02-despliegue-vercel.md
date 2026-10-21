@@ -8,8 +8,8 @@ entorno. Vercel detecta Astro automáticamente.
 ## 1. Antes de subir
 
 ```bash
-npm install
-npm run build            # debe terminar sin errores
+pnpm install
+pnpm build               # debe terminar sin errores
 node tools/auditar.mjs   # debe decir «Sin hallazgos»
 ```
 
@@ -26,7 +26,7 @@ Confirmar además:
 1. Crear la cuenta de Vercel a nombre del cliente.
 2. Subir el proyecto a un repositorio de GitHub (puede ser privado).
 3. En Vercel: *Add New → Project → Import Git Repository*.
-4. Framework preset: **Astro** (lo detecta solo). Build command `npm run build`,
+4. Framework preset: **Astro** (lo detecta solo). Build command `pnpm build`,
    output directory `dist`. No agregar variables de entorno.
 5. Deploy. Queda disponible en `https://<proyecto>.vercel.app`.
 

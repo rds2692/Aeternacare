@@ -1087,6 +1087,115 @@ p {
   font-size: var(--texto-sm);
 }
 
+/* --------------------------------------------------------- 11c. Catálogo */
+.catalogo-servicios {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: clamp(2rem, 1rem + 3vw, 3.25rem);
+}
+
+.catalogo-servicios__grupo {
+  border-bottom: 1px solid var(--border);
+}
+
+.catalogo-servicios__grupo summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 0;
+  cursor: pointer;
+  list-style: none;
+}
+
+.catalogo-servicios__grupo summary::-webkit-details-marker {
+  display: none;
+}
+
+.catalogo-servicios__grupo summary strong,
+.catalogo-servicios__grupo summary small {
+  display: block;
+}
+
+.catalogo-servicios__grupo summary small {
+  margin-top: 0.3rem;
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+  font-weight: 400;
+}
+
+.catalogo-servicios__signo {
+  color: var(--green-deep);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.catalogo-servicios__grupo[open] .catalogo-servicios__signo {
+  transform: rotate(45deg);
+}
+
+.catalogo-servicios__grupo ul,
+.lista-simple {
+  margin: 0;
+  padding: 0 0 1rem;
+  list-style: none;
+}
+
+.catalogo-servicios__grupo li {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.7rem 0;
+  border-top: 1px solid var(--border);
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+}
+
+.catalogo-servicios__grupo li strong {
+  flex: none;
+  color: var(--ink);
+}
+
+.lista-simple {
+  display: grid;
+  gap: 0.5rem;
+  padding-top: 0.25rem;
+}
+
+.lista-simple li {
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+}
+
+.lista-simple li::before {
+  content: '·';
+  margin-right: 0.55rem;
+  color: var(--green-deep);
+  font-weight: 700;
+}
+
+.urgencia {
+  display: grid;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.urgencia h2 {
+  margin-top: 0.35rem;
+}
+
+.urgencia p:not(.eyebrow) {
+  max-width: 42rem;
+  margin-top: 0.75rem;
+  color: var(--ink-muted);
+}
+
+@media (min-width: 900px) {
+  .urgencia {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+}
+
 .testimonios__nota {
   display: grid;
   gap: 1rem;

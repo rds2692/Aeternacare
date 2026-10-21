@@ -22,7 +22,7 @@ export const site = {
   /** Formato internacional, sin +, espacios ni guiones. */
   whatsapp: '56932061549',
   // El correo de contacto no se guarda aquí: vive ofuscado en src/data/correo.ts
-  // para que no aparezca en el HTML ni en el JavaScript del navegador.
+  // para que no aparezca como texto plano en el HTML ni en el JavaScript.
 
   direccion: '', // PENDIENTE
   comuna: 'Santiago',
@@ -74,6 +74,8 @@ export const telLink = `tel:${site.telefonoE164}`;
 
 export const navPrincipal = [
   { href: '/#servicios', label: 'Servicios' },
+  { href: '/#valores', label: 'Valores' },
+  { href: '/#cobertura', label: 'Cobertura' },
   { href: '/#como-funciona', label: 'Cómo funciona' },
   { href: '/#nosotros', label: 'Nosotros' },
   { href: '/blog/', label: 'Blog' },

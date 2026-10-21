@@ -1,0 +1,38 @@
+---
+import { catalogoServicios } from '../data/contenido';
+---
+
+<section class="seccion seccion--suave" id="valores" aria-labelledby="valores-titulo">
+  <div class="contenedor">
+    <div class="encabezado" data-reveal>
+      <h2 id="valores-titulo">{catalogoServicios.titulo}</h2>
+      <p>{catalogoServicios.bajada}</p>
+    </div>
+
+    <div class="catalogo-servicios" data-reveal>
+      {
+        catalogoServicios.grupos.map((grupo) => (
+          <details class="catalogo-servicios__grupo">
+            <summary>
+              <span>
+                <strong>{grupo.titulo}</strong>
+                <small>{grupo.descripcion}</small>
+              </span>
+              <span class="catalogo-servicios__signo" aria-hidden="true">+</span>
+            </summary>
+            <ul>
+              {grupo.servicios.map((servicio) => (
+                <li>
+                  <span>{servicio.nombre}</span>
+                  <strong>{servicio.precio}</strong>
+                </li>
+              ))}
+            </ul>
+          </details>
+        ))
+      }
+    </div>
+
+    <p class="nota-alcance" data-reveal>{catalogoServicios.nota}</p>
+  </div>
+</section>

@@ -92,7 +92,7 @@ Detalles técnicos:
 
    ```bash
    node tools/optimizar-fotografias.mjs
-   npm run build          # o: node node_modules/astro/astro.js build
+   pnpm build             # o: node node_modules/astro/astro.js build
    node tools/auditar.mjs
    ```
 

@@ -10,13 +10,14 @@ años) que necesitan apoyo profesional para cuidar a un familiar mayor.
 
 ## 1. Cómo verlo
 
-Requisitos: Node.js 18 o superior.
+Requisitos: Node.js 20 o superior (la versión declarada en `package.json`). El
+proyecto usa pnpm y conserva el lockfile `pnpm-lock.yaml`.
 
 ```bash
-npm install          # instala dependencias (Astro + sitemap)
-npm run dev          # vista previa con recarga en http://localhost:4321
-npm run build        # genera el sitio final en /dist
-npm run preview      # sirve /dist tal como queda en producción
+pnpm install         # instala dependencias (Astro + sitemap)
+pnpm dev             # vista previa con recarga en http://localhost:4321
+pnpm build           # genera el sitio final en /dist
+pnpm preview         # sirve /dist tal como queda en producción
 ```
 
 Comandos de verificación del proyecto:
@@ -33,8 +34,8 @@ node tools/generar-imagenes.mjs   # regenera OG (y respaldos solo si faltan foto
 node tools/descargar-fuentes.mjs  # vuelve a bajar las fuentes autoalojadas
 ```
 
-Si no tienes npm instalado, `node tools/servir.mjs` es suficiente para ver y
-mostrar el sitio: solo necesita Node.js.
+Si no tienes pnpm instalado, `node tools/servir.mjs` es suficiente para ver y
+mostrar el sitio compilado: solo necesita Node.js.
 
 ---
 
@@ -98,7 +99,7 @@ Antes de publicar:
 4. Verificar que el número de WhatsApp del formulario sea el correcto: el envío
    abre WhatsApp con los datos escritos, sin backend ni endpoint.
 5. Revisar el aviso de privacidad y los términos con un abogado.
-6. Ejecutar `npm run build` y `node tools/auditar.mjs`.
+6. Ejecutar `pnpm build` y `node tools/auditar.mjs`.
 
 ---
 
@@ -117,6 +118,8 @@ Antes de publicar:
   el resultado percibido.
 - **Medición con consentimiento.** Sin IDs configurados no se carga ningún
   script de terceros. Al configurarlos, aparece un aviso de consentimiento.
-- **Correo protegido.** La dirección no se imprime en el HTML: se guarda como
-  códigos y se reconstruye solo al pulsar «Escribir por correo» o «Copiar».
+- **Correo protegido contra bots básicos.** La dirección no aparece como texto
+  plano: se entrega como códigos al navegador y se reconstruye solo al pulsar
+  «Escribir por correo» o «Copiar». Esto no es una medida de seguridad ni evita
+  que alguien que inspeccione el código pueda reconstruirla.
   El footer muestra por ahora únicamente la razón social, sin placeholders.

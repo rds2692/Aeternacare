@@ -23,10 +23,12 @@ etiqueta ámbar `[COMPLETAR: …]` mientras `AVISO_PENDIENTES` sea `true`
 
 ### Correo protegido
 
-La dirección **no aparece en el HTML ni en el JavaScript publicado**. Se guarda
-como códigos numéricos en `src/data/correo.ts` y el componente
-`src/components/CorreoProtegido.astro` la reconstruye solo cuando la persona
-pulsa «Escribir por correo» o «Copiar». Tampoco se publica en el JSON-LD.
+La dirección **no aparece como texto plano en el HTML**. Se guarda como códigos
+numéricos en `src/data/correo.ts` y el componente
+`src/components/CorreoProtegido.astro` la reconstruye cuando la persona pulsa
+«Escribir por correo» o «Copiar». Los códigos sí llegan al navegador y pueden
+reconstruirse inspeccionando el código, por lo que esto solo dificulta bots
+automáticos simples. Tampoco se publica en el JSON-LD.
 
 Si cambias de dirección, genera los nuevos códigos con:
 

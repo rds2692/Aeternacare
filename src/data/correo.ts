@@ -1,10 +1,9 @@
 /**
  * Correo de contacto.
  *
- * Se guarda como códigos de carácter y no como texto plano para que la
- * dirección no aparezca en el HTML ni en el JavaScript que descarga el
- * navegador. El componente CorreoProtegido la reconstruye solo cuando la
- * persona pulsa «Escribir por correo» o «Copiar».
+ * Se guarda como códigos de carácter y no como texto plano para dificultar el
+ * scraping automático. Los códigos llegan al navegador y pueden reconstruirse
+ * inspeccionando el código; no deben considerarse una medida de seguridad.
  *
  * Corresponde a: aeternacara@gmail.com
  */
