@@ -146,4 +146,39 @@ const estaActivo = (href: string) =>
       }
     });
   }
+
+  // Menús desplegables: un solo grupo abierto a la vez.
+  const gruposDesplegables = Array.from(
+    document.querySelectorAll<HTMLDetailsElement>('.nav__grupo details, .menu-panel__grupo'),
+  );
+
+  const cerrarOtros = (actual: HTMLDetailsElement) => {
+    gruposDesplegables.forEach((grupo) => {
+      if (grupo !== actual) grupo.open = false;
+    });
+  };
+
+  gruposDesplegables.forEach((grupo) => {
+    const resumen = grupo.querySelector('summary');
+    resumen?.addEventListener('click', (evento) => {
+      evento.preventDefault();
+      const seAbrira = !grupo.open;
+      cerrarOtros(grupo);
+      grupo.open = seAbrira;
+    });
+
+    // En escritorio, abandonar el área completa del menú lo cierra.
+    grupo.addEventListener('mouseleave', () => {
+      if (window.matchMedia('(min-width: 1024px)').matches) grupo.open = false;
+    });
+  });
+
+  document.addEventListener('pointerdown', (evento) => {
+    const objetivo = evento.target as Node;
+    if (!gruposDesplegables.some((grupo) => grupo.contains(objetivo))) {
+      gruposDesplegables.forEach((grupo) => {
+        grupo.open = false;
+      });
+    }
+  });
 </script>

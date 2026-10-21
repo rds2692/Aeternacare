@@ -495,6 +495,15 @@ p {
   position: relative;
 }
 
+.nav__grupo summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.nav__grupo summary::-webkit-details-marker {
+  display: none;
+}
+
 .nav__enlace span {
   display: inline-block;
   margin-left: 0.35rem;
@@ -619,6 +628,10 @@ p {
   list-style: none;
 }
 
+.menu-panel__grupo[open] summary {
+  color: var(--lilac-ink);
+}
+
 .menu-panel__grupo summary::-webkit-details-marker {
   display: none;
 }
@@ -632,6 +645,18 @@ p {
 .menu-panel__grupo a {
   padding-block: 0.65rem;
   font-size: 0.98rem;
+}
+
+@media (max-width: 1023px) {
+  .menu-panel__lista {
+    max-height: calc(100vh - 5rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .menu-panel__grupo ul {
+    margin-bottom: 0.35rem;
+  }
 }
 
 /* ------------------------------------------------------------------ 8. Hero */
