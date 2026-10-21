@@ -14,7 +14,7 @@ export const site = {
   nombre: 'Aeterna Care',
   nombreLegal: '', // PENDIENTE: razón social
   rut: '', // PENDIENTE
-  dominio: 'https://www.aeternacare.cl', // PENDIENTE: confirmar dominio definitivo
+  dominio: 'https://www.aeternacare.cl',
 
   telefonoVisible: '+56 9 3206 1549',
   telefonoE164: '+56932061549',
@@ -88,6 +88,10 @@ export const navGrupos = [
     items: [
       { href: '/#servicios', label: 'Servicios de cuidado' },
       { href: '/#valores', label: 'Valores referenciales' },
+      { href: '/servicios/cuidadoras-adulto-mayor/', label: 'Cuidadoras' },
+      { href: '/servicios/tens-a-domicilio/', label: 'TENS' },
+      { href: '/servicios/enfermeria-a-domicilio/', label: 'Enfermería' },
+      { href: '/servicios/tecnicos-kinesiologos-a-domicilio/', label: 'Técnicos kinesiólogos' },
     ],
   },
   {

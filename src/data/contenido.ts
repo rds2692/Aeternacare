@@ -45,23 +45,27 @@ export const servicios = {
     {
       icono: 'acompanamiento',
       titulo: 'Cuidado y acompañamiento',
+      href: '/servicios/cuidadoras-adulto-mayor/',
       texto:
         'Apoyo cercano para las actividades y rutinas del día a día, siempre respetando la autonomía y dignidad de cada persona.',
     },
     {
       icono: 'rutina',
       titulo: 'Asistencia en actividades diarias',
+      href: '/servicios/cuidadoras-adulto-mayor/',
       texto: 'Acompañamiento y apoyo en las necesidades cotidianas dentro del hogar.',
     },
     {
       icono: 'bienestar',
       titulo: 'Supervisión y bienestar',
+      href: '/servicios/tens-a-domicilio/',
       texto:
         'Una presencia responsable orientada a entregar seguridad, comodidad y tranquilidad.',
     },
     {
       icono: 'personalizado',
       titulo: 'Cuidados personalizados',
+      href: '/servicios/',
       texto: 'Adaptamos la atención a las necesidades particulares de cada persona y familia.',
     },
   ],

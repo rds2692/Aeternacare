@@ -19,6 +19,9 @@ import { servicios } from '../data/contenido';
             </span>
             <h3>{tarjeta.titulo}</h3>
             <p class="tarjeta__texto">{tarjeta.texto}</p>
+            <a class="enlace-flecha tarjeta__enlace" href={tarjeta.href}>
+              Saber más <span aria-hidden="true">→</span>
+            </a>
           </li>
         ))
       }

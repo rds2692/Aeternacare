@@ -1,7 +1,7 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// Dominio definitivo pendiente de confirmación del cliente.
+// Dominio definitivo del sitio.
 // Afecta a canonical, sitemap, Open Graph y JSON-LD.
 export default defineConfig({
   site: 'https://www.aeternacare.cl',
