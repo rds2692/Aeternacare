@@ -1,0 +1,119 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { paginasComunas, paginaComuna } from '../../data/landing';
+import { paginasServicios } from '../../data/landing';
+import { whatsappLink } from '../../data/site';
+
+export function getStaticPaths() {
+  return paginasComunas.map((comuna) => ({
+    params: { slug: comuna.slug },
+    props: { comuna: comuna.nombre },
+  }));
+}
+
+const { comuna: nombre } = Astro.props;
+const comuna = paginaComuna(nombre);
+if (!comuna) throw new Error(`Comuna no encontrada: ${nombre}`);
+
+const titulo = `Cuidadoras y cuidados a domicilio en ${nombre} | Aeterna Care`;
+const descripcion = `Encuentra cuidadoras, TENS y atención de enfermería a domicilio en ${nombre}. Aeterna Care coordina cuidados personalizados para adultos mayores y sus familias.`;
+const canonical = `/comunas/${comuna.slug}/`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: `Cuidados a domicilio en ${nombre}`,
+    serviceType: 'Cuidado y acompañamiento de adultos mayores a domicilio',
+    areaServed: { '@type': 'City', name: nombre },
+    provider: { '@id': 'https://www.aeternacare.cl/#organizacion' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.aeternacare.cl/' },
+      { '@type': 'ListItem', position: 2, name: 'Comunas', item: 'https://www.aeternacare.cl/comunas/' },
+      { '@type': 'ListItem', position: 3, name: nombre, item: `https://www.aeternacare.cl${canonical}` },
+    ],
+  },
+];
+---
+
+<Layout title={titulo} description={descripcion} canonical={canonical} jsonLd={jsonLd}>
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación">
+        <ol class="migas">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/#cobertura">Cobertura</a></li>
+          <li aria-current="page">{nombre}</li>
+        </ol>
+      </nav>
+      <div class="cabecera-pagina__inner">
+        <p class="eyebrow">Atención domiciliaria en Santiago</p>
+        <h1>Cuidados y cuidadoras a domicilio en {nombre}</h1>
+        <p>
+          Coordinamos apoyo para adultos mayores y sus familias en {nombre}, según la modalidad,
+          horario y necesidades de cada caso.
+        </p>
+        <div class="grupo-botones">
+          <a class="btn btn--primario" href={`/contacto/?comuna=${comuna.slug}`}>Solicitar orientación</a>
+          <a class="btn btn--whatsapp" href={whatsappLink(`Hola, quisiera consultar por cuidados a domicilio en ${nombre}.`)} target="_blank" rel="noopener">Hablar por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca">
+    <div class="contenedor landing__contenido">
+      <div>
+        <h2>Una alternativa de cuidado cerca de tu familia</h2>
+        <p>
+          Sabemos que buscar apoyo para un familiar requiere claridad y confianza. Conversamos
+          contigo para conocer la situación, revisar la disponibilidad en {nombre} y orientarte
+          sobre la alternativa más adecuada.
+        </p>
+        <p>
+          Puedes consultar por cuidadoras, TENS, enfermería y técnicos kinesiólogos, con turnos
+          diurnos, nocturnos o de 24 horas según la atención que necesites.
+        </p>
+      </div>
+      <aside class="nota-alcance">
+        <h3>Antes de agendar</h3>
+        <p>El valor final se confirma según el servicio, horario, comuna, complejidad y disponibilidad.</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="seccion seccion--suave" aria-labelledby="servicios-comuna-titulo">
+    <div class="contenedor">
+      <div class="encabezado"><h2 id="servicios-comuna-titulo">Servicios disponibles</h2><p>Conoce las alternativas que puedes consultar para {nombre}.</p></div>
+      <div class="rejilla-tarjetas rejilla-tarjetas--cuatro">
+        {paginasServicios.map((servicio) => (
+          <article class="tarjeta">
+            <h3>{servicio.nombre}</h3>
+            <p class="tarjeta__texto">{servicio.descripcion}</p>
+            <a class="enlace-flecha" href={`/servicios/${servicio.slug}/`}>Ver servicio <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" aria-labelledby="faq-comuna-titulo">
+    <div class="contenedor landing__faq">
+      <div class="encabezado"><h2 id="faq-comuna-titulo">Preguntas frecuentes sobre cuidados en {nombre}</h2></div>
+      <details class="faq"><summary>¿Qué tipo de turnos puedo consultar?</summary><p>Turnos diurnos, nocturnos y de 24 horas, sujetos a disponibilidad y evaluación de la necesidad.</p></details>
+      <details class="faq"><summary>¿El valor es el mismo para todas las comunas?</summary><p>Los valores publicados son referenciales. El valor final se confirma considerando comuna, horario, tipo de profesional y alcance del servicio.</p></details>
+      <details class="faq"><summary>¿Cómo solicito orientación?</summary><p>Puedes completar el formulario de contacto o escribir directamente por WhatsApp indicando que necesitas atención en {nombre}.</p></details>
+    </div>
+  </section>
+
+  <section class="seccion seccion--menta">
+    <div class="contenedor cierre">
+      <h2>¿Buscas apoyo para tu familiar en {nombre}?</h2>
+      <p>Cuéntanos qué necesitas y coordinaremos una orientación inicial.</p>
+      <a class="btn btn--primario btn--grande" href="/contacto/">Solicitar orientación</a>
+    </div>
+  </section>
+</Layout>

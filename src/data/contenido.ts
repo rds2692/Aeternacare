@@ -81,6 +81,7 @@ export const catalogoServicios = {
   grupos: [
     {
       titulo: 'Enfermería',
+      slug: 'enfermeria-a-domicilio',
       descripcion: 'Atenciones y procedimientos de enfermería a domicilio.',
       servicios: [
         { nombre: 'Control de signos vitales', precio: 'Desde $15.000' },
@@ -93,6 +94,7 @@ export const catalogoServicios = {
     },
     {
       titulo: 'TENS',
+      slug: 'tens-a-domicilio',
       descripcion: 'Apoyo técnico y acompañamiento según la necesidad de cada persona.',
       servicios: [
         { nombre: 'Turno TENS de 8 horas', precio: 'Desde $60.000' },
@@ -101,6 +103,7 @@ export const catalogoServicios = {
     },
     {
       titulo: 'Cuidadora',
+      slug: 'cuidadoras-adulto-mayor',
       descripcion: 'Acompañamiento y apoyo en las actividades diarias del hogar.',
       servicios: [
         { nombre: 'Turno diurno', precio: 'Consultar' },
@@ -110,6 +113,7 @@ export const catalogoServicios = {
     },
     {
       titulo: 'Técnicos kinesiólogos',
+      slug: 'tecnicos-kinesiologos-a-domicilio',
       descripcion: 'Apoyo asociado a movilidad y recuperación, según evaluación del caso.',
       servicios: [{ nombre: 'Atención domiciliaria', precio: 'Consultar' }],
     },

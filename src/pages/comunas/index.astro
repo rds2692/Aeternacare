@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { paginasComunas } from '../../data/landing';
+
+const titulo = 'Comunas donde ofrecemos cuidados a domicilio | Aeterna Care';
+const descripcion = 'Conoce las comunas de Santiago donde Aeterna Care coordina cuidadoras, TENS y atención domiciliaria para adultos mayores.';
+---
+
+<Layout title={titulo} description={descripcion} canonical="/comunas/">
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación"><ol class="migas"><li><a href="/">Inicio</a></li><li aria-current="page">Comunas</li></ol></nav>
+      <div class="cabecera-pagina__inner">
+        <p class="eyebrow">Aeterna Care · Santiago</p>
+        <h1>Cuidados a domicilio por comuna</h1>
+        <p>Revisa la información de atención disponible en las comunas donde coordinamos servicios para adultos mayores y sus familias.</p>
+      </div>
+    </div>
+  </section>
+  <section class="seccion seccion--blanca">
+    <div class="contenedor">
+      <div class="rejilla-tarjetas rejilla-tarjetas--cuatro">
+        {paginasComunas.map((comuna) => (
+          <article class="tarjeta">
+            <h2>{comuna.nombre}</h2>
+            <p class="tarjeta__texto">Cuidadoras, TENS y atención domiciliaria en {comuna.nombre}.</p>
+            <a class="enlace-flecha" href={`/comunas/${comuna.slug}/`}>Ver atención en {comuna.nombre} <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

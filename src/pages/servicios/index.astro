@@ -1,0 +1,33 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { paginasServicios } from '../../data/landing';
+
+const titulo = 'Servicios de cuidado a domicilio | Aeterna Care';
+const descripcion = 'Conoce los servicios de cuidadoras, TENS, enfermería y técnicos kinesiólogos a domicilio de Aeterna Care.';
+---
+
+<Layout title={titulo} description={descripcion} canonical="/servicios/">
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación"><ol class="migas"><li><a href="/">Inicio</a></li><li aria-current="page">Servicios</li></ol></nav>
+      <div class="cabecera-pagina__inner">
+        <p class="eyebrow">Aeterna Care · Atención en casa</p>
+        <h1>Servicios de cuidado a domicilio</h1>
+        <p>Conoce las alternativas de apoyo que puedes consultar para tu familiar y revisa qué incluye cada servicio.</p>
+      </div>
+    </div>
+  </section>
+  <section class="seccion seccion--blanca">
+    <div class="contenedor">
+      <div class="rejilla-tarjetas rejilla-tarjetas--cuatro">
+        {paginasServicios.map((servicio) => (
+          <article class="tarjeta">
+            <h2>{servicio.nombre}</h2>
+            <p class="tarjeta__texto">{servicio.descripcion}</p>
+            <a class="enlace-flecha" href={`/servicios/${servicio.slug}/`}>Ver servicio <span aria-hidden="true">→</span></a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

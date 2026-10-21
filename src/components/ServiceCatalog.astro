@@ -15,7 +15,7 @@ import { catalogoServicios } from '../data/contenido';
           <details class="catalogo-servicios__grupo">
             <summary>
               <span>
-                <strong>{grupo.titulo}</strong>
+                <strong><a href={`/servicios/${grupo.slug}/`}>{grupo.titulo}</a></strong>
                 <small>{grupo.descripcion}</small>
               </span>
               <span class="catalogo-servicios__signo" aria-hidden="true">+</span>

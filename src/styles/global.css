@@ -1184,6 +1184,111 @@ p {
   font-size: var(--texto-sm);
 }
 
+/* ----------------------------------------------------- 11d. Landing SEO */
+.landing__contenido {
+  display: grid;
+  gap: clamp(2rem, 1rem + 4vw, 4rem);
+  align-items: start;
+}
+
+.landing__contenido > div {
+  max-width: 48rem;
+}
+
+.landing__contenido h2 {
+  margin-bottom: 1rem;
+}
+
+.landing__contenido p + p {
+  margin-top: 1rem;
+}
+
+.landing__lista {
+  margin-top: 1.5rem;
+}
+
+.landing__lista li {
+  padding-block: 0.35rem;
+}
+
+.enlace-flecha {
+  display: inline-flex;
+  gap: 0.45rem;
+  align-items: center;
+  margin-top: 0.25rem;
+  color: var(--lilac-ink);
+  font-size: var(--texto-sm);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.enlace-flecha:hover span {
+  transform: translateX(3px);
+}
+
+.enlace-flecha span {
+  transition: transform var(--transicion);
+}
+
+.landing__faq {
+  max-width: 62rem;
+}
+
+.faq {
+  border-top: 1px solid var(--border);
+}
+
+.faq:last-child {
+  border-bottom: 1px solid var(--border);
+}
+
+.faq summary {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.25rem 0;
+  color: var(--ink);
+  cursor: pointer;
+  font-weight: 700;
+  list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.faq summary::after {
+  content: '+';
+  color: var(--green-deep);
+  font-size: 1.25rem;
+  font-weight: 400;
+}
+
+.faq[open] summary::after {
+  content: '−';
+}
+
+.faq p {
+  max-width: 48rem;
+  padding: 0 2rem 1.25rem 0;
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+}
+
+@media (min-width: 900px) {
+  .landing__contenido {
+    grid-template-columns: minmax(0, 1fr) minmax(16rem, 0.45fr);
+  }
+
+  .landing__contenido > aside {
+    margin-top: 0.25rem;
+  }
+
+  .proceso--tres {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
 /* --------------------------------------------------------- 11c. Catálogo */
 .catalogo-servicios {
   display: grid;

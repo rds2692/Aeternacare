@@ -1,0 +1,92 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { paginasServicios } from '../../data/landing';
+import { whatsappLink } from '../../data/site';
+
+export function getStaticPaths() {
+  return paginasServicios.map((servicio) => ({ params: { slug: servicio.slug }, props: { servicio } }));
+}
+
+const { servicio } = Astro.props;
+const canonical = `/servicios/${servicio.slug}/`;
+const titulo = `${servicio.titulo} | Aeterna Care`;
+const descripcion = `${servicio.descripcion} Consulta disponibilidad, horarios y valores referenciales con Aeterna Care.`;
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: servicio.titulo,
+    serviceType: servicio.nombre,
+    areaServed: { '@type': 'City', name: 'Santiago' },
+    provider: { '@id': 'https://www.aeternacare.cl/#organizacion' },
+    description: servicio.descripcion,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://www.aeternacare.cl/' },
+      { '@type': 'ListItem', position: 2, name: 'Servicios', item: 'https://www.aeternacare.cl/#servicios' },
+      { '@type': 'ListItem', position: 3, name: servicio.nombre, item: `https://www.aeternacare.cl${canonical}` },
+    ],
+  },
+];
+---
+
+<Layout title={titulo} description={descripcion} canonical={canonical} jsonLd={jsonLd}>
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación">
+        <ol class="migas">
+          <li><a href="/">Inicio</a></li>
+          <li><a href="/#servicios">Servicios</a></li>
+          <li aria-current="page">{servicio.nombre}</li>
+        </ol>
+      </nav>
+      <div class="cabecera-pagina__inner">
+        <p class="eyebrow">Aeterna Care · Atención en casa</p>
+        <h1>{servicio.titulo}</h1>
+        <p>{servicio.descripcion}</p>
+        <div class="grupo-botones">
+          <a class="btn btn--primario" href="/contacto/">Solicitar orientación</a>
+          <a class="btn btn--whatsapp" href={whatsappLink(`Hola, quisiera consultar por ${servicio.nombre}.`)} target="_blank" rel="noopener">Consultar por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca">
+    <div class="contenedor landing__contenido">
+      <div>
+        <h2>¿Qué puedes consultar?</h2>
+        <p>{servicio.descripcion} La modalidad se conversa previamente para que la familia conozca el alcance del apoyo antes de comenzar.</p>
+        <ul class="lista-simple landing__lista">
+          {servicio.incluye.map((item) => <li>{item}</li>)}
+        </ul>
+      </div>
+      <aside class="nota-alcance">
+        <h3>Valor referencial</h3>
+        <p>{servicio.valor}</p>
+      </aside>
+    </div>
+  </section>
+
+  <section class="seccion seccion--suave" aria-labelledby="como-solicitar-titulo">
+    <div class="contenedor">
+      <div class="encabezado"><h2 id="como-solicitar-titulo">Cómo solicitar este servicio</h2><p>Cuéntanos la situación de tu familiar y coordinamos los siguientes pasos.</p></div>
+      <ol class="proceso proceso--tres">
+        <li class="paso"><h3>Nos contactas</h3><p>Indicas qué servicio buscas, la comuna y el horario aproximado.</p></li>
+        <li class="paso"><h3>Revisamos la necesidad</h3><p>Conversamos contigo para entender el apoyo que corresponde.</p></li>
+        <li class="paso"><h3>Confirmamos la atención</h3><p>Te informamos disponibilidad, alcance y valor antes de agendar.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca">
+    <div class="contenedor cierre">
+      <h2>¿Quieres saber si este servicio es adecuado?</h2>
+      <p>Estamos disponibles para orientarte según las necesidades de tu familiar.</p>
+      <a class="btn btn--primario btn--grande" href="/contacto/">Hablar con Aeterna Care</a>
+    </div>
+  </section>
+</Layout>
