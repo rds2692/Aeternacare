@@ -384,6 +384,24 @@ p {
   gap: 0.85rem;
 }
 
+.grupo-botones .btn {
+  justify-content: center;
+  text-align: center;
+}
+
+@media (max-width: 639px) {
+  .grupo-botones {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .grupo-botones .btn {
+    flex: 0 1 100%;
+    width: 100%;
+    max-width: 30rem;
+  }
+}
+
 /* ---------------------------------------------------- 6. Etiqueta pendiente */
 .pendiente {
   display: inline-flex;
@@ -864,6 +882,58 @@ p {
 .campo--doble {
   display: grid;
   gap: 1.15rem;
+}
+
+.selector-dias {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radio-sm);
+}
+
+.selector-dias legend {
+  padding: 0 0.25rem;
+  font-weight: 600;
+}
+
+.selector-dias__atajos,
+.selector-dias__botones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.dia-btn {
+  min-height: 2.5rem;
+  padding: 0.5rem 0.8rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--texto-sm);
+  transition: background-color var(--transicion), border-color var(--transicion), color var(--transicion);
+}
+
+.dia-btn:hover,
+.dia-btn[aria-pressed='true'] {
+  border-color: var(--green-deep);
+  background: var(--green-deep);
+  color: var(--white);
+}
+
+.dia-btn--atajo {
+  border-color: var(--lilac-ink);
+  color: var(--lilac-ink);
+}
+
+.selector-dias__resumen {
+  margin: 0;
+  color: var(--ink-muted);
+  font-size: var(--texto-xs);
 }
 
 .campo label {

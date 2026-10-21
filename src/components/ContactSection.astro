@@ -139,6 +139,83 @@ const { compacto = false } = Astro.props;
           </select>
         </div>
 
+        <div class="campo--doble">
+          <div class="campo">
+            <label for="profesional">Profesional que necesitas <span class="obligatorio">*</span></label>
+            <select id="profesional" name="profesional" required aria-describedby="error-profesional">
+              <option value="">Selecciona una opción</option>
+              <option>Cuidadora</option>
+              <option>TENS</option>
+              <option>Enfermera</option>
+              <option>Técnico kinesiólogo</option>
+              <option>No lo sé, necesito orientación</option>
+            </select>
+            <span class="campo__error" id="error-profesional" data-error></span>
+          </div>
+
+          <div class="campo">
+            <label for="turno">Modalidad de turno <span class="obligatorio">*</span></label>
+            <select id="turno" name="turno" required aria-describedby="error-turno">
+              <option value="">Selecciona una opción</option>
+              <option>Diurno</option>
+              <option>Nocturno</option>
+              <option>24 horas (día y noche)</option>
+            </select>
+            <span class="campo__error" id="error-turno" data-error></span>
+          </div>
+        </div>
+
+        <div class="campo--doble">
+          <div class="campo">
+            <label for="horas">Horas por turno <span class="obligatorio">*</span></label>
+            <input id="horas" name="horas" type="number" min="2" max="24" step="1" placeholder="Ej. 8" required aria-describedby="error-horas" />
+            <span class="campo__error" id="error-horas" data-error></span>
+          </div>
+
+          <div class="campo">
+            <label for="comuna">Comuna del servicio <span class="obligatorio">*</span></label>
+            <select id="comuna" name="comuna" required aria-describedby="error-comuna">
+              <option value="">Selecciona una comuna</option>
+              {site.areaServida.map((comuna) => <option>{comuna}</option>)}
+            </select>
+            <span class="campo__error" id="error-comuna" data-error></span>
+          </div>
+        </div>
+
+        <div class="campo--doble">
+          <div class="campo">
+            <label for="fecha-inicio">Fecha de inicio <span class="obligatorio">*</span></label>
+            <input id="fecha-inicio" name="fechaInicio" type="date" required aria-describedby="error-fecha-inicio" />
+            <span class="campo__error" id="error-fecha-inicio" data-error></span>
+          </div>
+
+          <div class="campo">
+            <label for="fecha-termino">Fecha de término</label>
+            <input id="fecha-termino" name="fechaTermino" type="date" aria-describedby="error-fecha-termino" />
+            <span class="campo__error" id="error-fecha-termino" data-error></span>
+          </div>
+        </div>
+
+        <fieldset class="selector-dias">
+          <legend>Días de la semana</legend>
+          <p class="ayuda">Selecciona los días en que necesitas el servicio.</p>
+          <div class="selector-dias__atajos">
+            <button type="button" class="dia-btn dia-btn--atajo" data-patron="lunes-viernes">Lunes a viernes</button>
+            <button type="button" class="dia-btn dia-btn--atajo" data-patron="lunes-domingo">Lunes a domingo</button>
+          </div>
+          <div class="selector-dias__botones" role="group" aria-label="Días de la semana">
+            {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'].map((dia) => (
+              <button type="button" class="dia-btn" data-dia={dia} aria-pressed="false">{dia}</button>
+            ))}
+          </div>
+          <p class="selector-dias__resumen" id="dias-resumen" aria-live="polite">No has seleccionado días.</p>
+        </fieldset>
+
+        <label class="consentimiento consentimiento--urgencia" for="urgencia">
+          <input id="urgencia" name="urgencia" type="checkbox" />
+          <span>Mi solicitud es urgente y necesito orientación prioritaria.</span>
+        </label>
+
         <div class="campo">
           <label for="mensaje">Cuéntanos brevemente</label>
           <textarea
@@ -208,7 +285,7 @@ const { compacto = false } = Astro.props;
 
     const validar = (): boolean => {
       let ok = true;
-      const obligatorios = formulario.querySelectorAll<HTMLInputElement>('[required]');
+      const obligatorios = formulario.querySelectorAll<HTMLInputElement | HTMLSelectElement>('[required]');
 
       obligatorios.forEach((campo) => {
         limpiarError(campo);
@@ -233,6 +310,19 @@ const { compacto = false } = Astro.props;
         ok = false;
       }
 
+      const horas = formulario.querySelector<HTMLInputElement>('#horas');
+      if (horas && horas.value && (Number(horas.value) < 2 || Number(horas.value) > 24)) {
+        marcarError(horas, 'Indica entre 2 y 24 horas por turno.');
+        ok = false;
+      }
+
+      const inicio = formulario.querySelector<HTMLInputElement>('#fecha-inicio');
+      const termino = formulario.querySelector<HTMLInputElement>('#fecha-termino');
+      if (inicio?.value && termino?.value && termino.value < inicio.value) {
+        marcarError(termino, 'La fecha de término debe ser posterior al inicio.');
+        ok = false;
+      }
+
       return ok;
     };
 
@@ -246,11 +336,29 @@ const { compacto = false } = Astro.props;
       const correo = String(datos.get('correo') ?? '').trim();
       const ayuda = String(datos.get('ayuda') ?? '').trim();
       const paraQuien = String(datos.get('paraquien') ?? '').trim();
+      const profesional = String(datos.get('profesional') ?? '').trim();
+      const turno = String(datos.get('turno') ?? '').trim();
+      const horas = String(datos.get('horas') ?? '').trim();
+      const comuna = String(datos.get('comuna') ?? '').trim();
+      const fechaInicio = String(datos.get('fechaInicio') ?? '').trim();
+      const fechaTermino = String(datos.get('fechaTermino') ?? '').trim();
+      const dias = Array.from(formulario.querySelectorAll<HTMLButtonElement>('[data-dia][aria-pressed="true"]'))
+        .map((boton) => boton.dataset.dia)
+        .filter(Boolean)
+        .join(', ');
       const mensaje = String(datos.get('mensaje') ?? '').trim();
 
       if (correo) lineas.push(`Correo: ${correo}`);
       if (ayuda) lineas.push(`Tipo de ayuda: ${ayuda}`);
       if (paraQuien) lineas.push(`Para quién: ${paraQuien}`);
+      if (profesional) lineas.push(`Profesional: ${profesional}`);
+      if (turno) lineas.push(`Turno: ${turno}`);
+      if (horas) lineas.push(`Horas por turno: ${horas}`);
+      if (comuna) lineas.push(`Comuna: ${comuna}`);
+      if (fechaInicio) lineas.push(`Fecha de inicio: ${fechaInicio}`);
+      if (fechaTermino) lineas.push(`Fecha de término: ${fechaTermino}`);
+      if (dias) lineas.push(`Días solicitados: ${dias}`);
+      if (datos.get('urgencia')) lineas.push('Solicitud urgente: sí');
       if (mensaje) lineas.push('', mensaje);
       if (datos.get('consentimiento')) {
         lineas.push(
@@ -312,6 +420,41 @@ const { compacto = false } = Astro.props;
     formulario.addEventListener('input', (evento) => {
       const objetivo = evento.target as HTMLInputElement;
       if (objetivo.matches('input, textarea, select')) limpiarError(objetivo);
+    });
+
+    const botonesDias = Array.from(formulario.querySelectorAll<HTMLButtonElement>('[data-dia]'));
+    const resumenDias = document.getElementById('dias-resumen');
+    const actualizarDias = () => {
+      const seleccionados = botonesDias.filter((boton) => boton.getAttribute('aria-pressed') === 'true');
+      if (resumenDias) {
+        resumenDias.textContent = seleccionados.length
+          ? `Días seleccionados: ${seleccionados.map((boton) => boton.dataset.dia).join(', ')}.`
+          : 'No has seleccionado días.';
+      }
+    };
+
+    const seleccionarDias = (dias: string[]) => {
+      botonesDias.forEach((boton) => {
+        boton.setAttribute('aria-pressed', String(dias.includes(boton.dataset.dia ?? '')));
+      });
+      actualizarDias();
+    };
+
+    botonesDias.forEach((boton) => {
+      boton.addEventListener('click', () => {
+        boton.setAttribute('aria-pressed', String(boton.getAttribute('aria-pressed') !== 'true'));
+        actualizarDias();
+      });
+    });
+
+    formulario.querySelectorAll<HTMLButtonElement>('[data-patron]').forEach((boton) => {
+      boton.addEventListener('click', () => {
+        seleccionarDias(
+          boton.dataset.patron === 'lunes-domingo'
+            ? ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo']
+            : ['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes'],
+        );
+      });
     });
   }
 </script>

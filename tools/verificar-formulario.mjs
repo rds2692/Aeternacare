@@ -91,6 +91,12 @@ try {
   await pagina.fill('#telefono', '+56 9 1111 2222');
   await pagina.selectOption('#ayuda', 'Acompañamiento y compañía');
   await pagina.selectOption('#paraquien', 'Para mi madre');
+  await pagina.selectOption('#profesional', 'Cuidadora');
+  await pagina.selectOption('#turno', 'Diurno');
+  await pagina.fill('#horas', '8');
+  await pagina.selectOption('#comuna', 'Providencia');
+  await pagina.fill('#fecha-inicio', '2026-11-01');
+  await pagina.click('[data-dia="Lunes"]');
   await pagina.fill('#mensaje', 'Mensaje de prueba automatizada');
   await pagina.check('#consentimiento-datos');
   await boton.click();
