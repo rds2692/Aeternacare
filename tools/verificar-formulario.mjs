@@ -15,7 +15,7 @@ import { fileURLToPath } from 'node:url';
 
 const raiz = resolve(fileURLToPath(new URL('.', import.meta.url)), '..', 'dist');
 const puerto = 4333;
-const numeroEsperado = '56932061549';
+const numeroEsperado = '56988178225';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require(

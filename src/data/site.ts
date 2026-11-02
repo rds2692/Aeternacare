@@ -16,11 +16,11 @@ export const site = {
   rut: '', // PENDIENTE
   dominio: 'https://www.aeternacare.cl',
 
-  telefonoVisible: '+56 9 3206 1549',
-  telefonoE164: '+56932061549',
+  telefonoVisible: '+56 9 8817 8225',
+  telefonoE164: '+56988178225',
   telefonoEsWhatsApp: true, // Confirmar que es una cuenta de WhatsApp Business
   /** Formato internacional, sin +, espacios ni guiones. */
-  whatsapp: '56932061549',
+  whatsapp: '56988178225',
   // El correo de contacto no se guarda aquí: vive ofuscado en src/data/correo.ts
   // para que no aparezca como texto plano en el HTML ni en el JavaScript.
 
