@@ -8,7 +8,7 @@
  */
 
 /** Muestra en el sitio las etiquetas ámbar de datos faltantes. Poner en false antes de publicar. */
-export const AVISO_PENDIENTES = true;
+export const AVISO_PENDIENTES = false;
 
 export const site = {
   nombre: 'Aeterna Care',
