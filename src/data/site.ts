@@ -47,11 +47,14 @@ export const site = {
     linkedin: '', // PENDIENTE
   },
 
-  /** Medición. Vacío = no se carga ningún script de terceros. */
+  /**
+   * IDs heredados. La medición se administra exclusivamente en Google Tag Manager;
+   * mantener estos campos vacíos para no duplicar visitas o conversiones.
+   */
   medicion: {
-    ga4: '', // PENDIENTE: G-XXXXXXX
-    metaPixel: '', // PENDIENTE
-    googleAds: '', // PENDIENTE
+    ga4: '',
+    metaPixel: '',
+    googleAds: '',
   },
 
 };

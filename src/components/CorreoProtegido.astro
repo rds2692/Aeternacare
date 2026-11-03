@@ -29,6 +29,7 @@ const { etiqueta = 'Escribir por correo', compacto = false } = Astro.props;
     type="button"
     class="correo-protegido__accion"
     data-correo-accion="escribir"
+    data-analitica="correo-escribir"
     aria-label={`${etiqueta} (abre tu aplicación de correo)`}
   >
     <Icon name="correo" size={18} />
@@ -38,6 +39,7 @@ const { etiqueta = 'Escribir por correo', compacto = false } = Astro.props;
     type="button"
     class="correo-protegido__accion correo-protegido__accion--copiar"
     data-correo-accion="copiar"
+    data-analitica="correo-copiar"
   >
     <Icon name="documento" size={16} />
     <span class="sr-only">Copiar dirección de correo electrónico</span>

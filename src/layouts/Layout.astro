@@ -35,10 +35,8 @@ const sitio = Astro.site ?? new URL(site.dominio);
 const urlCanonica = new URL(canonical ?? Astro.url.pathname, sitio).href;
 const urlOg = new URL(ogImage, sitio).href;
 
-/** Hay medición configurada solo si existe al menos un ID real. */
-const medicionConfigurada = Boolean(
-  site.medicion.ga4 || site.medicion.metaPixel || site.medicion.googleAds,
-);
+/** Google Tag Manager es la única puerta de entrada para medición. */
+const medicionConfigurada = true;
 
 const datosBase: Record<string, unknown> = {
   '@context': 'https://schema.org',
@@ -70,13 +68,26 @@ const bloquesExtra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 <!doctype html>
 <html lang="es-CL">
   <head>
-    <!-- Google Tag Manager: contenedor global del sitio. -->
-    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-5SDQ9M5Q"></script>
+    <!-- Consent Mode debe definirse antes de cargar Google Tag Manager. -->
     <script is:inline>
       window.dataLayer = window.dataLayer || [];
       function gtag() { window.dataLayer.push(arguments); }
-      gtag('js', new Date());
+      gtag('consent', 'default', {
+        ad_storage: 'denied',
+        analytics_storage: 'denied',
+        ad_user_data: 'denied',
+        ad_personalization: 'denied',
+        functionality_storage: 'granted',
+        security_storage: 'granted',
+        wait_for_update: 500
+      });
+      window.dataLayer.push({
+        'gtm.start': new Date().getTime(),
+        event: 'gtm.js'
+      });
     </script>
+    <!-- Google Tag Manager: contenedor global del sitio. -->
+    <script is:inline async src="https://www.googletagmanager.com/gtm.js?id=GTM-5SDQ9M5Q"></script>
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -136,6 +147,15 @@ const bloquesExtra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
     }
   </head>
   <body>
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-5SDQ9M5Q"
+        height="0"
+        width="0"
+        style="display:none;visibility:hidden"
+        title="Google Tag Manager"
+      ></iframe>
+    </noscript>
     <a class="salto-a-contenido" href="#contenido">Saltar al contenido</a>
 
     {!sinCromo && <Header ruta={Astro.url.pathname} />}
@@ -148,31 +168,58 @@ const bloquesExtra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
     <FloatingWhatsApp />
 
-    {/* Medición: solo se carga si hay IDs configurados y el visitante acepta. */}
+    {/* Consentimiento y eventos: las etiquetas de medición viven en Google Tag Manager. */}
     <script>
-      import { site } from '../data/site';
-      import { iniciarMedicion, hayMedicion } from '../scripts/medicion';
+      const clave = 'aeterna-consentimiento-medicion';
+      const banner = document.getElementById('consentimiento');
+      const consentimiento = localStorage.getItem(clave);
+      const actualizarConsentimiento = (aceptado: boolean) => {
+        window.gtag?.('consent', 'update', {
+          ad_storage: aceptado ? 'granted' : 'denied',
+          analytics_storage: aceptado ? 'granted' : 'denied',
+          ad_user_data: aceptado ? 'granted' : 'denied',
+          ad_personalization: aceptado ? 'granted' : 'denied'
+        });
+      };
 
-      if (hayMedicion(site.medicion)) {
-        const clave = 'aeterna-consentimiento-medicion';
-        const guardado = localStorage.getItem(clave);
-
-        if (guardado === 'aceptado') {
-          iniciarMedicion(site.medicion);
-        } else if (guardado !== 'rechazado') {
-          const banner = document.getElementById('consentimiento');
-          banner?.setAttribute('data-visible', 'true');
-          document.getElementById('consentimiento-aceptar')?.addEventListener('click', () => {
-            localStorage.setItem(clave, 'aceptado');
-            banner?.setAttribute('data-visible', 'false');
-            iniciarMedicion(site.medicion);
-          });
-          document.getElementById('consentimiento-rechazar')?.addEventListener('click', () => {
-            localStorage.setItem(clave, 'rechazado');
-            banner?.setAttribute('data-visible', 'false');
-          });
-        }
+      if (consentimiento === 'aceptado' || consentimiento === 'rechazado') {
+        actualizarConsentimiento(consentimiento === 'aceptado');
+        banner?.setAttribute('data-visible', 'false');
+      } else {
+        banner?.setAttribute('data-visible', 'true');
       }
+
+      document.getElementById('consentimiento-aceptar')?.addEventListener('click', () => {
+        localStorage.setItem(clave, 'aceptado');
+        actualizarConsentimiento(true);
+        banner?.setAttribute('data-visible', 'false');
+      });
+      document.getElementById('consentimiento-rechazar')?.addEventListener('click', () => {
+        localStorage.setItem(clave, 'rechazado');
+        actualizarConsentimiento(false);
+        banner?.setAttribute('data-visible', 'false');
+      });
+
+      const emitirEvento = (evento: string, detalle: Record<string, string>) => {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({ event: evento, ...detalle });
+      };
+
+      document.addEventListener('click', (click) => {
+        const elemento = (click.target as Element | null)?.closest<HTMLElement>('[data-analitica]');
+        const origen = elemento?.dataset.analitica;
+        if (!origen) return;
+
+        const evento = origen.startsWith('whatsapp-')
+          ? 'clic_whatsapp'
+          : origen.startsWith('telefono-') || origen === 'telefono'
+            ? 'clic_telefono'
+            : origen.startsWith('correo')
+              ? 'clic_correo'
+              : 'clic_cta';
+
+        emitirEvento(evento, { origen });
+      });
     </script>
 
     {
