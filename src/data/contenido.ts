@@ -3,36 +3,36 @@
 export const hero = {
   h1: 'Cuidado profesional para quienes más quieres.',
   bajada:
-    'Cuidados para adultos mayores a domicilio en Santiago, con atención profesional, cercana y adaptada a las necesidades de cada familia.',
+    'Acompañamos a adultos mayores en su casa con cuidadoras, TENS y enfermería según lo que necesite cada familia. Atendemos en Santiago y coordinamos horarios, tareas y comunicación antes de comenzar.',
   cta: 'Solicitar orientación',
   ctaSecundario: 'Hablar por WhatsApp',
   nota: 'Hablemos sobre las necesidades de tu familiar.',
-  indicadores: ['Atención personalizada', 'En la comodidad del hogar', 'Trato humano'],
-  tarjetaFlotante: 'Cuidado cercano y personalizado',
+  indicadores: ['Atención según la necesidad', 'En la comodidad del hogar', 'Trato respetuoso'],
+  tarjetaFlotante: 'Cuidado coordinado en casa',
 };
 
 export const filosofia = {
   titulo: 'El cuidado comienza escuchando',
   bajada:
-    'Porque no existen dos familias iguales, tampoco debería existir un único modelo de cuidado.',
+    'Antes de recomendar un servicio, conversamos contigo sobre la rutina, la autonomía y las horas de apoyo que necesita tu familiar.',
   tarjetas: [
     {
       icono: 'acompanamiento',
       titulo: 'Acompañamiento',
       texto:
-        'Apoyo cotidiano y compañía para que cada persona pueda sentirse segura, acompañada y respetada en su propio hogar.',
+        'Acompañamos durante el día, apoyamos la rutina y respetamos la forma de vivir de cada persona.',
     },
     {
       icono: 'personalizado',
-      titulo: 'Cuidado personalizado',
+      titulo: 'Apoyo según la rutina',
       texto:
-        'Una atención adaptada a las necesidades, rutinas y nivel de autonomía de cada persona.',
+        'Definimos las tareas, el horario y el perfil de apoyo antes de comenzar.',
     },
     {
       icono: 'familia',
       titulo: 'Tranquilidad para la familia',
       texto:
-        'Una comunicación cercana para que puedas sentir que tu familiar está acompañado y cuidado.',
+        'La familia sabe qué incluye el servicio, quién coordina y cómo comunicarse con nosotros.',
     },
   ],
 };
@@ -40,7 +40,7 @@ export const filosofia = {
 export const servicios = {
   titulo: 'Servicios de cuidado',
   bajada:
-    'Nuestro equipo está formado por TENS y enfermeras. Definimos contigo el tipo de apoyo que corresponde a cada caso, sin prometer más de lo que el cuidado permite.',
+    'Cuéntanos qué necesita tu familiar y revisaremos contigo qué perfil profesional, tareas y horario corresponden a cada caso.',
   tarjetas: [
     {
       icono: 'acompanamiento',
@@ -60,18 +60,18 @@ export const servicios = {
       titulo: 'Supervisión y bienestar',
       href: '/servicios/tens-a-domicilio/',
       texto:
-        'Una presencia responsable orientada a entregar seguridad, comodidad y tranquilidad.',
+        'Apoyo en rutinas, observación del estado general y comunicación con la familia, según lo acordado.',
     },
     {
       icono: 'personalizado',
-      titulo: 'Cuidados personalizados',
+      titulo: 'Apoyo según la situación',
       href: '/servicios/',
-      texto: 'Adaptamos la atención a las necesidades particulares de cada persona y familia.',
+      texto: 'Revisamos la situación antes de definir el servicio y confirmamos el alcance por escrito.',
     },
   ],
   /** Se declara con transparencia para no prometer de más. */
   alcance: {
-    titulo: 'Para que sepas exactamente qué contratas',
+    titulo: 'Qué incluye el servicio',
     texto:
       'Cada familia recibe por escrito el detalle del servicio: tareas incluidas, horarios, perfil profesional asignado y forma de comunicación con nosotros. Si una necesidad requiere un procedimiento clínico o administración de medicamentos, lo evaluamos caso a caso con el equipo profesional correspondiente.',
   },
@@ -137,12 +137,12 @@ export const urgenciaMensaje =
   'Hola, necesito orientación urgente para una atención domiciliaria. Mi comuna es: ';
 
 export const confianza = {
-  titulo: 'Para tu familiar. Para tu tranquilidad.',
+  titulo: 'Cómo trabajamos con tu familia',
   texto:
-    'Sabemos que elegir a alguien para cuidar a un familiar no es una decisión cualquiera. Por eso ponemos especial atención en la confianza, el respeto y la calidad humana de cada cuidado.',
+    'Antes de comenzar, acordamos las tareas, el horario, el perfil de apoyo y la forma de comunicación con la familia.',
   pilares: [
     { titulo: 'Respeto', texto: 'Cada persona merece ser tratada con dignidad.' },
-    { titulo: 'Confianza', texto: 'Comunicación clara y cercana con la familia.' },
+    { titulo: 'Información clara', texto: 'La familia conoce el alcance del servicio antes de agendar.' },
     {
       titulo: 'Compromiso',
       texto: 'Cuidamos cada detalle porque sabemos lo que está en juego.',
@@ -152,7 +152,7 @@ export const confianza = {
 
 export const proceso = {
   titulo: 'Así comienza el cuidado',
-  bajada: 'Cuatro pasos simples, sin formularios interminables ni respuestas automáticas.',
+  bajada: 'Primero conocemos la situación. Después confirmamos qué apoyo se puede coordinar.',
   pasos: [
     {
       titulo: 'Cuéntanos tu situación',
@@ -161,17 +161,17 @@ export const proceso = {
     },
     {
       titulo: 'Conocemos sus necesidades',
-      texto: 'Conversamos contigo para comprender mejor sus necesidades y las de tu familia.',
+      texto: 'Revisamos la rutina, el nivel de autonomía, los horarios y cualquier indicación relevante.',
     },
     {
       titulo: 'Definimos la alternativa adecuada',
       texto:
-        'Te orientamos sobre la modalidad de cuidado que mejor se adapta a cada situación.',
+        'Te explicamos qué perfil, tareas y horario corresponden a la situación que nos describes.',
     },
     {
       titulo: 'Comenzamos el acompañamiento',
       texto:
-        'Coordinamos el servicio y mantenemos una comunicación cercana durante el proceso.',
+        'Confirmamos disponibilidad, valor y forma de comunicación antes de agendar.',
     },
   ],
 };
@@ -179,12 +179,12 @@ export const proceso = {
 export const cierre = {
   titulo: 'Encuentra el cuidado adecuado para tu familia',
   texto:
-    'Cuéntanos qué necesita tu familiar y te orientaremos sobre la modalidad de atención más adecuada.',
+    'Cuéntanos qué necesita tu familiar. Revisaremos contigo el tipo de apoyo, horario y comuna antes de proponerte un servicio.',
   cta: 'Solicitar orientación',
 };
 
 export const ctaFinal = {
-  titulo: '¿Necesitas apoyo para cuidar a alguien que quieres?',
-  texto: 'Estamos aquí para orientarte.',
+  titulo: '¿Necesitas apoyo para cuidar a un familiar?',
+  texto: 'Cuéntanos la situación y revisemos juntos qué se puede coordinar.',
   cta: 'Conversar con Aeterna Care',
 };

@@ -15,8 +15,8 @@ const { comuna: nombre } = Astro.props;
 const comuna = paginaComuna(nombre);
 if (!comuna) throw new Error(`Comuna no encontrada: ${nombre}`);
 
-const titulo = `Cuidadoras y cuidados a domicilio en ${nombre} | Aeterna Care`;
-const descripcion = `Encuentra cuidadoras, TENS y atención de enfermería a domicilio en ${nombre}. Aeterna Care coordina cuidados personalizados para adultos mayores y sus familias.`;
+const titulo = `Cuidados a domicilio en ${nombre} | Aeterna Care`;
+const descripcion = `Consulta por cuidadoras, TENS y enfermería a domicilio en ${nombre}. Confirmamos disponibilidad, horario y perfil profesional antes de agendar.`;
 const canonical = `/comunas/${comuna.slug}/`;
 const jsonLd = [
   {
@@ -51,10 +51,10 @@ const jsonLd = [
       </nav>
       <div class="cabecera-pagina__inner">
         <p class="eyebrow">Atención domiciliaria en Santiago</p>
-        <h1>Cuidados y cuidadoras a domicilio en {nombre}</h1>
+        <h1>Cuidados a domicilio en {nombre}</h1>
         <p>
-          Coordinamos apoyo para adultos mayores y sus familias en {nombre}, según la modalidad,
-          horario y necesidades de cada caso.
+          Consulta por cuidadoras, TENS, enfermería y técnicos kinesiólogos. Antes de agendar,
+          confirmamos la disponibilidad, el horario y el tipo de apoyo que corresponde.
         </p>
         <div class="grupo-botones">
           <a class="btn btn--primario" href={`/contacto/?comuna=${comuna.slug}`}>Solicitar orientación</a>
@@ -67,15 +67,14 @@ const jsonLd = [
   <section class="seccion seccion--blanca">
     <div class="contenedor landing__contenido">
       <div>
-        <h2>Una alternativa de cuidado cerca de tu familia</h2>
+        <h2>Qué revisamos antes de agendar</h2>
         <p>
-          Sabemos que buscar apoyo para un familiar requiere claridad y confianza. Conversamos
-          contigo para conocer la situación, revisar la disponibilidad en {nombre} y orientarte
-          sobre la alternativa más adecuada.
+          Conversamos contigo sobre la rutina de tu familiar, las horas de apoyo que necesita y
+          las tareas que deben quedar incluidas en el servicio.
         </p>
         <p>
-          Puedes consultar por cuidadoras, TENS, enfermería y técnicos kinesiólogos, con turnos
-          diurnos, nocturnos o de 24 horas según la atención que necesites.
+          También puedes consultar por turnos diurnos, nocturnos o de 24 horas, sujetos a
+          disponibilidad y evaluación de la necesidad.
         </p>
       </div>
       <aside class="nota-alcance">
@@ -87,7 +86,7 @@ const jsonLd = [
 
   <section class="seccion seccion--suave" aria-labelledby="servicios-comuna-titulo">
     <div class="contenedor">
-      <div class="encabezado"><h2 id="servicios-comuna-titulo">Servicios disponibles</h2><p>Conoce las alternativas que puedes consultar para {nombre}.</p></div>
+      <div class="encabezado"><h2 id="servicios-comuna-titulo">Servicios que puedes consultar en {nombre}</h2><p>La disponibilidad se confirma antes de agendar.</p></div>
       <div class="rejilla-tarjetas rejilla-tarjetas--cuatro">
         {paginasServicios.map((servicio) => (
           <article class="tarjeta">
@@ -112,7 +111,7 @@ const jsonLd = [
   <section class="seccion seccion--menta">
     <div class="contenedor cierre">
       <h2>¿Buscas apoyo para tu familiar en {nombre}?</h2>
-      <p>Cuéntanos qué necesitas y coordinaremos una orientación inicial.</p>
+      <p>Cuéntanos qué necesitas y revisaremos contigo los siguientes pasos.</p>
       <a class="btn btn--primario btn--grande" href="/contacto/">Solicitar orientación</a>
     </div>
   </section>

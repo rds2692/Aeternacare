@@ -40,8 +40,8 @@ Si en la casa hay que administrar medicamentos, hacer curaciones, mover a una pe
 movilidad muy reducida o acompañar un postoperatorio, conviene decirlo desde el primer contacto.
 Una empresa seria te va a responder con claridad qué puede asumir y qué no.
 
-> Un buen proveedor no promete todo lo que pediste: te explica con precisión qué corresponde a
-> cada rol y qué necesita coordinarse con el equipo de salud tratante.
+> La empresa debería explicar qué tareas asume cada perfil y cuáles deben coordinarse con el
+> equipo de salud tratante.
 
 ## 3. Pregunta cómo se elige y cómo se supervisa al personal
 
@@ -67,7 +67,7 @@ Un documento simple debería incluir:
 - Forma de pago, fechas de cobro y documento tributario.
 - Protocolo de cambios de horario y de aviso en caso de ausencia.
 
-Lo que no está escrito tiende a convertirse en conflicto a las tres semanas.
+Deja estos acuerdos por escrito para que la familia y la persona cuidadora sepan qué esperar.
 
 ## 5. Prepara la casa y la información clave
 
@@ -86,8 +86,8 @@ Ese último punto suele ser el más importante y el que nunca está en la carpet
 Un buen inicio se nota en detalles pequeños: llega a la hora, conversa con la persona, avisa si
 algo cambió, pregunta antes de improvisar. Si quieres medir algo, mide eso.
 
-Si algo no funciona, dilo temprano. En cuidado domiciliario, los ajustes a tiempo son la
-diferencia entre un acompañamiento que se sostiene y uno que termina en la tercera semana.
+Si algo no funciona, dilo durante las primeras semanas. En el cuidado domiciliario, hablar a
+tiempo permite ajustar tareas, horarios o forma de comunicación.
 
 ---
 

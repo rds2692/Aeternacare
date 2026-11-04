@@ -14,8 +14,8 @@ revisar antes de que llegue la primera persona cuidadora.
 Camina por la casa pensando en alguien que se mueve más lento y con menos equilibrio.
 
 - **Baño:** barras de apoyo cerca del inodoro y la ducha, piso antideslizante, buena luz.
-- **Pasillos:** sin alfombras sueltas ni cables cruzando. Un pasillo despejado es la medida de
-  seguridad más barata que existe.
+- **Pasillos:** sin alfombras sueltas ni cables cruzando. Deja despejado el camino entre el
+  dormitorio, el baño y los espacios que se usan durante el día.
 - **Dormitorio:** luz accesible desde la cama, camino despejado hacia el baño, timbre o forma de
   llamar si necesita ayuda.
 - **Escaleras:** pasamanos firme en ambos lados si es posible.
@@ -41,7 +41,8 @@ Arma una carpeta física (o un cuaderno) con:
 - Centro de salud y servicio de urgencia más cercano.
 - Número de emergencias: 131.
 
-Esta carpeta resuelve más urgencias que cualquier aplicación.
+Esta información permite actuar rápido si ocurre un cambio y evita buscar datos importantes bajo
+presión.
 
 ## Acuerdos con la familia
 

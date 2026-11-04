@@ -16,7 +16,7 @@ export const paginasServicios = [
     nombre: 'Cuidadoras de adultos mayores',
     titulo: 'Cuidadoras de adultos mayores a domicilio',
     descripcion:
-      'Acompañamiento y apoyo cotidiano para adultos mayores, con una atención cercana y adaptada a la rutina de cada familia.',
+      'Acompañamiento y apoyo en la rutina diaria de adultos mayores, dentro del hogar y según las tareas acordadas con la familia.',
     incluye: [
       'Acompañamiento y compañía en el hogar',
       'Apoyo en actividades de la vida diaria',
@@ -30,7 +30,7 @@ export const paginasServicios = [
     nombre: 'TENS a domicilio',
     titulo: 'TENS a domicilio en Santiago',
     descripcion:
-      'Apoyo técnico en el hogar para personas que necesitan acompañamiento y cuidados según su situación particular.',
+      'Apoyo técnico en el hogar para personas que necesitan cuidados definidos según su situación, horario y nivel de autonomía.',
     incluye: [
       'Turno TENS de 8 horas desde $60.000',
       'Turno TENS de 24 horas desde $160.000',
@@ -44,7 +44,7 @@ export const paginasServicios = [
     nombre: 'Enfermería a domicilio',
     titulo: 'Enfermería a domicilio en Santiago',
     descripcion:
-      'Atenciones de enfermería y procedimientos domiciliarios coordinados según las necesidades de cada persona.',
+      'Atenciones y procedimientos de enfermería a domicilio, sujetos a evaluación previa, indicación y disponibilidad profesional.',
     incluye: [
       'Control de signos vitales desde $15.000',
       'Curaciones simples y avanzadas desde $22.000',
@@ -58,7 +58,7 @@ export const paginasServicios = [
     nombre: 'Técnicos kinesiólogos',
     titulo: 'Técnicos kinesiólogos a domicilio',
     descripcion:
-      'Apoyo domiciliario asociado a movilidad y recuperación, coordinado de acuerdo con la situación de cada paciente.',
+      'Apoyo domiciliario en movilidad y recuperación, coordinado según la evaluación y las necesidades de cada paciente.',
     incluye: [
       'Atención domiciliaria según evaluación del caso',
       'Apoyo en movilidad y recuperación',
