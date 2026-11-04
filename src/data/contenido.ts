@@ -1,9 +1,9 @@
 /** Contenido de las secciones de la página de inicio. */
 
 export const hero = {
-  h1: 'Cuidado profesional para quienes más quieres.',
+  h1: 'Cuidado de adultos mayores a domicilio en Santiago.',
   bajada:
-    'Acompañamos a adultos mayores en su casa con cuidadoras, TENS y enfermería según lo que necesite cada familia. Atendemos en Santiago y coordinamos horarios, tareas y comunicación antes de comenzar.',
+    'Cuidadoras, TENS y enfermería en casa. Cuéntanos qué apoyo necesita tu familiar y revisaremos contigo las tareas, el horario y la disponibilidad antes de agendar.',
   cta: 'Solicitar orientación',
   ctaSecundario: 'Hablar por WhatsApp',
   nota: 'Hablemos sobre las necesidades de tu familiar.',
@@ -188,3 +188,16 @@ export const ctaFinal = {
   texto: 'Cuéntanos la situación y revisemos juntos qué se puede coordinar.',
   cta: 'Conversar con Aeterna Care',
 };
+
+export const guiaSEO = [
+  { titulo: 'Cuidado de adulto mayor a domicilio: qué incluye y cómo funciona', href: '/blog/cuidado-adulto-mayor-domicilio-santiago/' },
+  { titulo: 'Cuidadora, TENS o enfermera: cuál necesita tu familiar', href: '/blog/cuidadora-tens-o-enfermera/' },
+  { titulo: 'Cuánto cuesta cuidar a un adulto mayor en Santiago', href: '/blog/cuanto-cuesta-cuidado-adulto-mayor-santiago/' },
+  { titulo: 'Cuidado por horas, turnos o 24 horas', href: '/blog/turnos-cuidado-adulto-mayor/' },
+  { titulo: 'Cómo elegir una cuidadora para un adulto mayor', href: '/blog/elegir-cuidadora-adulto-mayor/' },
+  { titulo: 'Apoyo para personas mayores con movilidad reducida', href: '/blog/cuidado-movilidad-reducida/' },
+  { titulo: 'Preparar la casa para volver después de una hospitalización', href: '/blog/preparar-hogar-despues-hospitalizacion/' },
+  { titulo: 'Cuidados para una persona mayor con Alzheimer o demencia', href: '/blog/cuidado-alzheimer-demencia-domicilio/' },
+  { titulo: 'Qué preguntar antes de contratar enfermería a domicilio', href: '/blog/preguntas-enfermeria-domicilio/' },
+  { titulo: 'Cómo organizar el cuidado entre varios familiares', href: '/blog/organizar-cuidado-familiar-adulto-mayor/' },
+];

@@ -94,3 +94,6 @@ tiempo permite ajustar tareas, horarios o forma de comunicación.
 En Aeterna Care conversamos contigo antes de proponerte un servicio, te explicamos por escrito
 qué incluye el cuidado y trabajamos con personal TENS y enfermería según lo que cada caso
 necesite. Si quieres orientación, [escríbenos](/contacto/).
+
+Si todavía estás definiendo el horario, puedes leer sobre [turnos por horas y cobertura de 24
+horas](/blog/turnos-cuidado-adulto-mayor/) o revisar [qué incluye el cuidado domiciliario](/blog/cuidado-adulto-mayor-domicilio-santiago/).

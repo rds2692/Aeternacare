@@ -4,12 +4,13 @@ import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/Icon.astro';
 import Photo from '../../components/Photo.astro';
 import { site } from '../../data/site';
+import { guiaSEO } from '../../data/contenido';
 
 const entradas = (await getCollection('blog')).sort(
   (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf(),
 );
 
-const titulo = 'Blog | Orientación para el cuidado de adultos mayores';
+const titulo = 'Cuidado de adultos mayores: guías para familias | Aeterna Care';
 const descripcion =
   'Guías prácticas sobre cuidado domiciliario de adultos mayores en Chile: cómo elegir, qué preguntar y cómo preparar el hogar.';
 
@@ -47,8 +48,8 @@ const jsonLd = {
         <div class="cabecera-pagina__texto">
           <h1>Guías para cuidar mejor</h1>
           <p>
-            Información práctica para familias que están decidiendo cómo acompañar a un adulto mayor
-            en casa. Sin alarmismo y sin promesas exageradas.
+            Guías para elegir cuidadora, TENS o enfermería, organizar turnos y preparar el cuidado de
+            una persona mayor en casa.
           </p>
         </div>
 
@@ -65,6 +66,15 @@ const jsonLd = {
           delay={80}
         />
       </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--suave" aria-labelledby="temas-guia">
+    <div class="contenedor">
+      <div class="encabezado"><h2 id="temas-guia">Temas para empezar</h2><p>Respuestas prácticas a dudas frecuentes sobre el cuidado en casa.</p></div>
+      <ul class="lista-simple">
+        {guiaSEO.map((guia) => <li><a href={guia.href}>{guia.titulo}</a></li>)}
+      </ul>
     </div>
   </section>
 

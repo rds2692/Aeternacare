@@ -76,3 +76,7 @@ Una respuesta clara a estas cinco preguntas dice más de una empresa que cualqui
 
 En Aeterna Care trabajamos con personal TENS y enfermería, y definimos contigo el tipo de apoyo
 que corresponde a cada situación. [Conversemos sobre tu caso](/contacto/).
+
+Si estás comparando modalidades y turnos, revisa también nuestra guía sobre [cuidado de adulto
+mayor a domicilio en Santiago](/blog/cuidado-adulto-mayor-domicilio-santiago/) y la explicación de
+[turnos por horas, diurnos, nocturnos y de 24 horas](/blog/turnos-cuidado-adulto-mayor/).

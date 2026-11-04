@@ -69,3 +69,6 @@ persona cuidadora. Esas dos respuestas suelen anticipar cómo va a funcionar el 
 
 Si quieres orientación sobre qué tipo de apoyo necesita tu familiar,
 [escríbenos y lo revisamos contigo](/contacto/).
+
+Si el cuidado comienza después de una hospitalización, consulta también esta guía sobre [cómo
+organizar el regreso a casa](/blog/preparar-hogar-despues-hospitalizacion/).
