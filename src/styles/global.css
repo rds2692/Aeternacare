@@ -1773,9 +1773,17 @@ p {
 
 /* --------------------------------------------------- 18. Blog y páginas legales */
 .prosa {
-  max-width: 44rem;
+  width: min(100%, 44rem);
+  margin-inline: auto;
   display: grid;
   gap: 1.25rem;
+}
+
+.prosa p,
+.prosa li {
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .prosa h2 {
@@ -1811,6 +1819,8 @@ p {
 
 .entrada-lista {
   display: grid;
+  width: min(100%, 48rem);
+  margin-inline: auto;
   gap: clamp(1rem, 0.6rem + 1.4vw, 1.75rem);
   margin-top: clamp(2rem, 1rem + 3vw, 3rem);
   padding: 0;

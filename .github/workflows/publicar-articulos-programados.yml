@@ -1,0 +1,36 @@
+name: Publicar artículos programados
+
+on:
+  schedule:
+    # Chile continental (UTC-3): 17:02 del 16 de noviembre y 21:00 del 16.
+    - cron: '2 20 16 11 *'
+    - cron: '0 0 17 11 *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  trigger-deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Activar un despliegue de Vercel
+        env:
+          VERCEL_DEPLOY_HOOK: ${{ secrets.VERCEL_DEPLOY_HOOK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPOSITORY: ${{ github.repository }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "schedule" ] && [ "$(date -u +%Y)" != "2026" ]; then
+            echo "Ignoring this annual cron occurrence; these releases are for 2026 only."
+            exit 0
+          fi
+          if [ -n "$VERCEL_DEPLOY_HOOK" ]; then
+            curl --fail --silent --show-error --request POST "$VERCEL_DEPLOY_HOOK"
+          else
+            git clone "https://x-access-token:${GITHUB_TOKEN}@github.com/${REPOSITORY}.git" repo
+            cd repo
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit --allow-empty -m "chore: activate scheduled article publication"
+            git push origin HEAD:main
+          fi

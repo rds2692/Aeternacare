@@ -6,7 +6,8 @@ import Photo from '../../components/Photo.astro';
 import { site } from '../../data/site';
 import { guiaSEO } from '../../data/contenido';
 
-const entradas = (await getCollection('blog')).sort(
+const ahora = new Date();
+const entradas = (await getCollection('blog', ({ data }) => data.fecha <= ahora)).sort(
   (a, b) => b.data.fecha.valueOf() - a.data.fecha.valueOf(),
 );
 
@@ -29,7 +30,7 @@ const jsonLd = {
   blogPost: entradas.map((entrada) => ({
     '@type': 'BlogPosting',
     headline: entrada.data.title,
-    datePublished: entrada.data.fecha.toISOString().slice(0, 10),
+    datePublished: entrada.data.fecha.toISOString(),
     url: `${site.dominio}/blog/${entrada.id}/`,
   })),
 };
