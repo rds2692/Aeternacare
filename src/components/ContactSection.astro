@@ -264,12 +264,24 @@ const { compacto = false } = Astro.props;
 </section>
 
 <script>
-  import { registrarConversion } from '../scripts/medicion';
+  import { registrarContactoWhatsAppPreparado } from '../scripts/medicion';
   import { site } from '../data/site';
 
   const formulario = document.getElementById('formulario-contacto') as HTMLFormElement | null;
 
   if (formulario) {
+    const parametroComuna = new URLSearchParams(window.location.search).get('comuna');
+    const selectorComuna = formulario.querySelector<HTMLSelectElement>('#comuna');
+    const normalizarSlug = (valor: string) =>
+      valor.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    if (parametroComuna && selectorComuna) {
+      const opcion = Array.from(selectorComuna.options).find(
+        (elemento) => normalizarSlug(elemento.textContent ?? '') === normalizarSlug(parametroComuna),
+      );
+      if (opcion) selectorComuna.value = opcion.value;
+    }
+
     const estado = document.getElementById('formulario-estado');
 
     const marcarError = (campo: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement, mensaje: string) => {
@@ -392,7 +404,7 @@ const { compacto = false } = Astro.props;
       const datos = new FormData(formulario);
       const url = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(resumenTexto(datos))}`;
 
-      registrarConversion('formulario-whatsapp');
+      registrarContactoWhatsAppPreparado('formulario-contacto');
 
       const ventana = window.open(url, '_blank');
       if (ventana) ventana.opener = null;

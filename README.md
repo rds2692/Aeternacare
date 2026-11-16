@@ -46,7 +46,7 @@ src/
 ├─ components/     Header, Hero, ContactSection, Philosophy, Services,
 │                  Trust, Process, Testimonials, FinalCTA, Footer,
 │                  FloatingWhatsApp, Icon, Pending
-├─ content/blog/   3 artículos en Markdown (colección de contenido)
+├─ content/blog/   artículos en Markdown (colección de contenido)
 ├─ data/           site.ts (datos de la empresa) y contenido.ts (textos)
 ├─ layouts/        Layout.astro (SEO, JSON-LD, medición, estructura)
 ├─ pages/          index, contacto, blog, privacidad, terminos, gracias, 404
@@ -116,8 +116,9 @@ Antes de publicar:
 - **Animaciones sin librería.** Las apariciones usan transiciones CSS con
   `IntersectionObserver`. Se evaluó GSAP, pero aportaba 28 kB gzip sin cambiar
   el resultado percibido.
-- **Medición con consentimiento.** Sin IDs configurados no se carga ningún
-  script de terceros. Al configurarlos, aparece un aviso de consentimiento.
+- **Medición con consentimiento.** Google Tag Manager carga con Consent Mode
+  denegado por defecto. Revisa docs/07-medicion-y-conversiones.md; preparar
+  un mensaje de WhatsApp no equivale a confirmar un lead.
 - **Correo protegido contra bots básicos.** La dirección no aparece como texto
   plano: se entrega como códigos al navegador y se reconstruye solo al pulsar
   «Escribir por correo» o «Copiar». Esto no es una medida de seguridad ni evita

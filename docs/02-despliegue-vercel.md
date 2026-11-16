@@ -53,6 +53,10 @@ Vercel muestra los valores exactos al agregar el dominio: usar los que aparezcan
 en pantalla, porque pueden variar. El certificado SSL se emite automáticamente
 al propagarse el DNS (puede tardar de minutos a algunas horas).
 
+vercel.json redirige permanentemente aeternacare.cl a www.aeternacare.cl y
+conserva la ruta. Tras desplegar, confirma que ambas variantes HTTPS terminan en
+la URL canónica y que no se forman cadenas de redirección.
+
 ---
 
 ## 4. Correo corporativo y formulario

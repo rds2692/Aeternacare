@@ -57,8 +57,8 @@ const jsonLd = [
           confirmamos la disponibilidad, el horario y el tipo de apoyo que corresponde.
         </p>
         <div class="grupo-botones">
-          <a class="btn btn--primario" href={`/contacto/?comuna=${comuna.slug}`}>Solicitar orientación</a>
-          <a class="btn btn--whatsapp" href={whatsappLink(`Hola, quisiera consultar por cuidados a domicilio en ${nombre}.`)} target="_blank" rel="noopener">Hablar por WhatsApp</a>
+          <a class="btn btn--primario" data-analitica="cta-comuna" href={`/contacto/?comuna=${comuna.slug}`}>Solicitar orientación</a>
+          <a class="btn btn--whatsapp" href={whatsappLink(`Hola, quisiera consultar por cuidados a domicilio en ${nombre}.`)} target="_blank" rel="noopener" data-analitica="whatsapp-comuna">Hablar por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -112,7 +112,7 @@ const jsonLd = [
     <div class="contenedor cierre">
       <h2>¿Buscas apoyo para tu familiar en {nombre}?</h2>
       <p>Cuéntanos qué necesitas y revisaremos contigo los siguientes pasos.</p>
-      <a class="btn btn--primario btn--grande" href="/contacto/">Solicitar orientación</a>
+      <a class="btn btn--primario btn--grande" data-analitica="cta-comuna-cierre" href="/contacto/">Solicitar orientación</a>
     </div>
   </section>
 </Layout>

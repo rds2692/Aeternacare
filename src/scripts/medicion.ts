@@ -19,8 +19,16 @@ declare global {
   }
 }
 
-/** Publica una conversión para que Google Tag Manager la distribuya. */
-export function registrarConversion(origen: string, detalle?: Record<string, unknown>): void {
+/**
+ * Registra que el formulario validó y preparó un mensaje para WhatsApp.
+ * No confirma que la persona lo haya enviado ni que exista un lead.
+ */
+export function registrarContactoWhatsAppPreparado(origen: string): void {
   window.dataLayer = window.dataLayer ?? [];
-  window.dataLayer.push({ event: 'generar_contacto', origen, ...detalle });
+  window.dataLayer.push({
+    event: 'contacto_whatsapp_preparado',
+    origen,
+    canal: 'whatsapp',
+    etapa: 'mensaje_preparado',
+  });
 }

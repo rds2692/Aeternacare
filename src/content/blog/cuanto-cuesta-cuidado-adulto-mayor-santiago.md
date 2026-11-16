@@ -1,6 +1,6 @@
 ---
 title: 'Cuánto cuesta cuidar a un adulto mayor en Santiago'
-description: 'Qué factores cambian el precio del cuidado domiciliario: perfil profesional, duración del turno, tareas, comuna y disponibilidad.'
+description: 'Revisa valores referenciales de TENS y enfermería, qué factores cambian la cotización del cuidado de personas mayores y cómo solicitarla en Santiago.'
 fecha: 2026-11-04
 autor: Equipo Aeterna Care
 lectura: '5 min'
@@ -15,7 +15,20 @@ No existe un único precio para el **cuidado de un adulto mayor en Santiago**. E
 - **Tareas:** alimentación, higiene, movilización, acompañamiento o procedimientos clínicos deben describirse antes de cotizar.
 - **Comuna y fechas:** traslado, cobertura y disponibilidad pueden afectar la propuesta.
 
-En el sitio puedes revisar los [valores referenciales publicados para TENS y enfermería](/#valores). Los turnos de cuidadora se cotizan según la necesidad. Confirma siempre el precio final y qué incluye antes de agendar.
+## Valores referenciales publicados por Aeterna Care
+
+Los valores publicados son precios de referencia en pesos chilenos. El valor final y la disponibilidad se confirman antes de agendar, según la evaluación y el alcance acordado.
+
+| Servicio | Valor publicado |
+|---|---:|
+| TENS, turno de 8 horas | Desde $60.000 |
+| TENS, turno de 24 horas | Desde $160.000 |
+| Control de signos vitales | Desde $15.000 |
+| Curaciones simples y avanzadas | Desde $22.000 |
+| Hidratación EV domiciliaria | Desde $45.000 |
+| Cuidados paliativos avanzados | Desde $70.000 |
+
+Puedes revisar el detalle de [TENS a domicilio](/servicios/tens-a-domicilio/) y [enfermería a domicilio](/servicios/enfermeria-a-domicilio/). Los turnos de cuidadora se cotizan según la necesidad y no tienen un valor publicado en esta página. Confirma siempre el perfil profesional, las tareas incluidas y el precio final antes de agendar.
 
 ## Qué comparar además del precio
 

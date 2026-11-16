@@ -40,22 +40,22 @@ const medicionConfigurada = true;
 
 const datosBase: Record<string, unknown> = {
   '@context': 'https://schema.org',
-  '@type': 'LocalBusiness',
+  '@type': 'Organization',
   '@id': `${sitio.origin}/#organizacion`,
   name: site.nombre,
   url: sitio.origin,
+  logo: new URL('/img/logo-aeterna-emblema.webp', sitio).href,
   description:
     'Cuidado y acompañamiento profesional para adultos mayores a domicilio en Santiago de Chile.',
   telephone: site.telefonoE164,
-  priceRange: '$$',
-  areaServed: site.areaServida.map((comuna) => ({ '@type': 'City', name: comuna })),
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: site.comuna,
-    addressRegion: site.region,
-    addressCountry: site.pais,
-    ...(site.direccion ? { streetAddress: site.direccion } : {}),
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: site.telefonoE164,
+    contactType: 'customer service',
+    availableLanguage: 'es-CL',
   },
+
+  // No se declara dirección postal hasta confirmar una dirección real.
   // Sin email en JSON-LD: la dirección se mantiene ofuscada para evitar bots.
   ...(Object.values(site.redes).some(Boolean)
     ? { sameAs: Object.values(site.redes).filter(Boolean) }
