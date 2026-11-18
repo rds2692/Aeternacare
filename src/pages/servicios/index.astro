@@ -2,8 +2,8 @@
 import Layout from '../../layouts/Layout.astro';
 import { paginasServicios } from '../../data/landing';
 
-const titulo = 'Cuidadoras, TENS y enfermería a domicilio en Santiago | Aeterna Care';
-const descripcion = 'Compara servicios de cuidado para personas mayores en Santiago: cuidadoras, TENS, enfermería y técnicos kinesiólogos a domicilio.';
+const titulo = 'Agencia de cuidado de adultos mayores | Aeterna Care';
+const descripcion = 'Agencia de cuidado de adultos mayores a domicilio en Santiago. Conoce cuidadoras, TENS, enfermería y apoyo kinesiólogo; solicita orientación.';
 ---
 
 <Layout title={titulo} description={descripcion} canonical="/servicios/">
@@ -12,9 +12,23 @@ const descripcion = 'Compara servicios de cuidado para personas mayores en Santi
       <nav aria-label="Ruta de navegación"><ol class="migas"><li><a href="/">Inicio</a></li><li aria-current="page">Servicios</li></ol></nav>
       <div class="cabecera-pagina__inner">
         <p class="eyebrow">Aeterna Care · Atención en casa</p>
-        <h1>Cuidados para adultos mayores a domicilio</h1>
-        <p>Revisa qué puedes consultar con cuidadoras, TENS, enfermería y técnicos kinesiólogos. Confirmamos el alcance, horario y valor antes de agendar.</p>
+        <h1>Agencia de cuidado de adultos mayores a domicilio</h1>
+        <p>Coordinamos cuidadoras, TENS, enfermería y técnicos kinesiólogos para apoyar a personas mayores en su hogar. Revisamos contigo el alcance, horario y valor antes de agendar.</p>
       </div>
+    </div>
+  </section>
+  <section class="seccion seccion--blanca" aria-labelledby="como-elegir-servicio-titulo">
+    <div class="contenedor landing__contenido">
+      <div>
+        <h2 id="como-elegir-servicio-titulo">Una agencia para coordinar el cuidado que necesita tu familiar</h2>
+        <p>El apoyo puede ser de compañía y rutina diaria, de un perfil TENS o de enfermería. La recomendación depende de la autonomía, las indicaciones vigentes y el horario que la familia necesita cubrir.</p>
+        <p>Antes de comenzar, conversamos sobre la situación y dejamos por escrito el alcance del servicio, la modalidad y las condiciones de la atención.</p>
+      </div>
+      <aside class="nota-alcance">
+        <h3>Atención en Santiago</h3>
+        <p>Consulta por disponibilidad en tu comuna, turnos diurnos, nocturnos o de 24 horas y el perfil adecuado para el caso.</p>
+        <a class="enlace-flecha" href="/comunas/">Revisar comunas de atención <span aria-hidden="true">→</span></a>
+      </aside>
     </div>
   </section>
   <section class="seccion seccion--blanca">

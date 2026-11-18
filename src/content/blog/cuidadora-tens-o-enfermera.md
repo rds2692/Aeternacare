@@ -1,12 +1,12 @@
 ---
-title: 'Cuidadora, TENS o enfermera: en qué se diferencian y cuándo necesitas cada una'
-description: 'El rol de cada integrante del equipo de cuidado domiciliario, explicado sin tecnicismos, para saber qué pedir según la situación de tu familiar.'
+title: 'Cuidadora, TENS o enfermera: diferencias y funciones'
+description: 'Compara cuidadora, TENS y enfermera a domicilio: funciones, límites y cuándo conviene cada perfil para cuidar a un adulto mayor.'
 fecha: 2026-09-22
 autor: Equipo Aeterna Care
 lectura: '6 min'
 ---
 
-Una de las confusiones más frecuentes al buscar apoyo para un adulto mayor es usar las palabras
+Cuando una familia busca cuidado de adultos mayores a domicilio, una de las confusiones más frecuentes es usar estas palabras
 como sinónimos. No lo son, y entender la diferencia evita dos problemas: pagar por algo que no se
 necesita o contratar a alguien que no puede hacerse cargo de lo que sí se necesita.
 
@@ -76,6 +76,10 @@ Una respuesta clara a estas cinco preguntas dice más de una empresa que cualqui
 
 En Aeterna Care trabajamos con personal TENS y enfermería, y definimos contigo el tipo de apoyo
 que corresponde a cada situación. [Conversemos sobre tu caso](/contacto/).
+
+Si estás buscando una agencia de cuidado de adultos mayores, esta comparación sirve como punto de
+partida: cuéntanos la comuna, el horario y las tareas que necesitas cubrir para orientarte hacia
+el servicio adecuado.
 
 Si estás comparando modalidades y turnos, revisa también nuestra guía sobre [cuidado de adulto
 mayor a domicilio en Santiago](/blog/cuidado-adulto-mayor-domicilio-santiago/) y la explicación de

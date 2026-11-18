@@ -8,6 +8,7 @@ export const paginasComunas = site.areaServida.map((nombre) => ({
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/(^-|-$)/g, ''),
+  orientacion: `Para solicitar apoyo en ${nombre}, cuéntanos qué momentos del día requieren más acompañamiento, qué tareas debe cubrir la persona cuidadora y si existe alguna indicación profesional vigente.`,
 }));
 
 export const paginasServicios = [
