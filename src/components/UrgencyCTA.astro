@@ -16,12 +16,22 @@ import { whatsappLink } from '../data/site';
         </p>
       </div>
       <div class="grupo-botones">
-        <a class="btn btn--primario btn--grande" href={whatsappLink(urgenciaMensaje)} target="_blank" rel="noopener">
+        <a
+          class="btn btn--primario btn--grande"
+          href={whatsappLink(urgenciaMensaje)}
+          target="_blank"
+          rel="noopener"
+          data-analitica="whatsapp-urgencia"
+        >
           <WhatsAppIcon size={18} />
           Urgencias por WhatsApp
         </a>
-        <a class="btn btn--secundario btn--grande" href="/contacto/#formulario-contacto">
-          Calcular cotización
+        <a
+          class="btn btn--secundario btn--grande"
+          href="/contacto/?origen=urgencia#formulario-contacto"
+          data-analitica="cotizar-urgencia"
+        >
+          Solicitar cotización
         </a>
       </div>
     </div>

@@ -18,9 +18,24 @@ const puerto = 4333;
 const numeroEsperado = '56988178225';
 
 const require = createRequire(import.meta.url);
-const { chromium } = require(
+const rutasPlaywright = [
+  process.env.CODEX_PLAYWRIGHT_PATH,
   'C:/Users/Admin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright',
-);
+  '/home/rds/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright',
+].filter(Boolean);
+
+let chromium;
+for (const ruta of rutasPlaywright) {
+  try {
+    ({ chromium } = require(ruta));
+    break;
+  } catch {
+    /* prueba la siguiente ruta */
+  }
+}
+if (!chromium) {
+  throw new Error('No se encontró Playwright. Define CODEX_PLAYWRIGHT_PATH.');
+}
 
 const tipos = {
   '.html': 'text/html; charset=utf-8',
@@ -78,9 +93,11 @@ try {
 
   const html = await pagina.content();
   if (/modo demostración/i.test(html)) errores.push('Sigue apareciendo el aviso de modo demostración.');
-  if (!/Enviar por WhatsApp/i.test(html)) errores.push('El botón no dice «Enviar por WhatsApp».');
+  if (!/Preparar cotización por WhatsApp/i.test(html)) {
+    errores.push('El botón no dice «Preparar cotización por WhatsApp».');
+  }
 
-  const boton = pagina.getByRole('button', { name: /Enviar por WhatsApp/i });
+  const boton = pagina.getByRole('button', { name: /Preparar cotización por WhatsApp/i });
   await boton.click();
   const erroresVisibles = await pagina.locator('.campo__error').evaluateAll((nodos) =>
     nodos.filter((nodo) => (nodo.textContent ?? '').trim()).length,
@@ -89,12 +106,13 @@ try {
 
   await pagina.fill('#nombre', 'Prueba QA');
   await pagina.fill('#telefono', '+56 9 1111 2222');
-  await pagina.selectOption('#ayuda', 'Acompañamiento y compañía');
-  await pagina.selectOption('#paraquien', 'Para mi madre');
   await pagina.selectOption('#profesional', 'Cuidadora');
   await pagina.selectOption('#turno', 'Diurno');
   await pagina.fill('#horas', '8');
   await pagina.selectOption('#comuna', 'Providencia');
+  await pagina.locator('.formulario__detalles summary').click();
+  await pagina.selectOption('#ayuda', 'Acompañamiento y compañía');
+  await pagina.selectOption('#paraquien', 'Para mi madre');
   await pagina.fill('#fecha-inicio', '2026-11-01');
   await pagina.click('[data-dia="Lunes"]');
   await pagina.fill('#mensaje', 'Mensaje de prueba automatizada');
@@ -114,6 +132,7 @@ try {
       errores.push(`Número inesperado en la URL: ${destino.pathname}`);
     }
     for (const fragmento of [
+      'solicitar una cotización de cuidado a domicilio',
       'Nombre: Prueba QA',
       'Teléfono: +56 9 1111 2222',
       'Tipo de ayuda: Acompañamiento y compañía',
@@ -125,9 +144,31 @@ try {
     }
   }
 
-  if (!estado?.includes('Abrimos WhatsApp')) {
+  if (!estado?.includes('Abrimos WhatsApp con tu solicitud')) {
     errores.push(`Estado inesperado: ${estado}`);
   }
+
+  const eventos = await pagina.evaluate(() =>
+    (window.dataLayer ?? [])
+      .filter((entrada) => entrada && typeof entrada === 'object' && 'event' in entrada)
+      .map((entrada) => entrada.event),
+  );
+  for (const evento of ['cotizacion_iniciada', 'cotizacion_preparada']) {
+    if (!eventos.includes(evento)) errores.push(`No se registró el evento ${evento}.`);
+  }
+
+  await pagina.goto(
+    `http://127.0.0.1:${puerto}/contacto/?servicio=tens&comuna=providencia&turno=nocturno#formulario-contacto`,
+    { waitUntil: 'networkidle' },
+  );
+  const preseleccion = await pagina.evaluate(() => ({
+    servicio: document.querySelector('#profesional')?.value,
+    comuna: document.querySelector('#comuna')?.value,
+    turno: document.querySelector('#turno')?.value,
+  }));
+  if (preseleccion.servicio !== 'TENS') errores.push('No se preseleccionó TENS.');
+  if (preseleccion.comuna !== 'Providencia') errores.push('No se preseleccionó Providencia.');
+  if (preseleccion.turno !== 'Nocturno') errores.push('No se preseleccionó el turno nocturno.');
 } catch (error) {
   errores.push(`Error durante la prueba: ${error.message}`);
 } finally {
@@ -147,3 +188,5 @@ console.log('  · sin aviso de modo demostración');
 console.log('  · validación de campos activa');
 console.log('  · abre wa.me con el número configurado');
 console.log('  · incluye datos y autorización en el mensaje');
+console.log('  · registra inicio y preparación de cotización');
+console.log('  · preselecciona servicio, comuna y turno desde la URL');

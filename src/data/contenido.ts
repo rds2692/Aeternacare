@@ -3,10 +3,10 @@
 export const hero = {
   h1: 'Cuidado de adultos mayores a domicilio en Santiago.',
   bajada:
-    'Cuidadoras, TENS y enfermería en casa. Cuéntanos qué apoyo necesita tu familiar y revisaremos contigo las tareas, el horario y la disponibilidad antes de agendar.',
-  cta: 'Solicitar orientación',
-  ctaSecundario: 'Hablar por WhatsApp',
-  nota: 'Hablemos sobre las necesidades de tu familiar.',
+    'Cuidadoras, TENS y enfermería en casa. Cotiza según la comuna, el horario y el apoyo que necesita tu familiar; confirmamos el alcance y el valor antes de agendar.',
+  cta: 'Cotizar a domicilio',
+  ctaSecundario: 'Cotizar por WhatsApp',
+  nota: 'Completa los datos esenciales y revisa tu solicitud antes de enviarla.',
   indicadores: ['Atención según la necesidad', 'En la comodidad del hogar', 'Trato respetuoso'],
   tarjetaFlotante: 'Cuidado coordinado en casa',
 };
@@ -40,7 +40,7 @@ export const filosofia = {
 export const servicios = {
   titulo: 'Servicios de cuidado',
   bajada:
-    'Cuéntanos qué necesita tu familiar y revisaremos contigo qué perfil profesional, tareas y horario corresponden a cada caso.',
+    'Elige el tipo de apoyo y cotiza según el perfil profesional, las tareas y el horario que necesita tu familiar.',
   tarjetas: [
     {
       icono: 'acompanamiento',
@@ -177,16 +177,16 @@ export const proceso = {
 };
 
 export const cierre = {
-  titulo: 'Encuentra el cuidado adecuado para tu familia',
+  titulo: 'Cotiza el cuidado adecuado para tu familia',
   texto:
-    'Cuéntanos qué necesita tu familiar. Revisaremos contigo el tipo de apoyo, horario y comuna antes de proponerte un servicio.',
-  cta: 'Solicitar orientación',
+    'Cuéntanos qué necesita tu familiar. Revisaremos el tipo de apoyo, horario y comuna antes de confirmar la propuesta.',
+  cta: 'Solicitar cotización',
 };
 
 export const ctaFinal = {
-  titulo: '¿Necesitas apoyo para cuidar a un familiar?',
-  texto: 'Cuéntanos la situación y revisemos juntos qué se puede coordinar.',
-  cta: 'Conversar con Aeterna Care',
+  titulo: '¿Listo para cotizar el cuidado de tu familiar?',
+  texto: 'Indícanos la comuna, el horario y el apoyo que necesitas. Revisaremos la alternativa y el valor antes de agendar.',
+  cta: 'Solicitar cotización',
 };
 
 export const guiaSEO = [

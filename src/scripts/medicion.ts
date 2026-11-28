@@ -32,3 +32,30 @@ export function registrarContactoWhatsAppPreparado(origen: string): void {
     etapa: 'mensaje_preparado',
   });
 }
+
+function emitirEvento(evento: string, detalle: Record<string, string>): void {
+  window.dataLayer = window.dataLayer ?? [];
+  window.dataLayer.push({ event: evento, ...detalle });
+}
+
+/** Primer foco o cambio en el formulario; indica intención de cotizar. */
+export function registrarInicioCotizacion(origen: string, servicio = ''): void {
+  emitirEvento('cotizacion_iniciada', {
+    origen,
+    servicio,
+    etapa: 'formulario_iniciado',
+  });
+}
+
+/**
+ * El formulario fue validado y preparó una solicitud para WhatsApp.
+ * No confirma que el mensaje se haya enviado ni que la cotización se haya recibido.
+ */
+export function registrarSolicitudCotizacionPreparada(origen: string, servicio = ''): void {
+  emitirEvento('cotizacion_preparada', {
+    origen,
+    servicio,
+    canal: 'whatsapp',
+    etapa: 'solicitud_preparada',
+  });
+}

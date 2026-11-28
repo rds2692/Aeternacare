@@ -1,5 +1,10 @@
 ---
 import { catalogoServicios } from '../data/contenido';
+import { paginasServicios } from '../data/landing';
+
+const cotizacionPorSlug = new Map(
+  paginasServicios.map((servicio) => [servicio.slug, servicio.cotizacion]),
+);
 ---
 
 <section class="seccion seccion--suave" id="valores" aria-labelledby="valores-titulo">
@@ -28,11 +33,29 @@ import { catalogoServicios } from '../data/contenido';
                 </li>
               ))}
             </ul>
+            <a
+              class="btn btn--secundario catalogo-servicios__cta"
+              href={`/contacto/?servicio=${cotizacionPorSlug.get(grupo.slug) ?? ''}&origen=precios-${grupo.slug}#formulario-contacto`}
+              data-analitica={`cotizar-precios-${grupo.slug}`}
+              data-servicio={cotizacionPorSlug.get(grupo.slug)}
+            >
+              Cotizar {grupo.titulo.toLowerCase()}
+            </a>
           </details>
         ))
       }
     </div>
 
     <p class="nota-alcance" data-reveal>{catalogoServicios.nota}</p>
+    <div class="grupo-botones">
+      <a
+        class="btn btn--primario btn--grande"
+        href="/contacto/#formulario-contacto"
+        data-analitica="cotizar-catalogo"
+      >Solicitar cotización</a>
+      <a class="btn btn--secundario btn--grande" href="/blog/cuanto-cuesta-cuidado-adulto-mayor-santiago/">
+        Entender los factores del precio
+      </a>
+    </div>
   </div>
 </section>

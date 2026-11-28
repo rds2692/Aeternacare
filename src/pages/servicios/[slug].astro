@@ -10,7 +10,8 @@ export function getStaticPaths() {
 const { servicio } = Astro.props;
 const canonical = `/servicios/${servicio.slug}/`;
 const titulo = `${servicio.titulo} | Aeterna Care`;
-const descripcion = `${servicio.descripcion} Consulta disponibilidad, horarios y valores referenciales con Aeterna Care.`;
+const descripcion = `${servicio.descripcion} Cotiza disponibilidad, horario y valor referencial con Aeterna Care.`;
+const cotizarHref = `/contacto/?servicio=${servicio.cotizacion}&origen=servicio-${servicio.slug}#formulario-contacto`;
 const guiasRelacionadas: Record<string, Array<{ href: string; titulo: string }>> = {
   'cuidadoras-adulto-mayor': [
     { href: '/blog/elegir-cuidadora-adulto-mayor/', titulo: 'Cómo elegir una cuidadora' },
@@ -67,8 +68,20 @@ const jsonLd = [
         <h1>{servicio.titulo}</h1>
         <p>{servicio.descripcion}</p>
         <div class="grupo-botones">
-          <a class="btn btn--primario" data-analitica="cta-servicio" href="/contacto/">Solicitar orientación</a>
-          <a class="btn btn--whatsapp" href={whatsappLink(`Hola, quisiera consultar por ${servicio.nombre}.`)} target="_blank" rel="noopener" data-analitica="whatsapp-servicio">Consultar por WhatsApp</a>
+          <a
+            class="btn btn--primario"
+            data-analitica={`cotizar-servicio-${servicio.slug}`}
+            data-servicio={servicio.cotizacion}
+            href={cotizarHref}
+          >Cotizar este servicio</a>
+          <a
+            class="btn btn--whatsapp"
+            href={whatsappLink(`Hola, quiero cotizar ${servicio.nombre.toLowerCase()} a domicilio. Mi comuna es: `)}
+            target="_blank"
+            rel="noopener"
+            data-analitica={`whatsapp-cotizar-servicio-${servicio.slug}`}
+            data-servicio={servicio.cotizacion}
+          >Cotizar por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -86,6 +99,12 @@ const jsonLd = [
       <aside class="nota-alcance">
         <h3>Valor referencial</h3>
         <p>{servicio.valor}</p>
+        <a
+          class="enlace-flecha"
+          href={cotizarHref}
+          data-analitica={`cotizar-servicio-valor-${servicio.slug}`}
+          data-servicio={servicio.cotizacion}
+        >Solicitar cotización <span aria-hidden="true">→</span></a>
       </aside>
     </div>
   </section>
@@ -116,9 +135,14 @@ const jsonLd = [
 
   <section class="seccion seccion--blanca">
     <div class="contenedor cierre">
-      <h2>¿Quieres saber si este servicio corresponde?</h2>
-      <p>Cuéntanos qué necesita tu familiar y revisaremos contigo la alternativa disponible.</p>
-      <a class="btn btn--primario btn--grande" data-analitica="cta-servicio-cierre" href="/contacto/">Hablar con Aeterna Care</a>
+      <h2>Cotiza {servicio.nombre.toLowerCase()} para tu familiar</h2>
+      <p>Indícanos la comuna, el horario y el apoyo que necesita. Revisaremos la alternativa y el valor antes de agendar.</p>
+      <a
+        class="btn btn--primario btn--grande"
+        data-analitica={`cotizar-servicio-cierre-${servicio.slug}`}
+        data-servicio={servicio.cotizacion}
+        href={cotizarHref}
+      >Solicitar cotización</a>
     </div>
   </section>
 </Layout>

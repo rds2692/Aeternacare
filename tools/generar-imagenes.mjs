@@ -127,7 +127,7 @@ const tarjetaOg = (ancho, alto) => `
   </text>
   <rect x="80" y="512" width="330" height="64" rx="14" fill="#6C5CB0" />
   <text x="245" y="553" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="26"
-    font-weight="600" fill="#FFFFFF">Solicitar orientación</text>
+    font-weight="600" fill="#FFFFFF">Cotizar cuidado</text>
   <circle cx="1120" cy="150" r="130" fill="#FFFFFF" opacity="0.45" />
 </svg>`;
 

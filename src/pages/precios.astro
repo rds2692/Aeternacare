@@ -1,0 +1,159 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ServiceCatalog from '../components/ServiceCatalog.astro';
+import WhatsAppIcon from '../components/WhatsAppIcon.astro';
+import { paginasServicios } from '../data/landing';
+import { site, whatsappCotizacionMensaje, whatsappLink } from '../data/site';
+
+const titulo = 'Precios de cuidado a domicilio en Santiago | Aeterna Care';
+const descripcion =
+  'Revisa valores referenciales de cuidadoras, TENS y enfermería a domicilio en Santiago. Solicita una cotización según comuna, horario y necesidades.';
+const canonical = '/precios/';
+
+const migas = [
+  { href: '/', label: 'Inicio' },
+  { href: '/precios/', label: 'Precios' },
+];
+
+const jsonLd = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: titulo,
+    url: `${site.dominio}${canonical}`,
+    description: descripcion,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: migas.map((miga, indice) => ({
+      '@type': 'ListItem',
+      position: indice + 1,
+      name: miga.label,
+      item: `${site.dominio}${miga.href}`,
+    })),
+  },
+];
+---
+
+<Layout title={titulo} description={descripcion} canonical={canonical} jsonLd={jsonLd}>
+  <section class="cabecera-pagina seccion--menta">
+    <div class="contenedor">
+      <nav aria-label="Ruta de navegación">
+        <ol class="migas">
+          {migas.map((miga) => <li><a href={miga.href}>{miga.label}</a></li>)}
+          <li aria-current="page">Precios y cotización</li>
+        </ol>
+      </nav>
+      <div class="cabecera-pagina__inner">
+        <p class="eyebrow">Valores referenciales · Santiago</p>
+        <h1>Precios de cuidado a domicilio en Santiago</h1>
+        <p>
+          Revisa valores de referencia para cuidadoras, TENS y enfermería. Para preparar tu
+          cotización necesitamos la comuna, el horario y el tipo de apoyo que necesita tu familiar.
+        </p>
+        <div class="grupo-botones">
+          <a
+            class="btn btn--primario btn--grande"
+            href="/contacto/#formulario-contacto"
+            data-analitica="cotizar-precios-hero"
+          >Solicitar cotización</a>
+          <a
+            class="btn btn--whatsapp btn--grande"
+            href={whatsappLink(whatsappCotizacionMensaje)}
+            target="_blank"
+            rel="noopener"
+            data-analitica="whatsapp-cotizar-precios-hero"
+          >
+            <WhatsAppIcon size={18} />
+            Cotizar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--blanca" aria-labelledby="que-incluye-cotizacion">
+    <div class="contenedor">
+      <div class="encabezado">
+        <h2 id="que-incluye-cotizacion">Una cotización comparable desde el primer contacto</h2>
+        <p>La propuesta considera el servicio, la comuna, la modalidad y el alcance que acordemos con tu familia.</p>
+      </div>
+      <div class="rejilla-tarjetas rejilla-tarjetas--tres">
+        <article class="tarjeta">
+          <h3>Perfil profesional</h3>
+          <p class="tarjeta__texto">Cuidadora, TENS, enfermera o técnico kinesiólogo según las tareas y la indicación vigente.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Horario y cobertura</h3>
+          <p class="tarjeta__texto">Turno diurno, nocturno, por horas o de 24 horas, sujeto a evaluación y disponibilidad.</p>
+        </article>
+        <article class="tarjeta">
+          <h3>Comuna y fecha</h3>
+          <p class="tarjeta__texto">La ubicación, el inicio y la continuidad del servicio pueden cambiar la propuesta final.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <ServiceCatalog />
+
+  <section class="seccion seccion--blanca" aria-labelledby="servicios-precios">
+    <div class="contenedor">
+      <div class="encabezado">
+        <h2 id="servicios-precios">Elige el servicio que necesitas cotizar</h2>
+        <p>Cada perfil cubre responsabilidades distintas. Si no sabes cuál corresponde, pide orientación dentro del formulario.</p>
+      </div>
+      <div class="rejilla-tarjetas rejilla-tarjetas--cuatro">
+        {paginasServicios.map((servicio) => (
+          <article class="tarjeta">
+            <h3>{servicio.nombre}</h3>
+            <p class="tarjeta__texto">{servicio.valor}</p>
+            <div class="grupo-botones">
+              <a
+                class="btn btn--primario"
+                href={`/contacto/?servicio=${servicio.cotizacion}&origen=precios-${servicio.slug}#formulario-contacto`}
+                data-analitica={`cotizar-precios-${servicio.slug}`}
+                data-servicio={servicio.cotizacion}
+              >Cotizar</a>
+              <a class="enlace-flecha" href={`/servicios/${servicio.slug}/`}>Ver servicio <span aria-hidden="true">→</span></a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--suave" aria-labelledby="como-cotizar">
+    <div class="contenedor">
+      <div class="encabezado">
+        <h2 id="como-cotizar">Cómo solicitar tu cotización</h2>
+        <p>Completa los datos esenciales y revisa la solicitud antes de enviarla por WhatsApp.</p>
+      </div>
+      <ol class="proceso proceso--tres">
+        <li class="paso"><h3>Indica la necesidad</h3><p>Selecciona el perfil, la comuna, el turno y las horas de apoyo.</p></li>
+        <li class="paso"><h3>Revisa tu solicitud</h3><p>El formulario prepara un mensaje con tus datos para que lo envíes.</p></li>
+        <li class="paso"><h3>Confirmamos la propuesta</h3><p>Revisamos disponibilidad, alcance y valor antes de agendar.</p></li>
+      </ol>
+      <div class="grupo-botones cierre">
+        <a
+          class="btn btn--primario btn--grande"
+          href="/contacto/#formulario-contacto"
+          data-analitica="cotizar-precios-cierre"
+        >Solicitar cotización</a>
+        <a class="btn btn--fantasma btn--grande" href="/blog/cuanto-cuesta-cuidado-adulto-mayor-santiago/">
+          Cómo se calcula el valor
+        </a>
+      </div>
+      <p class="nota-urgencia">
+        Los montos publicados son referenciales y no constituyen una oferta automática. El valor
+        final se confirma antes de agendar. Ante una emergencia médica llama al 131.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import { iniciarReveals } from '../scripts/reveal';
+  iniciarReveals();
+</script>

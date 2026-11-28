@@ -7,26 +7,27 @@ import { site, whatsappLink } from '../data/site';
 interface Props {
   /** En páginas internas el bloque se comporta como formulario de contacto directo. */
   compacto?: boolean;
+  /** Origen de la solicitud para medición y conciliación de contactos. */
+  origen?: string;
 }
 
-const { compacto = false } = Astro.props;
+const { compacto = false, origen = 'seccion-contacto' } = Astro.props;
 ---
 
 <section class="seccion seccion--blanca" id="contacto" aria-labelledby="contacto-titulo">
   <div class="contenedor">
     <div class="contacto__grid">
       <div class="contacto__intro">
-        <h2 id="contacto-titulo" data-reveal style="--retardo: 60ms">Cuéntanos qué necesitas</h2>
+        <h2 id="contacto-titulo" data-reveal style="--retardo: 60ms">Cotiza el cuidado que necesita tu familiar</h2>
         <p class="texto-plano" data-reveal style="--retardo: 120ms">
-          Cada persona y cada familia tienen necesidades diferentes. Cuéntanos brevemente la
-          situación de tu familiar y nuestro equipo te orientará sobre la alternativa de cuidado
-          más adecuada.
+          Completa los datos esenciales del servicio. Prepararemos un mensaje con tu solicitud para
+          que lo revises y lo envíes por WhatsApp; luego confirmamos alcance, disponibilidad y valor.
         </p>
 
         <ul class="contacto__ventajas" data-reveal style="--retardo: 180ms">
           <li>
             <Icon name="escudo" size={18} />
-            <span>Conversamos contigo antes de proponer cualquier servicio.</span>
+            <span>La cotización considera el perfil, la comuna, el horario y el alcance del apoyo.</span>
           </li>
           <li>
             <Icon name="reloj" size={18} />
@@ -34,14 +35,14 @@ const { compacto = false } = Astro.props;
           </li>
           <li>
             <Icon name="documento" size={18} />
-            <span>Te explicamos por escrito qué incluye el cuidado y qué no.</span>
+            <span>Antes de contratar, te explicamos qué incluye el cuidado y qué no.</span>
           </li>
         </ul>
 
         <div class="contacto__directo">
           <div>
             <p style="font-size: var(--texto-sm); color: var(--ink-muted)">
-              También puedes escribirnos directamente por WhatsApp.
+              ¿Prefieres escribirnos directamente? Envíanos tu comuna y el horario que necesitas.
             </p>
           </div>
           <div class="grupo-botones">
@@ -50,10 +51,10 @@ const { compacto = false } = Astro.props;
               href={whatsappLink()}
               target="_blank"
               rel="noopener"
-              data-analitica={'whatsapp-' + (compacto ? 'pagina' : 'seccion-contacto')}
+              data-analitica={'whatsapp-cotizar-' + (compacto ? 'pagina' : 'seccion-contacto')}
             >
               <WhatsAppIcon size={18} />
-              Hablar por WhatsApp
+              Cotizar por WhatsApp
             </a>
             <a class="btn btn--fantasma" href={`tel:${site.telefonoE164}`} data-analitica="telefono">
               <Icon name="telefono" size={18} />
@@ -64,29 +65,29 @@ const { compacto = false } = Astro.props;
         </div>
       </div>
 
-      <form class="formulario" id="formulario-contacto" novalidate>
+      <form class="formulario" id="formulario-contacto" novalidate data-origen={origen}>
         <p class="aviso-whatsapp">
           <WhatsAppIcon size={16} />
           <span>
-            Al enviar, abriremos WhatsApp con tus datos ya escritos. Revisa el mensaje y pulsa
-            «Enviar» para contactarnos.
+            Son seis datos esenciales. Al continuar, abriremos WhatsApp con tu solicitud preparada;
+            revísala y pulsa «Enviar» para pedir la cotización.
           </span>
         </p>
 
-        <div class="campo">
-          <label for="nombre">Nombre completo <span class="obligatorio">*</span></label>
-          <input
-            id="nombre"
-            name="nombre"
-            type="text"
-            autocomplete="name"
-            required
-            aria-describedby="error-nombre"
-          />
-          <span class="campo__error" id="error-nombre" data-error></span>
-        </div>
-
         <div class="campo--doble">
+          <div class="campo">
+            <label for="nombre">Nombre completo <span class="obligatorio">*</span></label>
+            <input
+              id="nombre"
+              name="nombre"
+              type="text"
+              autocomplete="name"
+              required
+              aria-describedby="error-nombre"
+            />
+            <span class="campo__error" id="error-nombre" data-error></span>
+          </div>
+
           <div class="campo">
             <label for="telefono">Teléfono / WhatsApp <span class="obligatorio">*</span></label>
             <input
@@ -101,43 +102,6 @@ const { compacto = false } = Astro.props;
             />
             <span class="campo__error" id="error-telefono" data-error></span>
           </div>
-
-          <div class="campo">
-            <label for="correo">Correo electrónico</label>
-            <input
-              id="correo"
-              name="correo"
-              type="email"
-              autocomplete="email"
-              placeholder="nombre@correo.cl"
-              aria-describedby="error-correo"
-            />
-            <span class="campo__error" id="error-correo" data-error></span>
-          </div>
-        </div>
-
-        <div class="campo">
-          <label for="ayuda">¿Qué tipo de ayuda necesitas?</label>
-          <select id="ayuda" name="ayuda">
-            <option value="">Selecciona una opción</option>
-            <option>Acompañamiento y compañía</option>
-            <option>Apoyo en actividades diarias</option>
-            <option>Supervisión y bienestar</option>
-            <option>Turnos diurnos</option>
-            <option>Turnos de 24 horas</option>
-            <option>Aún no lo sé, necesito orientación</option>
-          </select>
-        </div>
-
-        <div class="campo">
-          <label for="paraquien">¿Para quién es el servicio?</label>
-          <select id="paraquien" name="paraquien">
-            <option value="">Selecciona una opción</option>
-            <option>Para mi madre</option>
-            <option>Para mi padre</option>
-            <option>Para otro familiar</option>
-            <option>Para otra persona</option>
-          </select>
         </div>
 
         <div class="campo--doble">
@@ -155,25 +119,6 @@ const { compacto = false } = Astro.props;
           </div>
 
           <div class="campo">
-            <label for="turno">Modalidad de turno <span class="obligatorio">*</span></label>
-            <select id="turno" name="turno" required aria-describedby="error-turno">
-              <option value="">Selecciona una opción</option>
-              <option>Diurno</option>
-              <option>Nocturno</option>
-              <option>24 horas (día y noche)</option>
-            </select>
-            <span class="campo__error" id="error-turno" data-error></span>
-          </div>
-        </div>
-
-        <div class="campo--doble">
-          <div class="campo">
-            <label for="horas">Horas por turno <span class="obligatorio">*</span></label>
-            <input id="horas" name="horas" type="number" min="2" max="24" step="1" placeholder="Ej. 8" required aria-describedby="error-horas" />
-            <span class="campo__error" id="error-horas" data-error></span>
-          </div>
-
-          <div class="campo">
             <label for="comuna">Comuna del servicio <span class="obligatorio">*</span></label>
             <select id="comuna" name="comuna" required aria-describedby="error-comuna">
               <option value="">Selecciona una comuna</option>
@@ -185,56 +130,121 @@ const { compacto = false } = Astro.props;
 
         <div class="campo--doble">
           <div class="campo">
-            <label for="fecha-inicio">Fecha de inicio <span class="obligatorio">*</span></label>
-            <input id="fecha-inicio" name="fechaInicio" type="date" required aria-describedby="error-fecha-inicio" />
-            <span class="campo__error" id="error-fecha-inicio" data-error></span>
+            <label for="turno">Modalidad de turno <span class="obligatorio">*</span></label>
+            <select id="turno" name="turno" required aria-describedby="error-turno">
+              <option value="">Selecciona una opción</option>
+              <option>Diurno</option>
+              <option>Nocturno</option>
+              <option>24 horas (día y noche)</option>
+            </select>
+            <span class="campo__error" id="error-turno" data-error></span>
           </div>
 
           <div class="campo">
-            <label for="fecha-termino">Fecha de término</label>
-            <input id="fecha-termino" name="fechaTermino" type="date" aria-describedby="error-fecha-termino" />
-            <span class="campo__error" id="error-fecha-termino" data-error></span>
+            <label for="horas">Horas por turno <span class="obligatorio">*</span></label>
+            <input id="horas" name="horas" type="number" min="2" max="24" step="1" placeholder="Ej. 8" required aria-describedby="error-horas" />
+            <span class="campo__error" id="error-horas" data-error></span>
           </div>
         </div>
-
-        <fieldset class="selector-dias">
-          <legend>Días de la semana</legend>
-          <p class="ayuda">Selecciona los días en que necesitas el servicio.</p>
-          <div class="selector-dias__atajos">
-            <button type="button" class="dia-btn dia-btn--atajo" data-patron="lunes-viernes">Lunes a viernes</button>
-            <button type="button" class="dia-btn dia-btn--atajo" data-patron="lunes-domingo">Lunes a domingo</button>
-          </div>
-          <div class="selector-dias__botones" role="group" aria-label="Días de la semana">
-            {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'].map((dia) => (
-              <button type="button" class="dia-btn" data-dia={dia} aria-pressed="false">{dia}</button>
-            ))}
-          </div>
-          <p class="selector-dias__resumen" id="dias-resumen" aria-live="polite">No has seleccionado días.</p>
-        </fieldset>
 
         <label class="consentimiento consentimiento--urgencia" for="urgencia">
           <input id="urgencia" name="urgencia" type="checkbox" />
-          <span>Mi solicitud es urgente y necesito orientación prioritaria.</span>
+          <span>Necesito coordinar este cuidado con urgencia.</span>
         </label>
 
-        <div class="campo">
-          <label for="mensaje">Cuéntanos brevemente</label>
-          <textarea
-            id="mensaje"
-            name="mensaje"
-            rows={4}
-            placeholder="Rutina, nivel de autonomía, horarios que necesitas y cualquier detalle que nos ayude a orientarte."
-          ></textarea>
-          <span class="ayuda"
-            >Evita escribir diagnósticos o datos médicos detallados; eso lo conversamos de forma
-            reservada.</span
-          >
-        </div>
+        <details class="formulario__detalles">
+          <summary>
+            <span>Agregar detalles del turno</span>
+            <small>Opcional</small>
+          </summary>
+          <div class="formulario__detalles-contenido">
+            <div class="campo--doble">
+              <div class="campo">
+                <label for="correo">Correo electrónico</label>
+                <input
+                  id="correo"
+                  name="correo"
+                  type="email"
+                  autocomplete="email"
+                  placeholder="nombre@correo.cl"
+                  aria-describedby="error-correo"
+                />
+                <span class="campo__error" id="error-correo" data-error></span>
+              </div>
+
+              <div class="campo">
+                <label for="paraquien">¿Para quién es el servicio?</label>
+                <select id="paraquien" name="paraquien">
+                  <option value="">Selecciona una opción</option>
+                  <option>Para mi madre</option>
+                  <option>Para mi padre</option>
+                  <option>Para otro familiar</option>
+                  <option>Para otra persona</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="campo">
+              <label for="ayuda">¿Qué tipo de apoyo necesitas?</label>
+              <select id="ayuda" name="ayuda">
+                <option value="">Selecciona una opción</option>
+                <option>Acompañamiento y compañía</option>
+                <option>Apoyo en actividades diarias</option>
+                <option>Supervisión y bienestar</option>
+                <option>Apoyo técnico o posterior a hospitalización</option>
+                <option>Aún no lo sé, necesito orientación</option>
+              </select>
+            </div>
+
+            <div class="campo--doble">
+              <div class="campo">
+                <label for="fecha-inicio">Fecha estimada de inicio</label>
+                <input id="fecha-inicio" name="fechaInicio" type="date" aria-describedby="error-fecha-inicio" />
+                <span class="campo__error" id="error-fecha-inicio" data-error></span>
+              </div>
+
+              <div class="campo">
+                <label for="fecha-termino">Fecha de término</label>
+                <input id="fecha-termino" name="fechaTermino" type="date" aria-describedby="error-fecha-termino" />
+                <span class="campo__error" id="error-fecha-termino" data-error></span>
+              </div>
+            </div>
+
+            <fieldset class="selector-dias">
+              <legend>Días de la semana</legend>
+              <p class="ayuda">Selecciona los días en que necesitas el servicio.</p>
+              <div class="selector-dias__atajos">
+                <button type="button" class="dia-btn dia-btn--atajo" data-patron="lunes-viernes">Lunes a viernes</button>
+                <button type="button" class="dia-btn dia-btn--atajo" data-patron="lunes-domingo">Lunes a domingo</button>
+              </div>
+              <div class="selector-dias__botones" role="group" aria-label="Días de la semana">
+                {['Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado', 'Domingo'].map((dia) => (
+                  <button type="button" class="dia-btn" data-dia={dia} aria-pressed="false">{dia}</button>
+                ))}
+              </div>
+              <p class="selector-dias__resumen" id="dias-resumen" aria-live="polite">No has seleccionado días.</p>
+            </fieldset>
+
+            <div class="campo">
+              <label for="mensaje">Cuéntanos brevemente</label>
+              <textarea
+                id="mensaje"
+                name="mensaje"
+                rows={4}
+                placeholder="Rutina, nivel de autonomía, horarios que necesitas y cualquier detalle que nos ayude a preparar la cotización."
+              ></textarea>
+              <span class="ayuda"
+                >Evita escribir diagnósticos o datos médicos detallados; eso lo conversamos de forma
+                reservada.</span
+              >
+            </div>
+          </div>
+        </details>
 
         <label class="consentimiento" for="consentimiento-datos">
           <input id="consentimiento-datos" name="consentimiento" type="checkbox" required />
           <span>
-            Acepto que Aeterna Care use estos datos para contactarme y orientarme sobre sus
+            Acepto que Aeterna Care use estos datos para contactarme y preparar mi cotización de
             servicios, según el <a href="/privacidad/">aviso de privacidad</a>.
             <span class="obligatorio">*</span>
           </span>
@@ -250,12 +260,12 @@ const { compacto = false } = Astro.props;
         <div class="formulario__pie">
           <button class="btn btn--primario btn--grande btn--bloque" type="submit">
             <WhatsAppIcon size={18} />
-            Enviar por WhatsApp
+            Preparar cotización por WhatsApp
           </button>
           <p class="formulario__estado" id="formulario-estado" role="status" aria-live="polite"></p>
           <p class="ayuda">
-            Se abrirá WhatsApp con el resumen de tus datos. No se envía nada hasta que confirmes el
-            mensaje, y no se realiza ningún cobro ni se activa un servicio.
+            Se abrirá WhatsApp con el resumen de tu solicitud. No se envía nada hasta que confirmes
+            el mensaje, y no se realiza ningún cobro ni se activa un servicio.
           </p>
         </div>
       </form>
@@ -264,23 +274,48 @@ const { compacto = false } = Astro.props;
 </section>
 
 <script>
-  import { registrarContactoWhatsAppPreparado } from '../scripts/medicion';
+  import {
+    registrarInicioCotizacion,
+    registrarSolicitudCotizacionPreparada,
+  } from '../scripts/medicion';
   import { site } from '../data/site';
 
   const formulario = document.getElementById('formulario-contacto') as HTMLFormElement | null;
 
   if (formulario) {
-    const parametroComuna = new URLSearchParams(window.location.search).get('comuna');
-    const selectorComuna = formulario.querySelector<HTMLSelectElement>('#comuna');
+    const parametros = new URLSearchParams(window.location.search);
     const normalizarSlug = (valor: string) =>
       valor.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
         .replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    if (parametroComuna && selectorComuna) {
-      const opcion = Array.from(selectorComuna.options).find(
-        (elemento) => normalizarSlug(elemento.textContent ?? '') === normalizarSlug(parametroComuna),
+
+    const seleccionarOpcion = (selector: string, valor: string | null) => {
+      if (!valor) return;
+      const select = formulario.querySelector<HTMLSelectElement>(selector);
+      if (!select) return;
+      const buscado = normalizarSlug(valor);
+      const opcion = Array.from(select.options).find(
+        (elemento) =>
+          normalizarSlug(elemento.value) === buscado ||
+          normalizarSlug(elemento.textContent ?? '') === buscado,
       );
-      if (opcion) selectorComuna.value = opcion.value;
-    }
+      if (opcion) select.value = opcion.value;
+    };
+
+    seleccionarOpcion('#comuna', parametros.get('comuna'));
+    seleccionarOpcion('#profesional', parametros.get('servicio'));
+    seleccionarOpcion('#turno', parametros.get('turno'));
+
+    const origen = (parametros.get('origen') || formulario.dataset.origen || 'formulario-contacto')
+      .replace(/[^a-zA-Z0-9_-]/g, '-')
+      .slice(0, 80);
+    const servicioActual = () =>
+      formulario.querySelector<HTMLSelectElement>('#profesional')?.value ?? '';
+    let inicioRegistrado = false;
+    const registrarInicio = () => {
+      if (inicioRegistrado) return;
+      inicioRegistrado = true;
+      registrarInicioCotizacion(origen, servicioActual());
+    };
 
     const estado = document.getElementById('formulario-estado');
 
@@ -341,7 +376,7 @@ const { compacto = false } = Astro.props;
 
     const resumenTexto = (datos: FormData): string => {
       const lineas = [
-        'Hola, quisiera recibir orientación sobre los servicios de cuidado.',
+        'Hola, quisiera solicitar una cotización de cuidado a domicilio.',
         '',
         `Nombre: ${datos.get('nombre')}`,
         `Teléfono: ${datos.get('telefono')}`,
@@ -404,7 +439,7 @@ const { compacto = false } = Astro.props;
       const datos = new FormData(formulario);
       const url = `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(resumenTexto(datos))}`;
 
-      registrarContactoWhatsAppPreparado('formulario-contacto');
+      registrarSolicitudCotizacionPreparada(origen, servicioActual());
 
       const ventana = window.open(url, '_blank');
       if (ventana) ventana.opener = null;
@@ -412,7 +447,7 @@ const { compacto = false } = Astro.props;
       if (estado) {
         if (ventana) {
           estado.textContent =
-            'Abrimos WhatsApp con tus datos. Revisa el mensaje y pulsa «Enviar» para completar el contacto.';
+            'Abrimos WhatsApp con tu solicitud. Revisa el mensaje y pulsa «Enviar» para pedir la cotización.';
           estado.dataset.tipo = 'ok';
         } else {
           const enlace = document.createElement('a');
@@ -420,7 +455,7 @@ const { compacto = false } = Astro.props;
           enlace.target = '_blank';
           enlace.rel = 'noopener';
           enlace.className = 'btn btn--whatsapp';
-          enlace.textContent = 'Abrir WhatsApp con mis datos';
+          enlace.textContent = 'Abrir WhatsApp con mi solicitud';
           estado.replaceChildren(
             document.createTextNode('No pudimos abrir WhatsApp automáticamente. '),
             enlace,
@@ -434,6 +469,9 @@ const { compacto = false } = Astro.props;
       const objetivo = evento.target as HTMLInputElement;
       if (objetivo.matches('input, textarea, select')) limpiarError(objetivo);
     });
+
+    formulario.addEventListener('focusin', registrarInicio, { once: true });
+    formulario.addEventListener('change', registrarInicio, { once: true });
 
     const botonesDias = Array.from(formulario.querySelectorAll<HTMLButtonElement>('[data-dia]'));
     const resumenDias = document.getElementById('dias-resumen');

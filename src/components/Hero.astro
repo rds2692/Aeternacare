@@ -19,7 +19,11 @@ import { whatsappLink } from '../data/site';
         <p class="hero__bajada" data-reveal style="--retardo: 160ms">{hero.bajada}</p>
 
         <div class="grupo-botones" data-reveal style="--retardo: 240ms">
-          <a class="btn btn--primario btn--grande" href="/contacto/" data-analitica="cta-hero">
+          <a
+            class="btn btn--primario btn--grande"
+            href="/contacto/#formulario-contacto"
+            data-analitica="cotizar-hero"
+          >
             {hero.cta}
             <Icon name="flecha" size={18} />
           </a>
@@ -28,7 +32,7 @@ import { whatsappLink } from '../data/site';
             href={whatsappLink()}
             target="_blank"
             rel="noopener"
-            data-analitica="whatsapp-hero"
+            data-analitica="whatsapp-cotizar-hero"
           >
             <WhatsAppIcon size={18} />
             {hero.ctaSecundario}

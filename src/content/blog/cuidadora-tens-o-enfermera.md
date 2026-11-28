@@ -10,6 +10,16 @@ Cuando una familia busca cuidado de adultos mayores a domicilio, una de las conf
 como sinónimos. No lo son, y entender la diferencia evita dos problemas: pagar por algo que no se
 necesita o contratar a alguien que no puede hacerse cargo de lo que sí se necesita.
 
+## Respuesta rápida: cuál necesitas
+
+| Necesidad principal | Perfil que conviene revisar | Siguiente paso |
+|---|---|---|
+| Compañía, rutina y apoyo práctico en el hogar | Cuidadora | [Cotizar cuidadora](/contacto/?servicio=cuidadora&origen=guia-perfil-cuidadora#formulario-contacto) |
+| Apoyo técnico, recuperación o una rutina con indicación | TENS | [Cotizar TENS](/contacto/?servicio=tens&origen=guia-perfil-tens#formulario-contacto) |
+| Evaluación o procedimientos de mayor complejidad | Enfermera o enfermero | [Cotizar enfermería](/contacto/?servicio=enfermera&origen=guia-perfil-enfermera#formulario-contacto) |
+
+La indicación médica vigente y el nivel de autonomía pueden cambiar esta respuesta. Si no tienes claridad, [solicita orientación y cotización](/contacto/?servicio=no-se&origen=guia-perfil-no-se#formulario-contacto).
+
 ## Cuidadora o acompañante
 
 Es la persona que entrega apoyo en la vida diaria y compañía.
@@ -24,6 +34,8 @@ es presencia, rutina y ayuda práctica.
 **Qué no le corresponde:** procedimientos clínicos, administración de medicamentos por
 indicación médica o cuidados de alta complejidad. Si eso se requiere, hay que sumar otro rol.
 
+[Cotizar cuidadora para mi familiar](/contacto/?servicio=cuidadora&origen=guia-cuidadora#formulario-contacto)
+
 ## TENS (técnico en enfermería de nivel superior)
 
 Es personal con formación técnica en enfermería. Trabaja bajo indicación y supervisión
@@ -36,6 +48,8 @@ curaciones simples y acompañamiento en la recuperación.
 **Cuándo se necesita:** en postoperatorios, en personas con movilidad reducida, cuando hay
 tratamientos en curso o cuando el cuidado diario requiere más precisión y registro.
 
+[Cotizar apoyo TENS a domicilio](/contacto/?servicio=tens&origen=guia-tens#formulario-contacto)
+
 ## Enfermera o enfermero
 
 Es un profesional con formación universitaria, responsable de evaluar, planificar y ejecutar
@@ -46,6 +60,8 @@ complejas, educación a la familia y coordinación con el equipo médico tratant
 
 **Cuándo se necesita:** cuando existe un cuadro de salud que requiere seguimiento profesional, o
 cuando el cuidado incluye procedimientos que solo pueden realizar profesionales.
+
+[Cotizar atención de enfermería](/contacto/?servicio=enfermera&origen=guia-enfermera#formulario-contacto)
 
 ## Cómo se decide en la práctica
 
@@ -75,7 +91,7 @@ Una respuesta clara a estas cinco preguntas dice más de una empresa que cualqui
 ---
 
 En Aeterna Care trabajamos con personal TENS y enfermería, y definimos contigo el tipo de apoyo
-que corresponde a cada situación. [Conversemos sobre tu caso](/contacto/).
+que corresponde a cada situación. [Solicita una cotización](/contacto/?origen=guia-cierre#formulario-contacto).
 
 Si estás buscando una agencia de cuidado de adultos mayores, esta comparación sirve como punto de
 partida: cuéntanos la comuna, el horario y las tareas que necesitas cubrir para orientarte hacia

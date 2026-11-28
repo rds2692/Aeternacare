@@ -26,7 +26,7 @@ Qualivida publica un turno de cuidadora de 12 horas desde **$49.860 de lunes a s
 
 Aeterna Care publica valores referenciales para **TENS** de **$60.000 por 8 horas** y **$160.000 por 24 horas**. TENS es un perfil distinto de una cuidadora, así que esos montos no se deben enfrentar como si contrataran el mismo servicio. La cotización final depende de la evaluación, el alcance y la disponibilidad.
 
-Consulta los precios y condiciones actualizados directamente en [Cuidapp](https://cuidapp.io/servicios-a-domicilio) y [Qualivida](https://qualivida.cl/), y revisa los [valores de TENS y enfermería de Aeterna Care](/#valores). Una tarifa “desde” es un punto de partida, no necesariamente el precio aplicable a todas las familias.
+Consulta los precios y condiciones actualizados directamente en [Cuidapp](https://cuidapp.io/servicios-a-domicilio) y [Qualivida](https://qualivida.cl/), y revisa los [precios y valores referenciales de Aeterna Care](/precios/). Una tarifa “desde” es un punto de partida, no necesariamente el precio aplicable a todas las familias.
 
 ## La comparación justa: misma necesidad, mismo horario
 
@@ -52,10 +52,10 @@ También puedes consultar la guía de [precios del cuidado de personas mayores](
 
 Si la persona requiere apoyo en actividades cotidianas, una cuidadora puede ser el perfil adecuado. Si se necesitan tareas técnicas, consulta si corresponde una TENS o una enfermera. Cuando no estés segura, describe la situación al proveedor y confirma el alcance con el equipo tratante.
 
-Compara propuestas equivalentes y pide el valor final por escrito. Puedes [solicitar orientación a Aeterna Care](/contacto/) indicando comuna, horario y tipo de apoyo; si aún no lo sabes, comparte las tareas que necesita tu familiar.
+Compara propuestas equivalentes y pide el valor final por escrito. Puedes [solicitar una cotización a Aeterna Care](/contacto/?servicio=no-se&origen=blog-comparar-precios#formulario-contacto) indicando comuna, horario y tipo de apoyo; si aún no lo sabes, comparte las tareas que necesita tu familiar.
 
 ### Fuentes consultadas
 
 - [Servicios y valores publicados por Cuidapp](https://cuidapp.io/servicios-a-domicilio), consulta del 16 de noviembre de 2026.
 - [Precios y alcance publicados por Qualivida](https://qualivida.cl/), consulta del 16 de noviembre de 2026.
-- [Valores referenciales de Aeterna Care](/#valores), consultados el 16 de noviembre de 2026.
+- [Valores referenciales de Aeterna Care](/precios/), consultados el 16 de noviembre de 2026.

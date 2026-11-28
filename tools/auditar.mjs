@@ -22,9 +22,21 @@ const aqui = dirname(fileURLToPath(import.meta.url));
 const dist = join(aqui, '..', 'dist');
 
 const require = createRequire(import.meta.url);
-const { chromium } = require(
+const rutasPlaywright = [
+  process.env.CODEX_PLAYWRIGHT_PATH,
   'C:/Users/Admin/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright',
-);
+  '/home/rds/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright',
+].filter(Boolean);
+let chromium;
+for (const ruta of rutasPlaywright) {
+  try {
+    ({ chromium } = require(ruta));
+    break;
+  } catch {
+    /* prueba la siguiente ruta */
+  }
+}
+if (!chromium) throw new Error('No se encontró Playwright. Define CODEX_PLAYWRIGHT_PATH.');
 
 const tipos = {
   '.html': 'text/html; charset=utf-8',
@@ -59,8 +71,10 @@ await new Promise((resolve) => servidor.listen(4398, resolve));
 
 const paginas = [
   '/',
+  '/precios/',
   '/contacto/',
   '/blog/',
+  '/blog/cuidadora-tens-o-enfermera/',
   '/blog/elegir-cuidadora-adulto-mayor/',
   '/privacidad/',
   '/terminos/',

@@ -57,8 +57,18 @@ const jsonLd = [
           confirmamos la disponibilidad, el horario y el tipo de apoyo que corresponde.
         </p>
         <div class="grupo-botones">
-          <a class="btn btn--primario" data-analitica="cta-comuna" href={`/contacto/?comuna=${comuna.slug}`}>Solicitar orientación</a>
-          <a class="btn btn--whatsapp" href={whatsappLink(`Hola, quisiera consultar por cuidados a domicilio en ${nombre}.`)} target="_blank" rel="noopener" data-analitica="whatsapp-comuna">Hablar por WhatsApp</a>
+          <a
+            class="btn btn--primario"
+            data-analitica={`cotizar-comuna-${comuna.slug}`}
+            href={`/contacto/?comuna=${comuna.slug}&origen=comuna-${comuna.slug}#formulario-contacto`}
+          >Cotizar en {nombre}</a>
+          <a
+            class="btn btn--whatsapp"
+            href={whatsappLink(`Hola, quiero cotizar cuidados a domicilio en ${nombre}. El horario que necesito es: `)}
+            target="_blank"
+            rel="noopener"
+            data-analitica={`whatsapp-cotizar-comuna-${comuna.slug}`}
+          >Cotizar por WhatsApp</a>
         </div>
       </div>
     </div>
@@ -93,7 +103,15 @@ const jsonLd = [
           <article class="tarjeta">
             <h3>{servicio.nombre}</h3>
             <p class="tarjeta__texto">{servicio.descripcion}</p>
-            <a class="enlace-flecha" href={`/servicios/${servicio.slug}/`}>Ver servicio <span aria-hidden="true">→</span></a>
+            <div class="grupo-botones">
+              <a class="enlace-flecha" href={`/servicios/${servicio.slug}/`}>Ver servicio <span aria-hidden="true">→</span></a>
+              <a
+                class="enlace-flecha"
+                href={`/contacto/?servicio=${servicio.cotizacion}&comuna=${comuna.slug}&origen=comuna-${comuna.slug}-${servicio.slug}#formulario-contacto`}
+                data-analitica={`cotizar-comuna-${comuna.slug}-${servicio.slug}`}
+                data-servicio={servicio.cotizacion}
+              >Cotizar <span aria-hidden="true">→</span></a>
+            </div>
           </article>
         ))}
       </div>
@@ -105,7 +123,7 @@ const jsonLd = [
       <div class="encabezado"><h2 id="faq-comuna-titulo">Preguntas frecuentes sobre cuidados en {nombre}</h2></div>
       <details class="faq"><summary>¿Qué tipo de turnos puedo consultar?</summary><p>Turnos diurnos, nocturnos y de 24 horas, sujetos a disponibilidad y evaluación de la necesidad.</p></details>
       <details class="faq"><summary>¿El valor es el mismo para todas las comunas?</summary><p>Los valores publicados son referenciales. El valor final se confirma considerando comuna, horario, tipo de profesional y alcance del servicio.</p></details>
-      <details class="faq"><summary>¿Cómo solicito orientación?</summary><p>Puedes completar el formulario de contacto o escribir directamente por WhatsApp indicando que necesitas atención en {nombre}.</p></details>
+      <details class="faq"><summary>¿Cómo solicito una cotización?</summary><p>Completa el formulario con el servicio, horario y comuna, o escribe por WhatsApp indicando que necesitas atención en {nombre}.</p></details>
     </div>
   </section>
 
@@ -113,7 +131,11 @@ const jsonLd = [
     <div class="contenedor cierre">
       <h2>¿Buscas apoyo para tu familiar en {nombre}?</h2>
       <p>Cuéntanos qué necesitas y revisaremos contigo los siguientes pasos.</p>
-      <a class="btn btn--primario btn--grande" data-analitica="cta-comuna-cierre" href="/contacto/">Solicitar orientación</a>
+      <a
+        class="btn btn--primario btn--grande"
+        data-analitica={`cotizar-comuna-cierre-${comuna.slug}`}
+        href={`/contacto/?comuna=${comuna.slug}&origen=comuna-cierre-${comuna.slug}#formulario-contacto`}
+      >Solicitar cotización</a>
     </div>
   </section>
 </Layout>

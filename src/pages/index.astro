@@ -15,7 +15,7 @@ import { site } from '../data/site';
 
 const titulo = 'Cuidado de adulto mayor a domicilio en Santiago | Aeterna Care';
 const descripcion =
-  'Acompañamiento, cuidadoras, TENS y enfermería a domicilio para adultos mayores en Santiago. Revisa servicios, horarios y valores referenciales.';
+  'Cotiza cuidadoras, TENS y enfermería a domicilio para adultos mayores en Santiago. Revisa valores y solicita una propuesta según comuna, horario y necesidades.';
 
 const servicioJsonLd = {
   '@context': 'https://schema.org',
@@ -31,7 +31,7 @@ const servicioJsonLd = {
 
 <Layout title={titulo} description={descripcion} canonical="/" jsonLd={servicioJsonLd}>
   <Hero />
-  <ContactSection />
+  <ContactSection origen="inicio" />
   <Philosophy />
   <Services />
   <ServiceCatalog />

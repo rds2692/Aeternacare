@@ -5,9 +5,9 @@ import Pending from '../components/Pending.astro';
 import CorreoProtegido from '../components/CorreoProtegido.astro';
 import { site, whatsappLink, telLink } from '../data/site';
 
-const titulo = 'Contacto | Aeterna Care';
+const titulo = 'Cotiza cuidado de adulto mayor a domicilio | Aeterna Care';
 const descripcion =
-  'Escríbenos por WhatsApp o completa el formulario y te orientamos sobre el cuidado que necesita tu familiar en Santiago.';
+  'Solicita una cotización de cuidadora, TENS o enfermería a domicilio en Santiago. Indica comuna, horario y necesidades de tu familiar.';
 
 const migas = [
   { href: '/', label: 'Inicio' },
@@ -44,16 +44,16 @@ const jsonLd = [
         </ol>
       </nav>
       <div class="cabecera-pagina__inner">
-        <h1>Hablemos sobre las necesidades de tu familiar</h1>
+        <h1>Cotiza el cuidado que necesita tu familiar</h1>
         <p>
-          Cuéntanos brevemente la situación y te orientamos sobre la alternativa de cuidado más
-          adecuada. Sin compromiso y sin tecnicismos innecesarios.
+          Cuéntanos la comuna, el horario y el tipo de apoyo que necesitas. Revisaremos contigo la
+          alternativa y el valor antes de agendar, sin compromiso.
         </p>
       </div>
     </div>
   </section>
 
-  <ContactSection compacto />
+  <ContactSection compacto origen="pagina-contacto" />
 
   <section class="seccion seccion--menta">
     <div class="contenedor">

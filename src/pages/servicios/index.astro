@@ -13,7 +13,11 @@ const descripcion = 'Agencia de cuidado de adultos mayores a domicilio en Santia
       <div class="cabecera-pagina__inner">
         <p class="eyebrow">Aeterna Care · Atención en casa</p>
         <h1>Agencia de cuidado de adultos mayores a domicilio</h1>
-        <p>Coordinamos cuidadoras, TENS, enfermería y técnicos kinesiólogos para apoyar a personas mayores en su hogar. Revisamos contigo el alcance, horario y valor antes de agendar.</p>
+        <p>Coordinamos cuidadoras, TENS, enfermería y técnicos kinesiólogos para apoyar a personas mayores en su hogar. Cotiza según comuna, horario y necesidades; revisamos el alcance y el valor antes de agendar.</p>
+        <div class="grupo-botones">
+          <a class="btn btn--primario" href="/contacto/#formulario-contacto" data-analitica="cotizar-servicios">Cotizar cuidado</a>
+          <a class="btn btn--secundario" href="/precios/">Revisar precios</a>
+        </div>
       </div>
     </div>
   </section>
@@ -38,7 +42,15 @@ const descripcion = 'Agencia de cuidado de adultos mayores a domicilio en Santia
           <article class="tarjeta">
             <h2>{servicio.nombre}</h2>
             <p class="tarjeta__texto">{servicio.descripcion}</p>
-            <a class="enlace-flecha" href={`/servicios/${servicio.slug}/`}>Ver servicio <span aria-hidden="true">→</span></a>
+            <div class="grupo-botones">
+              <a class="enlace-flecha" href={`/servicios/${servicio.slug}/`}>Ver servicio <span aria-hidden="true">→</span></a>
+              <a
+                class="enlace-flecha"
+                href={`/contacto/?servicio=${servicio.cotizacion}&origen=servicios-${servicio.slug}#formulario-contacto`}
+                data-analitica={`cotizar-servicios-${servicio.slug}`}
+                data-servicio={servicio.cotizacion}
+              >Cotizar <span aria-hidden="true">→</span></a>
+            </div>
           </article>
         ))}
       </div>

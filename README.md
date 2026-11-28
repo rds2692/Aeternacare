@@ -118,7 +118,9 @@ Antes de publicar:
   el resultado percibido.
 - **Medición con consentimiento.** Google Tag Manager carga con Consent Mode
   denegado por defecto. Revisa docs/07-medicion-y-conversiones.md; preparar
-  un mensaje de WhatsApp no equivale a confirmar un lead.
+  una solicitud de cotización en WhatsApp no equivale a confirmar una cotización
+  recibida. La página `/precios/` concentra la intención comercial y los CTA
+  abren el formulario con el servicio preseleccionado.
 - **Correo protegido contra bots básicos.** La dirección no aparece como texto
   plano: se entrega como códigos al navegador y se reconstruye solo al pulsar
   «Escribir por correo» o «Copiar». Esto no es una medida de seguridad ni evita

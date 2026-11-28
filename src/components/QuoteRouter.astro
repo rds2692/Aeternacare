@@ -1,0 +1,61 @@
+---
+import Icon from './Icon.astro';
+
+const opciones = [
+  {
+    servicio: 'cuidadora',
+    titulo: 'Cuidadora',
+    texto: 'Para compañía, rutina, alimentación, higiene y apoyo práctico en el hogar.',
+  },
+  {
+    servicio: 'tens',
+    titulo: 'TENS',
+    texto: 'Para cuidados técnicos definidos, apoyo posterior a una hospitalización o rutinas con indicación.',
+  },
+  {
+    servicio: 'enfermera',
+    titulo: 'Enfermería',
+    texto: 'Para evaluación, procedimientos y cuidados de mayor complejidad.',
+  },
+];
+---
+
+<div class="quote-router" aria-labelledby="cotizacion-articulo-titulo">
+  <div class="encabezado">
+    <p class="eyebrow">De la duda a una solicitud concreta</p>
+    <h2 id="cotizacion-articulo-titulo">Cotiza el perfil de apoyo que necesitas</h2>
+    <p>Elige una opción para abrir el formulario con el servicio ya seleccionado. Si aún no lo sabes, pide orientación sin salir del mismo formulario.</p>
+  </div>
+
+  <div class="quote-router__opciones">
+    {opciones.map((opcion) => (
+      <article class="quote-router__opcion">
+        <div>
+          <h3>{opcion.titulo}</h3>
+          <p>{opcion.texto}</p>
+        </div>
+        <a
+          class="btn btn--primario"
+          href={`/contacto/?servicio=${opcion.servicio}&origen=guia-perfil-${opcion.servicio}#formulario-contacto`}
+          data-analitica={`cotizar-guia-${opcion.servicio}`}
+          data-servicio={opcion.servicio}
+        >
+          Cotizar {opcion.titulo.toLowerCase()}
+          <Icon name="flecha" size={18} />
+        </a>
+      </article>
+    ))}
+  </div>
+
+  <div class="quote-router__duda">
+    <p>¿No sabes qué perfil corresponde? Describe la situación y te ayudamos a identificar la alternativa.</p>
+    <a
+      class="btn btn--secundario"
+      href="/contacto/?servicio=no-se&origen=guia-perfil-no-se#formulario-contacto"
+      data-analitica="cotizar-guia-no-se"
+    >
+      Pedir orientación y cotización
+      <Icon name="flecha" size={18} />
+    </a>
+  </div>
+</div>

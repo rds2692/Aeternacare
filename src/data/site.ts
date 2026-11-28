@@ -60,7 +60,10 @@ export const site = {
 };
 
 export const whatsappMensaje =
-  'Hola, quisiera recibir orientación sobre los servicios de cuidado para un adulto mayor.';
+  'Hola, quisiera solicitar una cotización de cuidado a domicilio para un adulto mayor.';
+
+export const whatsappCotizacionMensaje =
+  'Hola, quiero cotizar un servicio de cuidado a domicilio. Mi comuna es: ';
 
 /** Enlace de WhatsApp con mensaje predefinido. */
 export function whatsappLink(mensaje: string = whatsappMensaje): string {
@@ -77,7 +80,7 @@ export const telLink = `tel:${site.telefonoE164}`;
 
 export const navPrincipal = [
   { href: '/#servicios', label: 'Servicios' },
-  { href: '/#valores', label: 'Valores' },
+  { href: '/precios/', label: 'Precios' },
   { href: '/#cobertura', label: 'Cobertura' },
   { href: '/#como-funciona', label: 'Cómo funciona' },
   { href: '/#nosotros', label: 'Nosotros' },
@@ -90,11 +93,12 @@ export const navGrupos = [
     label: 'Servicios',
     items: [
       { href: '/#servicios', label: 'Servicios de cuidado' },
-      { href: '/#valores', label: 'Valores referenciales' },
+      { href: '/precios/', label: 'Precios y cotización' },
       { href: '/servicios/cuidadoras-adulto-mayor/', label: 'Cuidadoras' },
       { href: '/servicios/tens-a-domicilio/', label: 'TENS' },
       { href: '/servicios/enfermeria-a-domicilio/', label: 'Enfermería' },
       { href: '/servicios/tecnicos-kinesiologos-a-domicilio/', label: 'Técnicos kinesiólogos' },
+      { href: '/contacto/#formulario-contacto', label: 'Solicitar cotización' },
     ],
   },
   {

@@ -124,12 +124,12 @@ reemplazan esos archivos y se vuelve a ejecutar el script.
 |---|---|
 | Contenedor | Google Tag Manager GTM-5SDQ9M5Q, cargado desde src/layouts/Layout.astro |
 | Consent Mode | Denegado por defecto; el banner permite aceptar o rechazar medición |
-| Eventos del sitio | clic_whatsapp, clic_telefono, clic_cta, clic_correo y contacto_whatsapp_preparado |
+| Eventos del sitio | clic_whatsapp, clic_telefono, clic_correo, clic_cta, clic_cotizar, cotizacion_iniciada y cotizacion_preparada |
 | GA4, Ads y otras etiquetas | Se administran dentro de GTM; sus IDs no se configuran en src/data/site.ts |
 
 Los campos site.medicion.* son heredados y no controlan la carga actual de
 etiquetas. Configura disparadores de evento personalizado en GTM según
-docs/07-medicion-y-conversiones.md. El evento contacto_whatsapp_preparado
+docs/07-medicion-y-conversiones.md. El evento cotizacion_preparada
 indica que el formulario se validó y preparó un mensaje, no que el usuario lo
 haya enviado ni que exista un lead confirmado.
 

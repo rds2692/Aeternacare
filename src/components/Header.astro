@@ -48,7 +48,7 @@ const estaActivo = (href: string) =>
             </details>
           </li>
         ))}
-        {navPrincipal.filter((item) => ['Blog', 'Contacto'].includes(item.label)).map((item) => (
+        {navPrincipal.filter((item) => ['Precios', 'Blog', 'Contacto'].includes(item.label)).map((item) => (
           <li>
             <a class="nav__enlace" href={item.href} aria-current={estaActivo(item.href) ? 'page' : undefined}>
               {item.label}
@@ -59,7 +59,11 @@ const estaActivo = (href: string) =>
     </nav>
 
     <div class="header__acciones">
-      <a class="btn btn--primario header__cta" href="/contacto/">Solicitar orientación</a>
+      <a
+        class="btn btn--primario header__cta"
+        href="/contacto/#formulario-contacto"
+        data-analitica="cotizar-header"
+      >Cotizar cuidado</a>
       <button
         class="menu-btn"
         type="button"
@@ -85,11 +89,15 @@ const estaActivo = (href: string) =>
           </details>
         </li>
       ))}
-      {navPrincipal.filter((item) => ['Blog', 'Contacto'].includes(item.label)).map((item) => (
+      {navPrincipal.filter((item) => ['Precios', 'Blog', 'Contacto'].includes(item.label)).map((item) => (
         <li><a href={item.href}>{item.label}</a></li>
       ))}
       <li class="menu-panel__cta">
-        <a class="btn btn--primario btn--bloque" href="/contacto/">Solicitar orientación</a>
+        <a
+          class="btn btn--primario btn--bloque"
+          href="/contacto/#formulario-contacto"
+          data-analitica="cotizar-menu"
+        >Cotizar cuidado</a>
       </li>
       <li class="menu-panel__cta">
         <a

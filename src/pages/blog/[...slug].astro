@@ -2,6 +2,7 @@
 import { getCollection, render } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import Icon from '../../components/Icon.astro';
+import QuoteRouter from '../../components/QuoteRouter.astro';
 import { site } from '../../data/site';
 
 export async function getStaticPaths() {
@@ -86,14 +87,20 @@ const jsonLd = [
         <Content />
       </article>
 
+      <QuoteRouter />
+
       <div class="cierre" style="margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);">
-        <h2 style="font-size: var(--h3)">¿Necesitas orientación para tu caso?</h2>
+        <h2 style="font-size: var(--h3)">¿Listo para cotizar el cuidado de tu familiar?</h2>
         <p>
-          Cuéntanos la situación de tu familiar y te ayudamos a definir qué tipo de apoyo
-          corresponde.
+          Indícanos la comuna, el horario y el apoyo que necesitas. Revisaremos contigo el alcance y
+          el valor antes de agendar.
         </p>
-        <a class="btn btn--primario btn--grande" href="/contacto/">
-          Solicitar orientación
+        <a
+          class="btn btn--primario btn--grande"
+          href={`/contacto/?origen=blog-${entrada.id}#formulario-contacto`}
+          data-analitica={`cotizar-blog-${entrada.id}`}
+        >
+          Solicitar cotización
           <Icon name="flecha" size={18} />
         </a>
       </div>

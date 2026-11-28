@@ -210,7 +210,9 @@ const bloquesExtra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
         const origen = elemento?.dataset.analitica;
         if (!origen) return;
 
-        const evento = origen.startsWith('whatsapp-')
+        const evento = origen.startsWith('cotizar-')
+          ? 'clic_cotizar'
+          : origen.startsWith('whatsapp-')
           ? 'clic_whatsapp'
           : origen.startsWith('telefono-') || origen === 'telefono'
             ? 'clic_telefono'
@@ -218,7 +220,10 @@ const bloquesExtra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
               ? 'clic_correo'
               : 'clic_cta';
 
-        emitirEvento(evento, { origen });
+        emitirEvento(evento, {
+          origen,
+          servicio: elemento?.dataset.servicio ?? '',
+        });
       });
     </script>
 

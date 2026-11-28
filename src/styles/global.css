@@ -884,6 +884,52 @@ p {
   gap: 1.15rem;
 }
 
+.formulario__detalles {
+  border: 1px solid var(--border);
+  border-radius: var(--radio-sm);
+  background: var(--mint-soft);
+}
+
+.formulario__detalles summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem;
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 600;
+  list-style: none;
+}
+
+.formulario__detalles summary::-webkit-details-marker {
+  display: none;
+}
+
+.formulario__detalles summary::after {
+  content: '+';
+  color: var(--green-deep);
+  font-size: 1.35rem;
+  line-height: 1;
+}
+
+.formulario__detalles[open] summary::after {
+  content: '−';
+}
+
+.formulario__detalles summary small {
+  margin-left: auto;
+  color: var(--ink-soft);
+  font-size: var(--texto-xs);
+  font-weight: 500;
+}
+
+.formulario__detalles-contenido {
+  display: grid;
+  gap: 1.15rem;
+  padding: 0 1.15rem 1.25rem;
+}
+
 .selector-dias {
   display: grid;
   gap: 0.75rem;
@@ -1008,8 +1054,8 @@ p {
 
 .consentimiento input {
   flex: none;
-  width: 1.15rem;
-  height: 1.15rem;
+  width: 1.5rem;
+  height: 1.5rem;
   margin-top: 0.15rem;
   accent-color: var(--lilac-deep);
 }
@@ -1389,6 +1435,14 @@ p {
   display: block;
 }
 
+.catalogo-servicios__grupo summary a,
+.lista-simple li a,
+.prosa p a,
+.prosa li a,
+.prosa td a {
+  padding-block: 0.125rem;
+}
+
 .catalogo-servicios__grupo summary small {
   margin-top: 0.3rem;
   color: var(--ink-muted);
@@ -1428,6 +1482,10 @@ p {
   color: var(--ink);
 }
 
+.catalogo-servicios__cta {
+  margin: 0 0 1rem;
+}
+
 .lista-simple {
   display: grid;
   gap: 0.5rem;
@@ -1450,6 +1508,65 @@ p {
   display: grid;
   gap: 0.75rem;
   margin-top: clamp(2rem, 1rem + 3vw, 3.25rem);
+}
+
+/* ------------------------------------------------ 11e. Selector de cotización */
+.quote-router {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  padding: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  border: 1px solid var(--border);
+  border-radius: var(--radio-lg);
+  background: var(--mint-soft);
+}
+
+.quote-router__opciones {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.quote-router__opcion {
+  display: grid;
+  gap: 1rem;
+  align-items: center;
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radio);
+  background: var(--white);
+}
+
+.quote-router__opcion h3 {
+  font-size: 1.0625rem;
+}
+
+.quote-router__opcion p {
+  margin-top: 0.35rem;
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+}
+
+.quote-router__duda {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border);
+}
+
+.quote-router__duda p {
+  color: var(--ink-muted);
+  font-size: var(--texto-sm);
+}
+
+@media (min-width: 720px) {
+  .quote-router__opcion {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .quote-router__duda {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+  }
 }
 
 .urgencia {
