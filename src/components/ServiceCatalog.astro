@@ -2,8 +2,16 @@
 import { catalogoServicios } from '../data/contenido';
 import { paginasServicios } from '../data/landing';
 
-const cotizacionPorSlug = new Map(
-  paginasServicios.map((servicio) => [servicio.slug, servicio.cotizacion]),
+interface Props {
+  /** Prefijo de atribución para los CTA del catálogo. */
+  origen?: string;
+  /** En la página comercial los grupos se muestran abiertos por defecto. */
+  abierto?: boolean;
+}
+
+const { origen = 'precios', abierto = false } = Astro.props;
+const servicioPorSlug = new Map(
+  paginasServicios.map((servicio) => [servicio.slug, servicio]),
 );
 ---
 
@@ -17,7 +25,7 @@ const cotizacionPorSlug = new Map(
     <div class="catalogo-servicios" data-reveal>
       {
         catalogoServicios.grupos.map((grupo) => (
-          <details class="catalogo-servicios__grupo">
+          <details class="catalogo-servicios__grupo" open={abierto}>
             <summary>
               <span>
                 <strong><a href={`/servicios/${grupo.slug}/`}>{grupo.titulo}</a></strong>
@@ -35,11 +43,11 @@ const cotizacionPorSlug = new Map(
             </ul>
             <a
               class="btn btn--secundario catalogo-servicios__cta"
-              href={`/contacto/?servicio=${cotizacionPorSlug.get(grupo.slug) ?? ''}&origen=precios-${grupo.slug}#formulario-contacto`}
-              data-analitica={`cotizar-precios-${grupo.slug}`}
-              data-servicio={cotizacionPorSlug.get(grupo.slug)}
+              href={`/contacto/?servicio=${servicioPorSlug.get(grupo.slug)?.cotizacion ?? ''}&origen=${origen}-${grupo.slug}#formulario-contacto`}
+              data-analitica={`cotizar-${origen}-${grupo.slug}`}
+              data-servicio={servicioPorSlug.get(grupo.slug)?.cotizacion}
             >
-              Cotizar {grupo.titulo.toLowerCase()}
+              {servicioPorSlug.get(grupo.slug)?.ctaCotizacion ?? 'Cotizar'}
             </a>
           </details>
         ))
@@ -50,8 +58,8 @@ const cotizacionPorSlug = new Map(
     <div class="grupo-botones">
       <a
         class="btn btn--primario btn--grande"
-        href="/contacto/#formulario-contacto"
-        data-analitica="cotizar-catalogo"
+        href={`/contacto/?origen=${origen}-catalogo#formulario-contacto`}
+        data-analitica={`cotizar-${origen}-catalogo`}
       >Solicitar cotización</a>
       <a class="btn btn--secundario btn--grande" href="/blog/cuanto-cuesta-cuidado-adulto-mayor-santiago/">
         Entender los factores del precio

@@ -96,6 +96,7 @@ for (const vista of vistas) {
     isMobile: vista.movil,
     hasTouch: vista.movil,
     locale: 'es-CL',
+    reducedMotion: 'reduce',
   });
 
   for (const pagina of paginas) {

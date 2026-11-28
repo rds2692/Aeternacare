@@ -5,16 +5,19 @@ const opciones = [
   {
     servicio: 'cuidadora',
     titulo: 'Cuidadora',
+    cta: 'Cotizar cuidadora',
     texto: 'Para compañía, rutina, alimentación, higiene y apoyo práctico en el hogar.',
   },
   {
     servicio: 'tens',
     titulo: 'TENS',
+    cta: 'Cotizar TENS',
     texto: 'Para cuidados técnicos definidos, apoyo posterior a una hospitalización o rutinas con indicación.',
   },
   {
     servicio: 'enfermera',
     titulo: 'Enfermería',
+    cta: 'Cotizar enfermería',
     texto: 'Para evaluación, procedimientos y cuidados de mayor complejidad.',
   },
 ];
@@ -40,7 +43,7 @@ const opciones = [
           data-analitica={`cotizar-guia-${opcion.servicio}`}
           data-servicio={opcion.servicio}
         >
-          Cotizar {opcion.titulo.toLowerCase()}
+          {opcion.cta}
           <Icon name="flecha" size={18} />
         </a>
       </article>

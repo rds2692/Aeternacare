@@ -98,7 +98,7 @@ export const navGrupos = [
       { href: '/servicios/tens-a-domicilio/', label: 'TENS' },
       { href: '/servicios/enfermeria-a-domicilio/', label: 'Enfermería' },
       { href: '/servicios/tecnicos-kinesiologos-a-domicilio/', label: 'Técnicos kinesiólogos' },
-      { href: '/contacto/#formulario-contacto', label: 'Solicitar cotización' },
+      { href: '/contacto/?origen=nav-servicios#formulario-contacto', label: 'Solicitar cotización' },
     ],
   },
   {

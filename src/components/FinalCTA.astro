@@ -12,7 +12,11 @@ import { whatsappLink } from '../data/site';
       <h2 id="cierre-titulo" data-reveal style="--retardo: 60ms">{cierre.titulo}</h2>
       <p data-reveal style="--retardo: 120ms">{cierre.texto}</p>
       <div class="grupo-botones" data-reveal style="--retardo: 180ms">
-        <a class="btn btn--primario btn--grande" href="/contacto/" data-analitica="cta-cierre">
+        <a
+          class="btn btn--primario btn--grande"
+          href="/contacto/?origen=inicio-cierre#formulario-contacto"
+          data-analitica="cotizar-inicio-cierre"
+        >
           {cierre.cta}
           <Icon name="flecha" size={18} />
         </a>
@@ -40,7 +44,11 @@ import { whatsappLink } from '../data/site';
       </h2>
       <p data-reveal style="--retardo: 120ms">{ctaFinal.texto}</p>
       <div class="grupo-botones" data-reveal style="--retardo: 180ms">
-        <a class="btn btn--primario btn--grande" href="/contacto/" data-analitica="cta-final">
+        <a
+          class="btn btn--primario btn--grande"
+          href="/contacto/?origen=inicio-final#formulario-contacto"
+          data-analitica="cotizar-inicio-final"
+        >
           {ctaFinal.cta}
           <Icon name="flecha" size={18} />
         </a>

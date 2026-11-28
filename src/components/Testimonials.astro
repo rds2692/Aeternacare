@@ -41,8 +41,12 @@ import Photo from './Photo.astro';
           Cada testimonio se publicará con su autorización firmada, sin nombres que no queramos
           exponer y sin datos clínicos.
         </p>
-        <a class="btn btn--fantasma" href="/contacto/">
-          Conversar con el equipo
+        <a
+          class="btn btn--fantasma"
+          href="/contacto/?origen=inicio-testimonios#formulario-contacto"
+          data-analitica="cotizar-inicio-testimonios"
+        >
+          Solicitar cotización
           <Icon name="flecha" size={18} />
         </a>
       </div>

@@ -19,20 +19,6 @@ declare global {
   }
 }
 
-/**
- * Registra que el formulario validó y preparó un mensaje para WhatsApp.
- * No confirma que la persona lo haya enviado ni que exista un lead.
- */
-export function registrarContactoWhatsAppPreparado(origen: string): void {
-  window.dataLayer = window.dataLayer ?? [];
-  window.dataLayer.push({
-    event: 'contacto_whatsapp_preparado',
-    origen,
-    canal: 'whatsapp',
-    etapa: 'mensaje_preparado',
-  });
-}
-
 function emitirEvento(evento: string, detalle: Record<string, string>): void {
   window.dataLayer = window.dataLayer ?? [];
   window.dataLayer.push({ event: evento, ...detalle });

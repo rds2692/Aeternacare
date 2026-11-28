@@ -137,6 +137,11 @@ const bloquesExtra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
          animaciones de entrada solo oculten contenido cuando exista JS. -->
     <script is:inline>
       document.documentElement.classList.add('js');
+      window.setTimeout(() => {
+        if (!document.documentElement.classList.contains('animaciones-iniciadas')) {
+          document.documentElement.classList.add('animaciones-respaldo');
+        }
+      }, 2500);
     </script>
 
     <script type="application/ld+json" set:html={JSON.stringify(datosBase)} />
@@ -170,6 +175,10 @@ const bloquesExtra = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 
     {/* Consentimiento y eventos: las etiquetas de medición viven en Google Tag Manager. */}
     <script>
+      import { iniciarReveals } from '../scripts/reveal';
+
+      iniciarReveals();
+
       const clave = 'aeterna-consentimiento-medicion';
       const banner = document.getElementById('consentimiento');
       const consentimiento = localStorage.getItem(clave);

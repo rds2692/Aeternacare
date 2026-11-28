@@ -15,6 +15,8 @@ export const paginasServicios = [
   {
     slug: 'cuidadoras-adulto-mayor',
     cotizacion: 'cuidadora',
+    ctaCotizacion: 'Cotizar cuidadora',
+    cierreCotizacion: 'Cotiza una cuidadora para tu familiar',
     nombre: 'Cuidadoras de adultos mayores',
     titulo: 'Cuidadoras de adultos mayores a domicilio',
     descripcion:
@@ -30,6 +32,8 @@ export const paginasServicios = [
   {
     slug: 'tens-a-domicilio',
     cotizacion: 'tens',
+    ctaCotizacion: 'Cotizar TENS',
+    cierreCotizacion: 'Cotiza un turno TENS para tu familiar',
     nombre: 'TENS a domicilio',
     titulo: 'TENS a domicilio en Santiago',
     descripcion:
@@ -45,6 +49,8 @@ export const paginasServicios = [
   {
     slug: 'enfermeria-a-domicilio',
     cotizacion: 'enfermera',
+    ctaCotizacion: 'Cotizar enfermería',
+    cierreCotizacion: 'Cotiza enfermería a domicilio para tu familiar',
     nombre: 'Enfermería a domicilio',
     titulo: 'Enfermería a domicilio en Santiago',
     descripcion:
@@ -60,6 +66,8 @@ export const paginasServicios = [
   {
     slug: 'tecnicos-kinesiologos-a-domicilio',
     cotizacion: 'kinesiologo',
+    ctaCotizacion: 'Cotizar kinesiología',
+    cierreCotizacion: 'Cotiza kinesiología a domicilio para tu familiar',
     nombre: 'Técnicos kinesiólogos',
     titulo: 'Técnicos kinesiólogos a domicilio',
     descripcion:

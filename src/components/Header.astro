@@ -61,7 +61,7 @@ const estaActivo = (href: string) =>
     <div class="header__acciones">
       <a
         class="btn btn--primario header__cta"
-        href="/contacto/#formulario-contacto"
+        href="/contacto/?origen=cotizar-header#formulario-contacto"
         data-analitica="cotizar-header"
       >Cotizar cuidado</a>
       <button
@@ -95,7 +95,7 @@ const estaActivo = (href: string) =>
       <li class="menu-panel__cta">
         <a
           class="btn btn--primario btn--bloque"
-          href="/contacto/#formulario-contacto"
+          href="/contacto/?origen=cotizar-menu#formulario-contacto"
           data-analitica="cotizar-menu"
         >Cotizar cuidado</a>
       </li>
@@ -115,9 +115,12 @@ const estaActivo = (href: string) =>
 </header>
 
 <script>
+  import { animate, stagger } from 'animejs';
+
   const header = document.getElementById('header');
   const boton = document.getElementById('menu-btn');
   const panel = document.getElementById('menu-panel');
+  const movimientoReducido = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   // Header translúcido al hacer scroll.
   if (header) {
@@ -131,12 +134,47 @@ const estaActivo = (href: string) =>
   // Menú móvil accesible.
   if (boton && panel) {
     const abrir = (estado: boolean) => {
-      panel.dataset.abierto = String(estado);
       boton.setAttribute('aria-expanded', String(estado));
       boton.setAttribute('aria-label', estado ? 'Cerrar menú de navegación' : 'Abrir menú de navegación');
       boton.innerHTML = estado
         ? '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12"/><path d="M18 6L6 18"/></svg>'
         : '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M4 7.5h16"/><path d="M4 12h16"/><path d="M4 16.5h16"/></svg>';
+
+      if (estado) {
+        panel.dataset.abierto = 'true';
+
+        if (!movimientoReducido) {
+          animate(panel, {
+            opacity: [0, 1],
+            y: [-10, 0],
+            duration: 340,
+            ease: 'outCubic',
+          });
+          animate(panel.querySelectorAll('.menu-panel__lista > li'), {
+            opacity: [0, 1],
+            y: [-8, 0],
+            duration: 420,
+            delay: stagger(28, { start: 55 }),
+            ease: 'outCubic',
+          });
+        }
+        return;
+      }
+
+      if (movimientoReducido) {
+        panel.dataset.abierto = 'false';
+        return;
+      }
+
+      animate(panel, {
+        opacity: [1, 0],
+        y: [0, -8],
+        duration: 190,
+        ease: 'inCubic',
+        onComplete: () => {
+          panel.dataset.abierto = 'false';
+        },
+      });
     };
 
     boton.addEventListener('click', () => {
